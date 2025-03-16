@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@fontsource/poppins": "^5.2.5",
     "@tailwindcss/vite": "^4.0.14",
     "nuxt": "^3.16.0",
     "tailwindcss": "^4.0.14",
