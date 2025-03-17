@@ -88,7 +88,7 @@
     <div class="flex justify-start items-center ">
       <NuxtLink
         to="/"
-        class="px-4 py-2.5 flex justify-center items-center gap-1 "
+        class="px-4 py-2.5 flex justify-center items-center gap-1 transition-all duration-300 hover:bg-orange-100 hover:rounded-full"
       >
         <div
           class="text-center justify-start text-red-800 text-lg font-medium font-['Poppins'] leading-relaxed "
@@ -97,9 +97,10 @@
         </div>
       </NuxtLink>
 
+      <!-- Marketplace -->
       <NuxtLink
         to="/market"
-        class="px-4 py-2.5 flex justify-center items-center gap-1 border-b-[3px] border-red-800"
+        class="px-4 py-2.5 flex justify-center items-center gap-1 border-b-[3px] border-red-800 transition-all duration-300 hover:bg-orange-100 hover:rounded-full"
       >
         <div
           class="text-center justify-start text-red-800 text-lg font-semibold font-['Poppins'] leading-relaxed"
@@ -137,7 +138,7 @@
       <!-- Log in Button -->
       <NuxtLink to="login">
         <button
-          class="p-[12px] px-[16px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer"
+          class="p-[12px] px-[16px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full"
         >
           Log in
         </button>
