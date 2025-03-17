@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <template>
   <header
     class="flex w-[1360px] px-[24px] py-[12px] justify-between items-center"
@@ -35,4 +33,3 @@
     </div>
   </header>
 </template>
->>>>>>> Header-components
