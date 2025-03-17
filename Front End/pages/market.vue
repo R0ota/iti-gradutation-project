@@ -9,40 +9,29 @@ const {data} = await useAsyncFetch("get", "/products")
 </script>
 
 <template>
-
-  <div class="lg:ml-[135px] lg:mr-[135px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px] ">
-    <div class="text-[20px] tracking-[-0.38px] float-left font-[Poppins] lg:text-[24px] font-semibold leading-[150%] lg:tracking-[-0.456px]">
-      Market Catigories
+  <div class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px] ">
+    <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center ">
+      <p class="justify-start text-red-800 lg:text-3xl text-xl font-bold  leading-loose lg:leading-[48px]">
+        Market Catigories</p>
     </div>
-    <div class="flex flex-row justify-center gap-4 flex-wrap ">
+
+    <div class="flex flex-row justify-center gap-6 flex-wrap self-stretch pb-10 lg:border-b-[1.50px] border-b-[0.50px] border-red-800 ">
       <div  v-for="item in data.products">
-        <CardType  >{{ item.title }}</CardType>
+        <CardType :catigory ="item.sku" :img = "item.thumbnail"/>
       </div>
     </div> 
-    <div class="flex flex-col items-center">
-      <div class=" lg:w-[640px] lg:stroke-[2px] stroke-black w-[370px] stroke-[1px]">
-        <svg  xmlns="http://www.w3.org/2000/svg" width-full height-auto viewBox="0 0 642 2" fill="none">
-        <path d="M641 1L1 1" stroke="black" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-    </div>
+
     <div class="flex flex-row justify-between ">
-      <p class="text-[20px] tracking-[-0.38px]  font-[Poppins] lg:text-[24px] font-semibold leading-[150%] lg:tracking-[-0.456px]">
+      <p class="text-[20px] tracking-[-0.38px] lg:text-[24px] font-semibold leading-[150%] lg:tracking-[-0.456px]">
         Best-selling products
       </p>
       <p class="lg:text-[16px] tracking-[-0.304px] font-semibold cursor-pointer">more</p>
     </div>
-    <div  class="flex flex-row  lg:flex-wrap lg:justify-between  overflow-x-auto gap-4">
+
+    <div  class="flex flex-row  lg:flex-wrap lg:justify-start  overflow-x-auto gap-4">
       <div v-for="product in data.products" class="flex">
-      <ProductCard :name = "product.title" :type = "product.title" :price = "product.id"/>
-      
-    </div>
-    </div>
-    
-    
-    
-        
+        <ProductCard :name = "product.title" :type = "product.title" :price = "product.id" :image="product.thumbnail"/>
+      </div>
+    </div> 
   </div>
-  
-  
 </template>
