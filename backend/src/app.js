@@ -18,7 +18,8 @@ app.use(express.json())
 
 app.use('/', auth);
 // setRoutes(app);
-
+app.use('/user', authMiddleware, userRoute);
+app.use('/admin', authMiddleware, adminMiddleware, userRoute);
 app.listen(PORT, async() => {
     await connectDB();
     
