@@ -1,15 +1,26 @@
+require("dotenv").config();
 const express = require('express');
-const bodyParser = require('body-parser');
-const setRoutes = require('./routes/index');
+const morgan=require("morgan")
 
-const app = express();
+
+// const setRoutes = require('./routes/index');
+const {authMiddleware,adminMiddleware}=require("./middleware/authentication")
+const connectDB = require('./config/connectDB');
+const auth = require('./routes/auth');
+const userRoute = require('./routes/userRoute');
+
 const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const app = express();
+app.use(morgan("dev"))
+app.use(express.json())
 
-setRoutes(app);
 
-app.listen(PORT, () => {
+app.use('/', auth);
+// setRoutes(app);
+
+app.listen(PORT, async() => {
+    await connectDB();
+    
     console.log(`Server is running on port ${PORT}`);
 });

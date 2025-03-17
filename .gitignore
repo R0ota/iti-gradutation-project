@@ -7,4 +7,6 @@
 /dataSources/
 /dataSources.local.xml
 .idea
-
+backend/node_modules
+backend/.env
+backend/.env
