@@ -11,7 +11,7 @@
     <div
       class="text-black text-center font-[Poppins] text-[20px] not-italic font-bold leading-[30px] tracking-[-0.38px]"
     >
-      Logo
+     <img src="../Logo.svg" /> 
     </div>
 
     <div
