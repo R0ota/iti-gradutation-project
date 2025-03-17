@@ -9,12 +9,12 @@
 
     <!-- Search Bar -->
     <div
-      class="flex items-center justify-between h-[48px] p-[12px] px-[16px] flex-[1_0_0] self-stretch rounded-[16px] border-[1.5px] border-[#868686] bg-[#F6F6F6]"
+      class="flex items-center justify-between h-[48px] p-[12px] px-[16px] flex-[1_0_0] self-stretch rounded-[16px] border-[1.5px] border-[#868686] bg-[#F6F6F6] relative"
     >
       <!-- Search Icon -->
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="w-4 h-4 aspect-square text-gray-500"
+        class="w-4 h-4 aspect-square text-gray-500 absolute left-4 top-1/2 transform -translate-y-1/2"
         viewBox="0 0 24 24"
         fill="none"
       >
@@ -24,20 +24,37 @@
             fill="#888888"
           />
         </g>
-        <defs>
-          <clipPath id="clip0_390_1421">
-            <rect width="24" height="24" fill="white" />
-          </clipPath>
-        </defs>
       </svg>
 
       <!-- Search Input -->
       <input
         type="text"
+        v-model="searchText"
         placeholder="Explore a variety of designs and products"
-        class="flex-1 p-[12px] px-[16px] pl-2 justify-between items-center
-      self-stretch bg-transparent outline-none"
+        class="flex-1 p-[12px] pl-10 pr-10 bg-transparent outline-none"
       />
+
+      <!-- Close (X) Icon (Appears When Typing) -->
+      <svg
+        v-if="searchText.length > 0"
+        @click="clearInput"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        class=" w-6 h-6 aspect-square absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500 hover:text-gray-700"
+      >
+        <g clip-path="url(#clip0_424_4598)">
+          <path
+            d="M12 24C15.1826 24 18.2348 22.7357 20.4853 20.4853C22.7357 18.2348 24 15.1826 24 12C24 8.8174 22.7357 5.76516 20.4853 3.51472C18.2348 1.26428 15.1826 0 12 0C8.8174 0 5.76516 1.26428 3.51472 3.51472C1.26428 5.76516 0 8.8174 0 12C0 15.1826 1.26428 18.2348 3.51472 20.4853C5.76516 22.7357 8.8174 24 12 24ZM8.20312 8.20312C8.64375 7.7625 9.35625 7.7625 9.79219 8.20312L11.9953 10.4062L14.1984 8.20312C14.6391 7.7625 15.3516 7.7625 15.7875 8.20312C16.2234 8.64375 16.2281 9.35625 15.7875 9.79219L13.5844 11.9953L15.7875 14.1984C16.2281 14.6391 16.2281 15.3516 15.7875 15.7875C15.3469 16.2234 14.6344 16.2281 14.1984 15.7875L11.9953 13.5844L9.79219 15.7875C9.35156 16.2281 8.63906 16.2281 8.20312 15.7875C7.76719 15.3469 7.7625 14.6344 8.20312 14.1984L10.4062 11.9953L8.20312 9.79219C7.7625 9.35156 7.7625 8.63906 8.20312 8.20312Z"
+            fill="#9C9C9C"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_424_4598">
+            <rect width="24" height="24" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
     </div>
     <!-- New Heart Icon -->
     <svg
@@ -81,3 +98,12 @@
     </div>
   </header>
 </template>
+<script setup>
+import { ref } from 'vue';
+
+const searchText = ref('');
+
+const clearInput = () => {
+  searchText.value = '';
+};
+</script>
