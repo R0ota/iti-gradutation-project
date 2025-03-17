@@ -84,7 +84,7 @@
     <div class="flex items-center justify-center gap-[10px]">
       <!-- Log in Button -->
       <button
-        class="flex items-center justify-center gap-[10px] p-[12px] px-[16px] text-black text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px]"
+        class="p-[12px] px-[16px] text-black text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px]"
       >
         Log in
       </button>
