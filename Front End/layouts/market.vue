@@ -2,10 +2,12 @@
  
 </script>
 <template>
-   
   <div>
     <Header-Market />
-    <slot />
-   
+
+
+    <div>
+      <slot />
+    </div>
   </div>
 </template>
