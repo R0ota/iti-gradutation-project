@@ -135,7 +135,7 @@
       </g>
     </svg>
     <div class="flex items-center justify-center gap-[10px]">
-      <ProfileAvatar src="../public/images/profileimg.jpg" />
+      <ProfileAvatar src="/images/profileimg.jpg" />
     </div>
     <!-- notifications -->
     <svg
