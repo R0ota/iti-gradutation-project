@@ -147,7 +147,7 @@
       <!-- Sign up Button -->
       <NuxtLink to="sign-up">
         <button
-          class="p-[14px] px-[18px] rounded-[16px] bg-[#A31D1D] shadow-[0px_0px_4px_rgba(0,0,0,0.50)] text-[#ECDCBF] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer"
+          class="p-[10px] px-[18px] rounded-[16px] bg-[#A31D1D] shadow-[0px_0px_4px_rgba(0,0,0,0.50)] text-[#ECDCBF] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer"
         >
           Sign up
         </button>
