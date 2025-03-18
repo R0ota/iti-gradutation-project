@@ -100,7 +100,7 @@
       <!-- Marketplace -->
       <NuxtLink
         to="/market"
-        class="px-4 py-2.5 flex justify-center items-center gap-1 border-b-[3px] border-red-800 transition-all duration-300 hover:bg-orange-100 hover:rounded-full"
+        class="px-4 py-2.5 flex justify-center items-center gap-1 border-b-[3px] border-red-800 transition-all duration-300 hover:border-2 hover:border-red-800 hover:rounded-full hover:bg-orange-100"
       >
         <div
           class="text-center justify-start text-red-800 text-lg font-semibold font-['Poppins'] leading-relaxed"
