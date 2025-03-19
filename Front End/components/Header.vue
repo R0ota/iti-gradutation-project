@@ -1,7 +1,5 @@
 <template>
-  <header
-    class="flex w-[1360px] px-[24px] py-[12px] justify-between items-center"
-  >
+  <header class="flex py-[16px] px-[24px] justify-between items-center">
     <NuxtLink to="market">
       <div
         class="text-center justify-start text-red-800 text-lg font-medium font-['Poppins'] leading-relaxed"
@@ -31,7 +29,10 @@
       <!-- Sign up Button -->
       <NuxtLink to="sign-up">
         <button
-          class="p-[10px] px-[18px] rounded-[16px] bg-[#A31D1D] shadow-[0px_0px_4px_rgba(0,0,0,0.50)] text-[#ECDCBF] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer"
+          class="p-[10px] px-[24px] rounded-[16px] bg-[#A31D1D] shadow-[0px_0px_4px_rgba(0,0,0,0.50)] 
+           text-[#ECDCBF] text-center font-[Poppins] text-[20px] font-medium leading-[150%] 
+           tracking-[-0.304px] cursor-pointer transition duration-300 ease-in-out py-3 
+           hover:bg-[#6D1313] hover:shadow-lg hover:rounded-[50px]"
         >
           Sign up
         </button>
