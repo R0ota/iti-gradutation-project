@@ -4,7 +4,7 @@ definePageMeta({
 });
 
 const {data} = await useAsyncFetch("get", "/products")
-  console.log(data);
+  // console.log(data);
 </script>
 
 <template>
