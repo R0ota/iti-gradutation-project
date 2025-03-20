@@ -18,11 +18,13 @@ const toggleFavorite = () => {
 </script>
 
 <template>
-    <div class="flex flex-col items-center lg:gap-[8px] gap-[5.039px] ">
-        <div class="relative group lg:w-[254px] lg:h-[254px] lg:rounded-[40px] bg-[#D9D9D9] flex-shrink-0 aspect-square 
+    <div class="flex flex-col items-center lg:gap-[8px] gap-[5.039px]">
+        <div class="relative lg:w-[254px] lg:h-[254px] lg:rounded-[40px] bg-[#D9D9D9] flex-shrink-0 aspect-square 
         w-[160px] h-[160px] rounded-[25.197px]">
         
             <svg  v-if="isFavorite"
+            <div class="group">
+                <svg  v-if="isFavorite"
                 @click="toggleFavorite" 
                 xmlns="http://www.w3.org/2000/svg" class="z-10 absolute lg:top-3 pointer-events-auto lg:right-3 top-2 right-2 
                 cursor-pointer transition-all duration-300" width="33" height="32" viewBox="0 0 33 32" fill="none">
@@ -52,6 +54,8 @@ const toggleFavorite = () => {
                 17.5244 11.4654L16.7646 12.3191C16.7518 12.3362 16.7347 12.349 16.7219 12.3661C16.5298 12.5582 16.2694 12.6649 16.0005 
                 12.6649C15.7315 12.6649 15.4711 12.5582 15.279 12.3661V12.3618Z" fill="#A31D1D"/>
             </svg>
+            </div>
+
 
             <img :src="image" class="lg:w-[254px] lg:h-[254px] lg:rounded-[40px] w-[160px] h-[160px] rounded-[25.197px] ">
         </div>
