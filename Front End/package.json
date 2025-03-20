@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@fontsource/poppins": "^5.2.5",
+    "@nuxt/ui": "^3.0.0",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@tailwindcss/vite": "^4.0.14",
     "nuxt": "^3.16.0",

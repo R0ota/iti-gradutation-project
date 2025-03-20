@@ -21,7 +21,7 @@ const toggleFavorite = () => {
     <div class="flex flex-col items-center lg:gap-[8px] gap-[5.039px] ">
         <div class="relative group lg:w-[254px] lg:h-[254px] lg:rounded-[40px] bg-[#D9D9D9] flex-shrink-0 aspect-square 
         w-[160px] h-[160px] rounded-[25.197px]">
-
+        
             <svg  v-if="isFavorite"
                 @click="toggleFavorite" 
                 xmlns="http://www.w3.org/2000/svg" class="z-10 absolute lg:top-3 pointer-events-auto lg:right-3 top-2 right-2 
