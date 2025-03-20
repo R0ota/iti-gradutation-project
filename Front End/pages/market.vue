@@ -43,7 +43,7 @@ const {data} = await useAsyncFetch("get", "/products")
 
     <div  class="flex flex-row  lg:flex-wrap lg:justify-start  overflow-x-auto gap-4">
       <div v-for="product in data.products" class="flex">
-        <ProductCard :name = "product.title" :type = "product.title" :price = "product.id" :image="product.thumbnail"/>
+        <ProductCard :name = "product.title" :type = "product.title" :price = "product.id" :image="product.thumbnail" currency="EGP"/>
       </div>
     </div> 
   </div>

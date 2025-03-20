@@ -1,13 +1,11 @@
-<script setup>
- 
-</script>
-<template>
-  <div>
-    <Header-Market />
 
+<template>
+    <Header-Market />
 
     <div>
       <slot />
     </div>
-  </div>
+ 
+      <Footer />
+    
 </template>

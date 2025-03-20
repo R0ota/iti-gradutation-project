@@ -4,6 +4,7 @@
   type: String,
   price:Number,
   image : String,
+  currency : String,
 });
 
 import { ref , nextTick} from "vue";
@@ -63,7 +64,7 @@ const toggleFavorite = () => {
                 {{ type }}
             </p>
             <p class="text-right font-poppins lg:text-[18px] lg:tracking-[-0.342px] font-bold leading-[150%] text-[11.339px] tracking-[-0.215px]">
-                {{ price }}
+                {{ price }} {{ currency }}
             </p>
         </div>    
     </div>
