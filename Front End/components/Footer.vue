@@ -1,7 +1,7 @@
 
 <template>
-    <footer class="lg:w-full w-full px-6 py-12 bg-red-800 flex justify-start gap-6 lg:mt-16">
-        <div class="w-80 px-4 py-14  flex justify-center items-center gap-2.5">
+    <footer class="lg:w-full w-full lg:px-6 lg:py-14 bg-red-800 lg:flex justify-start lg:gap-6 lg:mt-16 px-12 gap-8">
+        <div class="w-80 px-4 py-16  flex justify-center items-center gap-2.5">
             <NuxtLink to="/"  class="flex justify-center items-center">
                 <img src="../assets/Light_Logo.svg" alt="Logo" class="lg:w-32 w-16" />
             </NuxtLink>
@@ -12,18 +12,18 @@
                     Marketplace
                 </p>
             </div>
-            <div class="self-stretch flex-col h-12 px-6 py-2 inline-flex justify-start items-start gap-4">
-                <p class="text-center justify-start text-red-100 text-base font-medium flex hover:h-12 hover:px-6 hover:py-2 
+            <div class="self-stretch flex-col h-12 px-6 py-2 inline-flex justify-start items-start">
+                <p class="text-center justify-start text-red-100 text-base font-medium flex hover:h-12 hover:px-2 py-2 
                 hover:bg-orange-200 hover:w-full hover:text-red-800 hover:rounded-[32px] transition-all duration-300 cursor-pointer">Mug</p>
-                <p class="text-center justify-start text-red-100 text-base font-medium flex hover:h-12 hover:px-6 hover:py-2 
+                <p class="text-center justify-start text-red-100 text-base font-medium flex hover:h-12 hover:px-2 py-2 
                 hover:bg-orange-200 hover:w-full hover:text-red-800 hover:rounded-[32px] transition-all duration-300 cursor-pointer">Home Decoration</p>
-                <p class="text-center justify-start text-red-100 text-base font-medium flex hover:h-12 hover:px-6 hover:py-2 
+                <p class="text-center justify-start text-red-100 text-base font-medium flex hover:h-12 hover:px-2 py-2 
                 hover:bg-orange-200 hover:w-full hover:text-red-800 hover:rounded-[32px] transition-all duration-300 cursor-pointer">Clothes</p>
-                <p class="text-center justify-start text-red-100 text-base font-medium flex hover:h-12 hover:px-6 hover:py-2 
+                <p class="text-center justify-start text-red-100 text-base font-medium flex hover:h-12 hover:px-2 py-2 
                 hover:bg-orange-200 hover:w-full hover:text-red-800 hover:rounded-[32px] transition-all duration-300 cursor-pointer">Stationery</p>
-                <p class="text-center justify-start text-red-100 text-base font-medium flex hover:h-12 hover:px-6 hover:py-2 
+                <p class="text-center justify-start text-red-100 text-base font-medium flex hover:h-12 hover:px-2 py-2 
                 hover:bg-orange-200 hover:w-full hover:text-red-800 hover:rounded-[32px] transition-all duration-300 cursor-pointer">Accessories</p>
-                <p class="text-center justify-start text-red-100 text-base font-medium flex hover:h-12 hover:px-6 hover:py-2 
+                <p class="text-center justify-start text-red-100 text-base font-medium flex hover:h-12 hover:px-2 py-2 
                 hover:bg-orange-200 hover:w-full hover:text-red-800 hover:rounded-[32px] transition-all duration-300 cursor-pointer">Art & Design</p>
             </div>  
         </div>
@@ -35,7 +35,7 @@
                 </p>
             </div>
             <div class="self-stretch flex-col h-12 px-6 py-2 inline-flex justify-start items-start gap-4">
-                <div class="self-stretch h-10 inline-flex justify-start items-start gap-4 group hover:px-6 hover:py-2 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer">
+                <div class="self-stretch h-10 inline-flex justify-start items-start gap-4 group hover:px-2 py-2 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer">
                     <div class="relative w-6">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="absolute group-hover:opacity-100">
                             <g clip-path="url(#clip0_629_11687)">
@@ -70,7 +70,7 @@
                     <p class="text-center justify-start text-red-100 text-base font-medium group-hover:text-red-800">FacebooK</p>
                 </div>
                 
-                <div class="self-stretch h-10 inline-flex justify-start items-start gap-4 group hover:px-6 hover:py-2 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer">
+                <div class="self-stretch h-10 inline-flex justify-start items-start gap-4 group hover:px-2 py-2 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer">
                     <div class="relative w-6">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 28" fill="none" class="absolute group-hover:opacity-100">
                             <g clip-path="url(#clip0_629_11691)">
@@ -127,7 +127,7 @@
                     <p class="text-center justify-start text-red-100 text-base font-medium group-hover:text-red-800">Instsgram</p>
                 </div>
 
-                <div class="self-stretch h-10  inline-flex justify-start items-start gap-4 group hover:px-6 hover:py-2 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer">
+                <div class="self-stretch h-10  inline-flex justify-start items-start gap-4 group hover:px-2 py-2 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer">
                     <div class="relative w-6">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="absolute group-hover:opacity-100">
                             <g clip-path="url(#clip0_629_11695)">
@@ -173,7 +173,7 @@
                     <p class="text-center justify-start text-red-100 text-base font-medium group-hover:text-red-800">Pinterest</p>
                 </div>
                  
-                <div class="self-stretch h-10 inline-flex justify-start items-start gap-4 group hover:px-6 hover:py-2 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer">
+                <div class="self-stretch h-10 inline-flex justify-start items-start gap-4 group hover:px-2 py-2 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer">
                     <div class="relative w-6">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 28" fill="none" class="absolute group-hover:opacity-100" >
                         <path d="M22.2857 2H1.70893C0.766071 2 0 2.77679 0 3.73036V24.2696C0 25.2232 0.766071 26 1.70893 26H22.2857C23.2286 26 24 25.2232 24 24.2696V3.73036C24 
