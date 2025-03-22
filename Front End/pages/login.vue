@@ -19,7 +19,7 @@ const password = ref('')
                 </div>
                     <div class="h-[70px] w-full bg-amber-100 rounded">
                         <UFormField label="Email" class="text-red-800 ">
-                            <UInput typ="email" placeholder="'example@gmail.com'" class="bg-yellow-50 rounded-2xl" primary></UInput>
+                            <UInput typ="email" placeholder="'example@gmail.com'" class=" rounded-2xl" primary></UInput>
                         </UFormField>
                     </div>
 
