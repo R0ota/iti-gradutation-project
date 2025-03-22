@@ -1,6 +1,6 @@
 
 <template>
-    <footer class="lg:w-full w-full lg:px-6 lg:py-14 bg-red-800 lg:flex justify-start lg:gap-6 lg:mt-16 px-12 gap-8">
+    <footer class="w-full px-6 py-14 bg-red-800 flex justify-center gap-6 mt-16 ">
         <div class="w-80 px-4 py-16  flex justify-center items-center gap-2.5">
             <NuxtLink to="/"  class="flex justify-center items-center">
                 <img src="../assets/Light_Logo.svg" alt="Logo" class="lg:w-32 w-16" />
