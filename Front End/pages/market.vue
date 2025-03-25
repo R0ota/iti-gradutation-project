@@ -26,7 +26,7 @@ const {data} = await useAsyncFetch("get", "/products")
           Best-selling products
         </p>
       </div>
-      <div class="flex flex-row items-center gap-1">
+      <NuxtLink to="market-products.vue" class="flex flex-row items-center gap-1">
         <p class="lg:text-[16px] tracking-[-0.304px] font-semibold cursor-pointer">more</p>
         <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M17.3261 8.74989C17.7871 9.21087 17.7871 9.95949 17.3261 10.4205L11.4257 16.3209C10.9647 
@@ -37,12 +37,12 @@ const {data} = await useAsyncFetch("get", "/products")
           9.58333L2.67822 4.5163C2.21725 4.05533 2.21725 3.30671 2.67822 2.84573C3.1392 2.38476 3.88782 2.38476 4.34879 
           2.84573L4.34511 2.84942Z" fill="black"/>
         </svg>
-      </div>
+      </NuxtLink>
       
     </div>
 
     <div  class="flex flex-row  lg:flex-wrap lg:justify-start  overflow-x-auto gap-4">
-      <div v-for="product in data.products" class="flex">
+      <div v-for="product in data.products.slice(0, 4)" class="flex">
         <ProductCard :name = "product.title" :type = "product.title" :price = "product.id" :image="product.thumbnail" currency="EGP"/>
       </div>
     </div> 
