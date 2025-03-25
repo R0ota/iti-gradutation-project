@@ -1,23 +1,107 @@
 <script setup>
-     definePageMeta({
+definePageMeta({
   layout: "auth",
 });
 
-const show = ref(false)
-const password = ref('')
+import { ref } from "vue";
+
+const showPassword = ref(false);
 </script>
 
 <template>
-    <div class="h-full flex items-center  w-full">
-        <div class="bg-red-200 w-1/3 h-[100vh]">
+  <div class="h-full flex items-center w-full">
+    <img
+      src="../assets/authimage.png"
+      class="h-[100vh] lg:w-1/3 lg:block hidden"
+    />
+
+    <div class="h-screen flex items-center m-auto">
+      <div
+        class="lg:w-[555px] w-full inline-flex flex-col lg:justify-start justify-center lg:items-start items-center gap-14"
+      >
+        <div classs="w-full flex lg:justify-start justify-center items-center">
+          <div
+            class="px-6 border-l-[6px] border-red-800 flex justify-center items-center"
+          >
+            <p
+              class="text-red-800 lg:text-3xl text-2xl font-bold leading-loose lg:leading-[48px]"
+            >
+              Log in
+            </p>
+          </div>
         </div>
-        <div class="h-screen flex items-center m-auto ">
-            <div class="w-full inline-flex flex-col justify-start items-start gap-8">
-                <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center ">
-                    <p class="justify-start text-red-800 lg:text-3xl text-xl font-bold  leading-loose lg:leading-[48px]">
-                    Log in</p>
-                </div>
-                    <div class="h-[70px] w-full bg-amber-100 rounded">
+
+        <form
+          class="w-full inline-flex flex-col justify-start items-start gap-2 group "
+        >
+          <div
+            class="self-stretch flex flex-col justify-start items-start gap-0.5"
+          >
+            <label
+              for="email"
+              class="px-2 jaustify-center items-start text-red-800 text-lg font-medium leading-relaxed"
+              >Email</label
+            >
+            <input
+              type="email"
+              placeholder="'example@gmail.com'"
+              id="email"
+              class="w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-800 inline-flex justify-start items-center"
+            />
+          </div>
+
+          <div
+            class="self-stretch flex flex-col justify-start items-start gap-0.5"
+          >
+            <label
+              for="password"
+              class="px-2 jaustify-center items-start text-red-800 text-lg font-medium leading-relaxed"
+              >Password</label
+            >
+            <div class="relative w-full">
+              <input
+                :type="showPassword ? 'text' : 'password'"
+                type="password"
+                placeholder="+6 Characters"
+                id="password"
+                class="w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-800 inline-flex justify-start items-center"
+              />
+
+              <span
+                class="absolute inset-y-0 right-4 flex items-center text-red-800 cursor-pointer"
+                @click="showPassword = !showPassword"
+              >
+                <i
+                  :class="
+                    showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'
+                  "
+                ></i>
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="w-full flex flex-col justify-center items-center gap-2 mt-10 lg:p-0"
+          >
+            <button
+              class="w-80 h-13 py-3 bg-gray-400 group-focus-within:bg-red-800 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center text-yellow-50 text-lg font-bold cursor-pointer"
+            >
+              Log in
+            </button>
+            <p class="text-black text-base font-medium">
+              Create an Account ?
+              <NuxtLink to="sign-up" class="text-red-800 text-lg font-bold"
+                >Sign up</NuxtLink
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!--  <div class="h-[70px] w-full bg-amber-100 rounded">
                         <UFormField label="Email" class="text-red-800">
                             <UInput type="email" placeholder="'example@gmail.com'"/>
                         </UFormField>
@@ -46,9 +130,4 @@ const password = ref('')
                     </div>
                     <div class="flex justify-center items-center w-full ">
                         <UButton class="bg-red-800 text-yellow-50 cursor-pointer">Log in</UButton>
-                    </div>
-            </div>
-        </div>
-        
-    </div>
-</template>
+                    </div> -->
