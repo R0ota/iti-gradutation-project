@@ -22,10 +22,10 @@ const isFormValid = computed(() => {
       <div
         class="lg:w-[555px] w-full inline-flex flex-col lg:justify-start justify-center lg:items-start items-center gap-10"
       >
-        <div class="w-full self-stretch inline-flex flex-col lg:justify-start justify-center lg:items-start items-center lg:gap-6 gap-8">
-            <div classs=" flex lg:justify-start justify-center items-center ">
+        <div class="w-full self-stretch inline-flex flex-col justify-start items-start px-8 lg:px-0  lg:gap-6 gap-8">
+            <div classs=" flex justify-start items-center ">
                 <div
-                    class="px-6 border-l-[6px] border-red-800 flex justify-center items-center"
+                    class="px-6 border-l-[6px] border-red-800 flex justify-start items-center"
                 >
                     <p
                     class="text-red-800 lg:text-3xl text-2xl font-bold leading-loose lg:leading-[48px]"
@@ -34,7 +34,7 @@ const isFormValid = computed(() => {
                     </p>
                 </div>
             </div>
-            <p class="px-10 lg:px-0 justify-start  text-black lg:text-l text-base lg:font-semibold font-medium leading-normal">
+            <p class=" justify-start  text-black lg:text-l text-base lg:font-semibold font-medium leading-normal">
             Enter your registered email, and we will send you a link to reset your password. 
             Use the link to create a new password and secure your account.
             </p>

@@ -9,12 +9,12 @@
     <!-- Right side - Login Form -->
     <div class="h-screen flex items-center m-auto">
       <div
-        class="lg:w-[555px] w-full inline-flex flex-col lg:justify-start justify-center lg:items-start items-center gap-14"
+        class="lg:w-[555px] w-full inline-flex flex-col justify-start  items-start  gap-14"
       >
         <!-- Section Title -->
-        <div classs="w-full flex lg:justify-start justify-center items-center">
+        <div classs="w-full flex justify-start  items-start">
           <div
-            class="px-6 border-l-[6px] border-red-800 flex justify-center items-center"
+            class="px-6 border-l-[6px] border-red-800 flex justify-start items-start"
           >
             <p
               class="text-red-800 lg:text-3xl text-2xl font-bold leading-loose lg:leading-[48px]"

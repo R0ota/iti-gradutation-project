@@ -25,7 +25,7 @@ const showPassword = ref(false);
 
     <div class="h-screen flex items-center m-auto">
       <div
-        class="lg:w-[555px] w-full inline-flex flex-col lg:justify-start justify-center lg:items-start items-center gap-14"
+        class="lg:w-[555px] w-full inline-flex flex-col lg:justify-start justify-center items-start gap-14"
       >
         <div classs="w-full flex lg:justify-start justify-center items-center">
           <div
