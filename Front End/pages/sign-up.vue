@@ -126,7 +126,7 @@ const showPassword = ref(false);
             class="w-full flex flex-col justify-center items-center gap-2 mt-10 lg:p-0"
           >
             <button
-              :class="isFormValid ? 'bg-red-800' : 'bg-gray-300 cursor-not-allowed'"
+              :class="isFormValid ? 'bg-red-800' : 'bg-gray-400 cursor-not-allowed'"
               class="w-80 h-13 py-3  rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center text-yellow-50 text-lg font-bold cursor-pointer"
               :disabled="!isFormValid"
             >
