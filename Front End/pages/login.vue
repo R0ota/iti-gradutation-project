@@ -3,7 +3,13 @@ definePageMeta({
   layout: "auth",
 });
 
-import { ref } from "vue";
+import { ref, computed } from "vue";
+
+const email = ref("");
+const password = ref("");
+
+const isFormValid = computed(() => {
+    return email.value.trim() !== "" && password.value.length >= 8;});
 
 const showPassword = ref(false);
 </script>
@@ -32,10 +38,10 @@ const showPassword = ref(false);
         </div>
 
         <form
-          class="w-full inline-flex flex-col justify-start items-start gap-2 group "
+          class="w-full inline-flex flex-col justify-start items-start gap-2  "
         >
           <div
-            class="self-stretch flex flex-col justify-start items-start gap-0.5"
+            class="w-full self-stretch flex flex-col justify-start items-start gap-0.5"
           >
             <label
               for="email"
@@ -43,6 +49,7 @@ const showPassword = ref(false);
               >Email</label
             >
             <input
+              v-model="email"
               type="email"
               placeholder="'example@gmail.com'"
               id="email"
@@ -51,7 +58,7 @@ const showPassword = ref(false);
           </div>
 
           <div
-            class="self-stretch flex flex-col justify-start items-start gap-0.5"
+            class="w-full self-stretch flex flex-col justify-start items-start gap-0.5"
           >
             <label
               for="password"
@@ -60,9 +67,9 @@ const showPassword = ref(false);
             >
             <div class="relative w-full">
               <input
+                 v-model="password"
                 :type="showPassword ? 'text' : 'password'"
-                type="password"
-                placeholder="+6 Characters"
+                placeholder="+8 Characters"
                 id="password"
                 class="w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-800 inline-flex justify-start items-center"
               />
@@ -78,13 +85,18 @@ const showPassword = ref(false);
                 ></i>
               </span>
             </div>
+            <NuxtLink to="forgot-password"  class="text-black text-base font-medium w-full flex justify-end cursor-pointer ">
+              Forgot Password ?
+            </NuxtLink>
           </div>
 
           <div
             class="w-full flex flex-col justify-center items-center gap-2 mt-10 lg:p-0"
           >
             <button
-              class="w-80 h-13 py-3 bg-gray-400 group-focus-within:bg-red-800 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center text-yellow-50 text-lg font-bold cursor-pointer"
+              :class="isFormValid ? 'bg-red-800' : 'bg-gray-300 cursor-not-allowed'"
+              class="w-80  h-13 py-3  rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center text-yellow-50 text-lg font-bold cursor-pointer"
+              :disabled="!isFormValid"
             >
               Log in
             </button>
