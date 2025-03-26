@@ -15,7 +15,7 @@ const {data} = await useAsyncFetch("get", "/products")
       <p
         class="justify-start text-red-800 lg:text-3xl text-xl font-bold  leading-loose lg:leading-[48px]"
       >
-        Market Catigories
+        Market Categories
       </p>
     </div>
 
