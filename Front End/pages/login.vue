@@ -9,7 +9,7 @@
     <!-- Right side - Login Form -->
     <div class="h-screen flex items-center m-auto">
       <div
-        class="lg:w-[555px] w-full inline-flex flex-col justify-start  items-start  gap-14"
+        class="lg:w-[555px] w-full inline-flex flex-col justify-start  items-center  gap-14"
       >
         <!-- Section Title -->
         <div classs="w-full flex justify-start  items-start">
@@ -19,7 +19,7 @@
             <p
               class="text-red-800 lg:text-3xl text-2xl font-bold leading-loose lg:leading-[48px]"
             >
-              Log in
+              Log in dgfhf
             </p>
           </div>
         </div>
