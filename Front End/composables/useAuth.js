@@ -49,26 +49,24 @@ export function useAuth() {
     authStore.setError(null);
 
     try {
-      // Replace this with your actual API call
-      // const response = await $fetch('/api/auth/signup', {
-      //   method: 'POST',
-      //   body: credentials,
-      // });
+      await $fetch("http://localhost:4000/signup", {
+        method: "POST",
+        body: credentials,
+      });
 
-      // For demo purposes, we'll simulate a successful signup
-      const mockResponse = {
-        user: {
-          id: "1",
-          name: credentials.name,
-          username: credentials.username,
-          email: credentials.email,
-          createdAt: new Date().toISOString(),
-        },
-        token: "mock_jwt_token",
+      const { token } = await $fetch("http://localhost:4000/login", {
+        method: "POST",
+        body: credentials,
+      });
+
+      const userData = {
+        name: credentials.name,
+        username: credentials.username,
+        email: credentials.email,
       };
 
-      authStore.setUser(mockResponse.user);
-      authStore.setToken(mockResponse.token);
+      authStore.setUser(userData);
+      authStore.setToken(token);
 
       // Redirect to home or dashboard
       router.push("/");

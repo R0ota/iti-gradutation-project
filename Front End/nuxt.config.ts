@@ -6,10 +6,10 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: false },
   css: [
-    "~/assets/css/main.css",
+    "./assets/css/main.css",
     "@fortawesome/fontawesome-free/css/all.min.css",
   ],
-  modules: ["@nuxt/ui", "@pinia/nuxt"],
+  modules: ["@nuxt/ui", "@pinia/nuxt", "@nuxt/icon"],
   app: {
     head: {
       title: "My Nuxt App",
