@@ -136,7 +136,10 @@
         fill="#A31D1D"
       />
     </svg>
-    <div class="flex items-center justify-center gap-[10px]">
+    <div 
+      v-if="!isAuthenticated"
+      class="flex items-center justify-center gap-[10px]"
+    >
       <!-- Log in Button -->
       <NuxtLink to="login">
         <button
@@ -162,10 +165,14 @@
 </template>
 <script setup>
 import { ref } from 'vue';
+import { useAuthStore } from '~/stores/auth';
 
 const searchText = ref('');
 
 const clearInput = () => {
   searchText.value = '';
 };
+
+const authStore = useAuthStore();
+const isAuthenticated = computed(() => authStore.isAuthenticated);
 </script>

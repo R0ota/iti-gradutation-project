@@ -16,7 +16,10 @@
       </div>
     </NuxtLink>
 
-    <div class="flex items-center justify-center gap-[10px]">
+    <div 
+      v-if="!isAuthenticated"
+      class="flex items-center justify-center gap-[10px]"
+    >
       <!-- Log in Button -->
       <NuxtLink to="login">
         <button
@@ -40,3 +43,10 @@
     </div>
   </header>
 </template>
+
+<script setup>
+import { useAuthStore } from '~/stores/auth';
+
+const authStore = useAuthStore();
+const isAuthenticated = computed(() => authStore.isAuthenticated);
+</script>
