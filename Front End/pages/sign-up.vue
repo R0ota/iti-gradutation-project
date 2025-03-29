@@ -12,7 +12,7 @@
       <div
         class="lg:w-[555px] w-full inline-flex flex-col lg:justify-start justify-center items-start gap-14"
       >
-        <div class="w-full flex lg:justify-start justify-center items-center">
+        <div class="w-full flex justify-start  items-center">
           <div
             class="px-6 border-l-[6px] border-red-800 flex justify-center items-center"
           >
@@ -42,7 +42,7 @@
               >
                 Name
               </label>
-              <div class="relative">
+              <div class="relative w-full">
                 <input
                   v-model="name"
                   @blur="validateField('name')"
@@ -80,7 +80,7 @@
               >
                 User Name
               </label>
-              <div class="relative">
+              <div class="relative w-full">
                 <input
                   v-model="username"
                   @blur="validateField('username')"
