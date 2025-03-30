@@ -11,6 +11,7 @@ const connectDB = require("./config/connectDB");
 const auth = require("./routes/auth");
 const userRoute = require("./routes/userRoute");
 const productRoute = require("./routes/productRoutes");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 3000;
 
