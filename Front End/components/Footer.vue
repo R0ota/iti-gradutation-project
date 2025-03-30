@@ -6,7 +6,7 @@
                 <img src="../assets/Light_Logo.svg" alt="Logo" class="lg:w-32 w-16" />
             </NuxtLink>
         </div>
-        <div class="flex lg:flex-row flex-col lg:gap-0 md:flex-row md:gap-0 gap-64">
+        <div class="flex lg:flex-row flex-col lg:gap-0 md:flex-row md:gap-0 gap-50">
             <div class="w-80 flex flex-col justify-start items-start gap-4 ">
             <div class="px-6 inline-flex flex-col justify-center items-center gap-2.5">
                 <p class="justify-start text-red-100 text-xl font-semibold leading-loose">

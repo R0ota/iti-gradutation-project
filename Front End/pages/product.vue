@@ -15,39 +15,50 @@ const { data } = await useAsyncFetch("get", "/products");
 
 <template>
   <div
-    class="inline-flex flex-col justify-start items-center lg:ml-[115px] lg:mr-[115px]"
+    class=" inline-flex flex-col justify-start items-start lg:ml-[115px] lg:mr-[115px] ml-[50px] mr-[50px] md:ml-50 md:mr-50" 
   >
-    <div class="w-full flex flex-row justify-between items-start pt-10 pb-20">
+    <!-- hero section -->
+    <div
+      class="w-full flex lg:flex-row flex-col lg:justify-between justify-start lg:gap-10 gap-6 items-start pt-10 pb-10"
+    >
       <!-- product photo -->
-      <div class="inline-flex justify-start items-start gap-6">
-        <div class="w-20 inline-flex flex-col gap-5">
-          <img src="../public/images/image.png" class="h-20 w-20 rounded-3xl" />
-          <img src="../public/images/image.png" class="h-20 w-20 rounded-3xl" />
+      <div
+        class="inline-flex lg:flex-row flex-col-reverse justify-start  items-start gap-6"
+      >
+        <div class="w-20 inline-flex lg:flex-col flex-row gap-5">
           <img
             src="../public/images/image.png"
-            class="self-stretch h-20 w-20 rounded-3xl"
+            class="h-20 w-20 lg:rounded-3xl rounded-2xl"
+          />
+          <img
+            src="../public/images/image.png"
+            class="h-20 w-20 lg:rounded-3xl rounded-2xl"
+          />
+          <img
+            src="../public/images/image.png"
+            class="self-stretch h-20 w-20 lg:rounded-3xl rounded-2xl"
           />
         </div>
         <img
           src="../public/images/image.png"
-          class="w-96 bg-gray-300 self-stretch rounded-[40px]"
+          class="lg:w-96 w-80 bg-gray-300 self-stretch rounded-[40px]"
         />
       </div>
       <!-- product info -->
-      <div class="w-100 inline-flex flex-col justify-start items-start gap-4">
+      <div class="lg:w-100 w-80 inline-flex flex-col justify-start items-start gap-4">
         <div
-          class="w-full border-b-2 border-red-800 gap-4 pb-6 inline-flex flex-col justify-start items-start"
+          class="w-full lg:border-b-2 border-b-1 border-red-800 lg:gap-4 gap-3 lg:pb-6 pb-5 inline-flex flex-col justify-start items-start"
         >
           <!-- title -->
           <p
-            class="self-stretch justify-start text-red-800 text-3xl font-bold leading-[48px]"
+            class="self-stretch justify-start text-red-800 lg:text-3xl text-2xl font-bold lg:leading-[48px] leading-10"
           >
             Eclipse Vision
           </p>
           <!-- model selection -->
           <select
             placeholder="Choose the model you want"
-            class="w-full cursor-pointer text-red-800 px-6 py-3.5 bg-yellow-50 rounded-2xl outline outline-[1.50px] outline-offset-[-1.50px] outline-red-800 inline-flex justify-between items-center"
+            class="w-full cursor-pointer text-red-800 lg:px-6 px-5 lg:py-3.5 py-3 bg-yellow-50 lg:rounded-2xl rounded-xl outline outline-[1.50px] outline-offset-[-1.50px] outline-red-800 inline-flex justify-between items-center"
           >
             <option value="" disabled selected hidden>
               Choose the model you want
@@ -79,7 +90,7 @@ const { data } = await useAsyncFetch("get", "/products");
         </div>
         <!-- price -->
         <p
-          class="self-stretch justify-start text-red-800 text-3xl font-semibold leading-10"
+          class="self-stretch justify-start text-red-800 lg:text-3xl text-2xl font-semibold lg:leading-10 leading-9"
         >
           650 EGP
         </p>
@@ -88,7 +99,7 @@ const { data } = await useAsyncFetch("get", "/products");
           :class="
             isAdded ? 'bg-yellow-50 text-red-800' : 'bg-red-800 text-yellow-50'
           "
-          class="text-lg font-bold font-['Poppins'] leading-relaxed cursor-pointer inline-flex w-full items-center justify-center gap-4 h-14 py-3.5 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]"
+          class="lg:text-lg text-sm font-bold font-['Poppins'] leading-relaxed cursor-pointer inline-flex w-full items-center justify-center gap-4 h-14 py-3.5 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]"
         >
           <div class="relative overflow-hidden w-6 h-6">
             <img v-if="!isAdded" src="../assets/cart-shopping-stroke.svg" />
@@ -99,43 +110,63 @@ const { data } = await useAsyncFetch("get", "/products");
         </button>
       </div>
     </div>
+
     <!-- product features -->
     <div
-      class="w-full py-8 border-b-[2.50px] border-red-800 inline-flex flex-col justify-start items-start gap-4"
+      class="py-8 lg:w-full w-80  lg:flex-wrap flex-wrap border-b-[2.50px] border-red-800 inline-flex flex-col justify-start items-start gap-4"
     >
       <div
-        class="px-6 border-l-[6px] border-red-800 inline-flex justify-center items-center gap-2.5"
+        class="lg:px-6 px-4 border-l-[6px] border-red-800 inline-flex justify-center items-center gap-2.5"
       >
         <p
-          class="text-right justify-start text-red-800 text-2xl font-semibold font-['Poppins'] leading-9"
+          class=" justify-start text-red-800 text-2xl font-semibold lg:leading-9 leading-normal"
         >
           Product Features
         </p>
       </div>
-      <p
-        class="self-stretch justify-start text-black text-xl font-medium font-['Tajawal'] leading-loose"
-      >
-        Details: A modern and futuristic artboard design featuring a blend of
-        dark and neon elements. It incorporates abstract geometric patterns with
-        a dynamic light and shadow effect.<br />Style: Minimalist meets
-        cyberpunk, perfect for branding, posters, and apparel printing.<br />Dimensions:
-        60x40 cm (customizable based on use case).<br />Color Scheme: Deep
-        blacks, electric blues, and vibrant purples.<br />Application: Can be
-        used for hoodie prints, T-shirt graphics, packaging, or digital
-        wallpapers.
-      </p>
+      <div class="flex flex-col lg:flex-wrap flex-wrap gap-2">
+        <p
+          class="self-stretch flex  justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
+        >
+          Details: A modern and futuristic artboard design featuring a blend of
+          dark and neon elements. It incorporates abstract geometric patterns
+          with a dynamic light and shadow effect.
+        </p>
+        <p
+          class="self-stretch flex justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
+        >
+          Style: Minimalist meets cyberpunk, perfect for branding, posters, and
+          apparel printing.
+        </p>
+        <p
+          class="self-stretch flex justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
+        >
+          Dimensions: 60x40 cm (customizable based on use case).
+        </p>
+        <p
+          class="self-stretch flex justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
+        >
+          Color Scheme: Deep blacks, electric blues, and vibrant purples.
+        </p>
+        <p
+          class="self-stretch flex justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
+        >
+          Application: Can be used for hoodie prints, T-shirt graphics,
+          packaging, or digital wallpapers.
+        </p>
+      </div>
     </div>
 
     <!-- availible in this design -->
     <div
-      class="py-8 border-b-[2.50px] border-red-800 inline-flex flex-col justify-start items-start gap-4 w-full"
+      class="py-8 lg:w-full w-80  lg:flex-wrap flex-wrap border-b-[2.50px] border-red-800 inline-flex flex-col justify-start items-start gap-4 "
     >
       <div class="w-full flex flex-row justify-between lg:mt-4 m-2">
         <div
           class="px-6 border-l-[6px] border-red-800 inline-flex justify-center items-center gap-2.5"
         >
           <p
-            class="text-right justify-start text-red-800 text-2xl font-semibold leading-9"
+            class=" justify-start text-red-800 text-2xl font-semibold lg:leading-9 leading-normal"
           >
             Available in this design
           </p>
@@ -172,7 +203,7 @@ const { data } = await useAsyncFetch("get", "/products");
       </div>
       <!-- items -->
       <div
-        class="flex flex-row lg:flex-wrap justify-center items-center overflow-x-auto gap-4"
+        class="flex flex-row lg:w-full w-80 lg:flex-wrap lg:justify-center  overflow-x-auto gap-4"
       >
         <div v-for="product in data.products.slice(0, 4)" class="flex">
           <ProductCard
@@ -188,16 +219,16 @@ const { data } = await useAsyncFetch("get", "/products");
 
     <!-- Other Designs -->
     <div
-      class="py-8 inline-flex flex-col justify-start items-start gap-4 w-full"
+      class="py-8 lg:w-full w-80  lg:flex-wrap flex-wrap border-b-[2.50px] border-red-800 inline-flex flex-col justify-start items-start gap-4 "
     >
       <div class="w-full flex flex-row justify-between lg:mt-4 m-2">
         <div
           class="px-6 border-l-[6px] border-red-800 inline-flex justify-center items-center gap-2.5"
         >
           <p
-            class="text-right justify-start text-red-800 text-2xl font-semibold leading-9"
+            class=" justify-start text-red-800 text-2xl font-semibold lg:leading-9 leading-normal"
           >
-            Other Designs
+           Other designe
           </p>
         </div>
         <NuxtLink
@@ -232,7 +263,7 @@ const { data } = await useAsyncFetch("get", "/products");
       </div>
       <!-- items -->
       <div
-        class="flex flex-row lg:flex-wrap justify-center items-center overflow-x-auto gap-4"
+        class="flex flex-row lg:w-full w-80 lg:flex-wrap lg:justify-center  overflow-x-auto gap-4"
       >
         <div v-for="product in data.products.slice(0, 4)" class="flex">
           <ProductCard
