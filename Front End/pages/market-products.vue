@@ -3,14 +3,44 @@ definePageMeta({
   layout: "market",
 });
 
-const { data } = await useAsyncFetch("get", "/products");
+// Fetch products
+const { data, refresh } = await useAsyncFetch("get", "/products");
+
+import { ref, computed, onMounted, watchEffect } from "vue";
+import PaginationComponent from "../components/paginiation.vue"; // Ensure correct path
+
+const currentPage = ref(1);
+const itemsPerPage = 6; // Set how many products per page
+
+// Debug: Check if products are loaded
+watchEffect(() => {
+  console.log("Fetched Products:", data.value?.products);
+});
+
+onMounted(() => {
+  refresh(); // Force re-fetch on mount
+});
+
+// Calculate total pages dynamically
+const totalPages = computed(() => {
+  if (!data.value?.products || data.value.products.length === 0) return 1;
+  return Math.ceil(data.value.products.length / itemsPerPage);
+});
+
+// Get the current page's products
+const paginatedProducts = computed(() => {
+  if (!data.value?.products || data.value.products.length === 0) return []; // Ensure products exist before slicing
+  const start = (currentPage.value - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  console.log("Paginated Products:", data.value.products.slice(start, end));
+  return data.value.products.slice(start, end);
+});
 </script>
 
 <template>
   <div
-    class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[25px] mr-[25px]"
+    class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px]"
   >
-  <div class=" inline-flex justify-between items-center">
     <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center">
       <p
         class="justify-start text-red-800 lg:text-3xl text-xl font-bold leading-loose lg:leading-[48px]"
@@ -18,25 +48,17 @@ const { data } = await useAsyncFetch("get", "/products");
         Market
         <span
           class="px-2 bg-red-800 inline-flex justify-center items-center text-white lg:text-2xl text-xl font-bold leading-9"
-          >Apparel</span
         >
+          Apparel
+        </span>
       </p>
     </div>
-    <div class="lg:px-3 lg:py-1 px-2 py-1 bg-red-200 rounded-full inline-flex justify-center items-center gap-1 cursor-pointer">
-      <div class="lg:w-6 lg:h-6 w-5 h-5 p-1 flex justify-start items-center ">
-        <img src="../assets/filter-stroke.svg" >
-      </div>
-      <p class="text-red-800 lg:text-lg text-xs lg:font-medium font-semibold">
-        Filter
-      </p>
-    </div>
-  </div>
-    
 
+    <!-- Display Paginated Products -->
     <div
-      class="flex flex-row lg:flex-wrap lg:justify-center justify-center  flex-wrap lg:gap-4 gap-8"
+      class="flex flex-row lg:flex-wrap lg:justify-start overflow-x-auto gap-4"
     >
-      <div v-for="product in data.products" class="flex">
+      <div v-for="product in paginatedProducts" :key="product.id" class="flex">
         <ProductCard
           :name="product.title"
           :type="product.title"
@@ -46,5 +68,11 @@ const { data } = await useAsyncFetch("get", "/products");
         />
       </div>
     </div>
+
+    <!-- Include Pagination Component -->
+    <PaginationComponent
+      v-model:currentPage="currentPage"
+      :totalPages="totalPages"
+    />
   </div>
 </template>
