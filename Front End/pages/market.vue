@@ -9,7 +9,7 @@ const {data} = await useAsyncFetch("get", "/products")
 
 <template>
   <div
-    class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px] "
+    class="lg:ml-[115px] lg:mr-[115px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px] "
   >
     <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center ">
       <p
@@ -74,6 +74,7 @@ const {data} = await useAsyncFetch("get", "/products")
           :image="product.thumbnail"
           currency="EGP"
         />
+      
       </div>
     </div>
   </div>

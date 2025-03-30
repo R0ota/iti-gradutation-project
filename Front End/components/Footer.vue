@@ -1,12 +1,13 @@
 
 <template>
-    <footer class="w-full px-6 py-14 bg-red-800 flex justify-center gap-6 mt-16 ">
-        <div class="w-80 px-4 py-16  flex justify-center items-center gap-2.5">
+    <footer class="w-full px-6 py-14 lg:pb-14 bg-red-800 flex lg:flex-row flex-col justify-center md:flex-row md:pb-40 md:px-10 lg:gap-6 mt-16 ">
+        <div class="w-80 px-2 lg:py-16 py-8  flex justify-center items-center gap-2.5">
             <NuxtLink to="/"  class="flex justify-center items-center">
                 <img src="../assets/Light_Logo.svg" alt="Logo" class="lg:w-32 w-16" />
             </NuxtLink>
         </div>
-        <div class="w-80 flex flex-col justify-start items-start gap-4">
+        <div class="flex lg:flex-row flex-col lg:gap-0 md:flex-row md:gap-0 gap-64">
+            <div class="w-80 flex flex-col justify-start items-start gap-4 ">
             <div class="px-6 inline-flex flex-col justify-center items-center gap-2.5">
                 <p class="justify-start text-red-100 text-xl font-semibold leading-loose">
                     Marketplace
@@ -120,6 +121,8 @@
                 </div>
             </div>    
         </div>
+        </div>
+        
     </footer>
 </template>
 

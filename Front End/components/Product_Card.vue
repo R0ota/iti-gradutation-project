@@ -56,7 +56,9 @@ const toggleFavorite = () => {
             </div>
 
 
-            <img :src="image" class="lg:w-[254px] lg:h-[254px] lg:rounded-[40px] w-[160px] h-[160px] rounded-[25.197px] ">
+            <NuxtLink to="/product"> 
+                <img :src="image" class="lg:w-[254px] lg:h-[254px] lg:rounded-[40px] w-[160px] h-[160px] rounded-[25.197px] ">
+            </NuxtLink>
         </div>
         
         <div class="flex flex-col items-start lg:gap-[2px] self-stretch">
