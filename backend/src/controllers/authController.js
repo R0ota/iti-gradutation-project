@@ -1,7 +1,12 @@
 const User = require("../models/userModel")
-const sendEmail = require("../utils/sendEmail")
+// const sendEmail=require("../utils/sendEmail")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
+const nodemailer = require("nodemailer");
+
+
+const sendEmail=require("../utils/sendEmail")
+
 
 
 const forgetPassword = async (req, res) => {
@@ -17,18 +22,17 @@ const forgetPassword = async (req, res) => {
   await user.save();
 
     const resetLink = `http://localhost:${process.env.PORT}/resetpassword?token=${token}`;
-    await sendEmail(user.email, "Reset Password", `Click here to reset your password: ${resetLink}`).then(
-        (result) => {
-            res.status(200).json({ message: "Email sent successfully" });
-        },
-        (error) => {
-            res.status(500).json({ message: "Error sending email" });
-        }
-        
-  );
-        
+    try {
+        await sendEmail(user.email, resetLink)
+    }
+    catch (err) { 
+        res.json({
+            message: "error sending email",
+            error: err
+        })
+    }
     
-    // res.json({ message: "Password reset link sent",Link:resetLink });
+    res.json({ message: "Password reset link sent"});
     
 }
 

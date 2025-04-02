@@ -1,29 +1,28 @@
-import nodemailer from "nodemailer";
-import dotenv from "dotenv";
 
-dotenv.config();
+const nodemailer = require("nodemailer");
 
-const sendEmail = async (email, subject, message) => {
-  try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
+const transporter = nodemailer.createTransport({
+    service:"Gmail",
+      port: 587,
+      secure: false, // true for port 465, false for other ports
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user:process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
       },
-    });
+});
+    
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: subject,
-      text: message,
-    });
 
-    console.log("Email sent successfully");
-  } catch (error) {
-    console.error("Error sending email:", error);
-  }
-};
-
-export default sendEmail;
+async function sendEmail(email,link) {
+    const info = await transporter.sendMail({
+            from:process.env.EMAIL_USER , // sender address
+            to: email, // list of receivers
+            subject:"Password reset link from Tabi" , // Subject line
+            text: link, // plain text body
+            html: `<a>${link}</a>`, // html body
+          });
+        
+            console.log("Message sent: %s", info.messageId);
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+}
+module.exports=sendEmail
