@@ -1,8 +1,12 @@
-const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const express = require("express");
 const router = express.Router();
+
+
+
+const User = require("../models/userModel");
+const { forgetPassword ,verifyToken,resetPassword} =require("../controllers/authController")
 
 
 
@@ -11,6 +15,7 @@ router.post("/signup", async (req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const user = new User({
             username: req.body.username,
+            name:req.body.name,
             email: req.body.email,
             password: hashedPassword,
             role: req.body.role,
@@ -40,5 +45,12 @@ router.post("/login", async (req, res) => {
     }
 }
 );
+
+
+router.post("/forgetpassword", forgetPassword);
+
+router.get("/verifytoken",verifyToken);
+
+router.post('/resetpassword',resetPassword)
 
 module.exports = router;
