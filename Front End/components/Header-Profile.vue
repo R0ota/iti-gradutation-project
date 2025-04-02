@@ -136,6 +136,44 @@
         fill="#A31D1D"
       />
     </svg>
+    <div
+      v-if="!isAuthenticated"
+      class="flex items-center justify-center gap-[10px]"
+    >
+      <!-- Log in Button -->
+      <NuxtLink to="login">
+        <button
+          class="p-[12px] px-[16px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full"
+        >
+          Log in
+        </button>
+      </NuxtLink>
+
+      <!-- Sign up Button -->
+      <NuxtLink to="sign-up">
+        <button
+          class="p-[10px] px-[24px] rounded-[16px] bg-[#A31D1D] shadow-[0px_0px_4px_rgba(0,0,0,0.50)] 
+           text-[#ECDCBF] text-center font-[Poppins] text-[20px] font-medium leading-[150%] 
+           tracking-[-0.304px] cursor-pointer transition duration-300 ease-in-out py-3 
+           hover:bg-[#6D1313] hover:shadow-lg hover:rounded-[50px]"
+        >
+          Sign up
+        </button>
+      </NuxtLink>
+    </div>
+
+    <div
+      v-else
+      class="flex items-center space-x-4"
+    >
+      <!-- Logout Button -->
+      <button
+        @click="handleLogout"
+        class="p-[12px] px-[16px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full"
+      >
+        Logout
+      </button>
+    </div>
     <div class="flex items-center justify-center gap-[10px]">
       <ProfileAvatar src="/images/profileimg.jpg" />
     </div>
@@ -155,12 +193,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import ProfileAvatar from './profileAvatar.vue';
+import { useAuthStore } from '~/stores/auth';
+import { useAuth } from '~/composables/useAuth';
 
 const searchText = ref('');
+const authStore = useAuthStore();
+const { logout } = useAuth();
+const isAuthenticated = computed(() => authStore.isAuthenticated);
 
 const clearInput = () => {
   searchText.value = '';
+};
+
+const handleLogout = () => {
+  logout();
 };
 </script>

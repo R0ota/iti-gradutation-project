@@ -161,10 +161,24 @@
         </button>
       </NuxtLink>
     </div>
+
+    <div
+      v-else
+      class="flex items-center space-x-4"
+    >
+      <!-- Logout Button -->
+      <button
+        @click="handleLogout"
+        class="p-[12px] px-[16px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full"
+      >
+        Logout
+      </button>
+    </div>
   </header>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { useAuth } from '~/composables/useAuth';
 import { useAuthStore } from '~/stores/auth';
 
 const searchText = ref('');
@@ -174,5 +188,10 @@ const clearInput = () => {
 };
 
 const authStore = useAuthStore();
+const { logout } = useAuth();
 const isAuthenticated = computed(() => authStore.isAuthenticated);
+
+const handleLogout = () => {
+  logout();
+};
 </script>

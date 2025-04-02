@@ -1,4 +1,5 @@
 import { useAuthStore } from "~/stores/auth";
+import { getBaseURL } from "./helpers";
 
 export function useAuth() {
   const authStore = useAuthStore();
@@ -10,27 +11,13 @@ export function useAuth() {
     authStore.setError(null);
 
     try {
-      // Replace this with your actual API call
-      // const response = await $fetch('/api/auth/login', {
-      //   method: 'POST',
-      //   body: credentials,
-      // });
+      const res = await $fetch(`${getBaseURL()}/login`, {
+        method: 'POST',
+        body: credentials,
+      });
 
-      // For demo purposes, we'll simulate a successful login
-      // In a real application, you would use the API response
-      const mockResponse = {
-        user: {
-          id: "1",
-          name: "Demo User",
-          username: "demouser",
-          email: credentials.email,
-          createdAt: new Date().toISOString(),
-        },
-        token: "mock_jwt_token",
-      };
-
-      authStore.setUser(mockResponse.user);
-      authStore.setToken(mockResponse.token);
+      authStore.setUser(res.user);
+      authStore.setToken(res.token);
 
       // Redirect to home or dashboard
       router.push("/");
@@ -49,24 +36,15 @@ export function useAuth() {
     authStore.setError(null);
 
     try {
-      await $fetch("http://localhost:4000/signup", {
+      const baseURL = getBaseURL();
+
+      const res = await $fetch(`${baseURL}/signup`, {
         method: "POST",
         body: credentials,
       });
 
-      const { token } = await $fetch("http://localhost:4000/login", {
-        method: "POST",
-        body: credentials,
-      });
-
-      const userData = {
-        name: credentials.name,
-        username: credentials.username,
-        email: credentials.email,
-      };
-
-      authStore.setUser(userData);
-      authStore.setToken(token);
+      authStore.setUser(res.user);
+      authStore.setToken(res.token);
 
       // Redirect to home or dashboard
       router.push("/");
@@ -82,7 +60,7 @@ export function useAuth() {
   // Logout function
   function logout() {
     authStore.clearAuth();
-    router.push("/login");
+    router.push("/");
   }
 
   // Check if user is logged in (can be used in middleware)

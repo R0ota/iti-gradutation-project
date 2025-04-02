@@ -30,7 +30,7 @@ const nextPage = () => {
 </script>
 
 <template>
-  <div class="w-full h-screen flex justify-center items-center">
+  <div class="flex justify-center items-center">
     <div class="w-[1090px] flex justify-between items-center">
       <!-- Prev Button -->
       <div

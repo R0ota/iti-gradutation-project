@@ -12,3 +12,5 @@ backend/.env
 backend/.env
 .DS_Store
 backend/.DS_Store
+# Node dependencies
+node_modules
