@@ -49,12 +49,12 @@ export function useAuth() {
     authStore.setError(null);
 
     try {
-      await $fetch("http://localhost:4000/signup", {
+      await $fetch("http://localhost:5500/signup", {
         method: "POST",
         body: credentials,
       });
 
-      const { token } = await $fetch("http://localhost:4000/login", {
+      const { token } = await $fetch("http://localhost:5500/login", {
         method: "POST",
         body: credentials,
       });
