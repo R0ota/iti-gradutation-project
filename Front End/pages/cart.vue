@@ -7,21 +7,23 @@ const { data } = await useAsyncFetch("get", "/products");
 import { ref } from "vue";
 
 const buttons = ref([
-  { lable: `Standard Shipping`, price: 200, isChecked: false },
-  { lable: `Gift Shipping`, price: 400, isChecked: false },
+  { label: `Standard Shipping`, price: 200 , isChecked: true },
+  { label: `Gift Shipping`, price: 400, isChecked: false },
 ]);
 
 const toggle = (index) => {
-  buttons.value[index].isChecked = !buttons.value[index].isChecked;
+buttons.value.forEach((button, i) => {
+  button.isChecked = i === index;
+});
+  
 };
 
 const selectedShipping = computed(() => {
-  return buttons.value.filter((button) => button.isChecked);
+  return buttons.value.find((button) => button.isChecked)|| null;
 });
 
 const totalPrice = computed(() => {
-  let totalPrice = selectedShipping.value.reduce((sum, item) => sum + item.price, 0);
-  return totalPrice;
+  return selectedShipping.value ? selectedShipping.value.price  : 0
 });
 </script>
 
@@ -47,8 +49,10 @@ const totalPrice = computed(() => {
             v-for="(item, index) in buttons"
             :key="index"
             @click="toggle(index)"
+              
             :class="item.isChecked ? `bg-[#ECDCBF] ` : `bg-transparent`"
             class="cursor-pointer w-full py-1.5 px-1.5 outline-none rounded-2xl shadow-[0px_0px_3px_0px_rgba(0,0,0,0.15)] flex justify-between items-center w-full"
+            :disabled="!item.isChecked ? false : selectedShipping"
           >
             <div
               class="flex gap-2 items-center"
@@ -58,51 +62,44 @@ const totalPrice = computed(() => {
                 <img
                   v-if="item.isChecked"
                   src="../assets/checked.svg"
-                  
                 />
-                <!-- <i    v-if="item.isChecked" class="fa-solid fa-circle-check text-red-800" ></i> -->
                 <img v-else src="../assets/check.svg" />
               </div>
-
               <p
                 :class="item.isChecked ? `text-red-800` : `text-stone-400`"
                 class="lg:text-base text-sm lg:font-bold font-semibold leading-normal"
               >
-                {{ item.lable }} 
+                {{ item.label }} 
               </p>
             </div>
             <p
               :class="item.isChecked ? `hidden` : `block`"
               class="text-stone-400 lg:text-base text-sm font-semibold"
             >
-              {{ item.price }} 
+              {{ item.price }} EGP
             </p>
           </button>
           <div class="lg:outline-[1.5px] outline-[1px] outline-red-800 w-full"></div>
 
+          <!-- q -->
           <div class="flex justify-between items-center w-full">
             <p class="text-black lg:text-lg text-sm font-medium"><span>5</span> Items</p>
             <p class="text-black lg:text-lg text-sm font-medium">640 EGP</p>
           </div>
+
           <!-- shipping price -->
-            <div
-            v-for="(item, index) in buttons"
-            :key="index"
-            class="flex justify-between items-center w-full"
-          >
+           <div class="flex w-full justify-between">
             <p
-              :class="!item.isChecked ? `hidden` : `block`"
               class="text-black lg:text-lg text-sm font-medium"
             >
-              {{ item.lable }}
+              {{ selectedShipping.label }}
             </p>
             <p
-              :class="!item.isChecked ? `hidden` : `block`"
               class="text-black lg:text-lg text-sm font-medium"
             >
-              {{ item.price }} EGP
+              {{ selectedShipping.price }} EGP
             </p>
-          </div>
+           </div>
 
           <div class="lg:outline-[1.5px] outline-[1px] outline-red-800 w-full"></div>
           <!-- total price -->

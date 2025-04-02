@@ -7,7 +7,10 @@ const props = defineProps(["img", "id"]);
 const count = ref(1);
 
 const decrement = () => {
+  if(count.value > 1 ){
     count.value--;
+  }
+    
 }
 const increment = () => {
     count.value++;
