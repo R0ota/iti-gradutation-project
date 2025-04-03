@@ -1,4 +1,6 @@
 <script setup>
+import SectionTitle from '~/components/section-title.vue';
+
 definePageMeta({
   layout: "market",
 });
@@ -28,12 +30,10 @@ const navigateToCategory = (categoryName) => {
 </script>
 
 <template>
-  <div class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px]">
-    <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center">
-      <p class="justify-start text-red-800 lg:text-3xl text-xl font-bold leading-loose lg:leading-[48px]">
-        Market Categories
-      </p>
-    </div>
+  <div
+    class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px] "
+  >
+    <SectionTitle title=" Market Categories"/>
 
     <!-- Display Categories -->
     <div
@@ -52,16 +52,11 @@ const navigateToCategory = (categoryName) => {
     </div>
 
     <div class="flex flex-row justify-between lg:mt-4 m-2">
-      <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center">
-        <p class="justify-start text-red-800 lg:text-3xl text-xl font-bold leading-loose lg:leading-[48px]">
-          Best-selling products
-        </p>
-      </div>
-      <NuxtLink
-        to="/market-products"
-        class="flex flex-row items-center gap-1"
-      >
-        <p class="lg:text-[16px] tracking-[-0.304px] font-semibold cursor-pointer">
+      <SectionTitle title="Best-selling products"/>
+      <NuxtLink to="/market-products" class="flex flex-row items-center gap-1">
+        <p
+          class="lg:text-[16px] tracking-[-0.304px] font-semibold cursor-pointer"
+        >
           more
         </p>
         <svg

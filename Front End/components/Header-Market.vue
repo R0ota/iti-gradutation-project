@@ -121,7 +121,8 @@
         fill="#A31D1D"
       />
     </svg>
-    <svg
+    <NuxtLink to="/empty-cart">
+      <svg
       xmlns="http://www.w3.org/2000/svg"
       width="34"
       height="34"
@@ -136,6 +137,7 @@
         fill="#A31D1D"
       />
     </svg>
+    </NuxtLink>
     <div 
       v-if="!isAuthenticated"
       class="flex items-center justify-center gap-[10px]"
