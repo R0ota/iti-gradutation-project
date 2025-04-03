@@ -1,8 +1,6 @@
 <script setup>
 import { defineProps } from "vue";
-const data = defineProps({
-  info: String,
-});
+const prop = defineProps(["info"]);
 </script>
 <template>
   <div class="inline-flex justify-start items-start gap-4">

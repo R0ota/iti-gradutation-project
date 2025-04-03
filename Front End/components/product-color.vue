@@ -1,8 +1,6 @@
 <script setup>
 import { defineProps } from "vue";
-const data = defineProps({
-  color: String,
-});
+const data = defineProps(["color"]);
 </script>
 <template>
   <div :class="`w-12 h-12 bg-${color} rounded-2xl cursor-pointer`"></div>
