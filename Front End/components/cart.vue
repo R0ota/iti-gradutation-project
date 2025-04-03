@@ -2,7 +2,7 @@
 
 import { ref } from "vue";
 const { data } = await useAsyncFetch("get", "/products");
-const props = defineProps(["img", "id"]);
+// const props = defineProps(["id"]);
 
 const count = ref(1);
 
@@ -22,21 +22,7 @@ const increment = () => {
   <div class="flex gap-4 lg:w-full w-93">
     <div class="flex lg:gap-4 gap-2 w-full">
       <!-- product details -->
-      <div class="flex lg:gap-6 gap-3 w-full">
-        <img :src="img" class="lg:w-32 w-25 lg:h-32 h-25 rounded-2xl" />
-        <div class="flex flex-col justify-between lg:h-32 h-25 py-1">
-          <div class="flex flex-col lg:gap-1 gap-0.5">
-            <p class="text-red-800 lg:text-lg text-sm font-bold leading-relaxed">
-              Product name
-            </p>
-            <p class="text-black lg:text-sm font-xs font-medium lg:leading-tight">Type</p>
-            <p class="text-black lg:text-sm font-xs font-medium lg:leading-tight">Size</p>
-          </div>
-          <p class="text-black lg:text-lg text-sm font-semibold leading-relaxed">
-            Price EGP
-          </p>
-        </div>
-      </div>
+      <slot />
       <!-- icrement & decrement -->
       <div class="flex lg:flex-row flex-col md:flex-col sm:flex-col justify-start items-center gap-1">
         <button class="w-10 h-10 flex items-center justify-center">

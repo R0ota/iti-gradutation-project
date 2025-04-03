@@ -38,7 +38,9 @@ const totalPrice = computed(() => {
         border-b-2 border-red-800">
         <!-- cart -->
         <div v-for="item in data.products.slice(0, 4)" class="w-full">
-          <Cart :img="item.thumbnail" />
+          <Cart>
+            <ProductDetails :img="item.thumbnail"/>
+          </Cart>
         </div>
       </div>
       <div class="flex flex-col items-center">
