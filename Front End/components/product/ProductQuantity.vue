@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="mb-6">
     <label
       for="quantity"
@@ -80,4 +80,5 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
-</style>
+</style> -->
+<template>hello2</template>

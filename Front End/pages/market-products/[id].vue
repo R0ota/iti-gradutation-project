@@ -1,47 +1,27 @@
 <template>
-  <div class="container mx-auto px-4 py-8">
-    <!-- Loading state -->
-    <div
-      v-if="loading"
-      class="flex justify-center items-center py-16"
-    >
-      <Spinner
-        :size="60"
-        label="Loading product details..."
-        :show-label="true"
-      />
-    </div>
+  <!-- <div class="container mx-auto px-4 py-8"> -->
+  <!-- Loading state -->
 
-    <!-- Error state -->
-    <div
-      v-else-if="error"
-      class="text-center py-8"
-    >
-      <p class="text-red-500">{{ error }}</p>
-      <button
-        @click="$router.push('/')"
-        class="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
-      >
-        Return to homepage
-      </button>
-    </div>
+  <!-- Error state -->
 
-    <div v-else>
-      <!-- Product details -->
-      <ProductDetails
-        :product="fetchedProduct"
-        :is-in-wishlist="isWishlisted"
-        @toggle-wishlist="toggleWishlist"
-      />
+  <div
+    class="inline-flex flex-col justify-start items-start  lg:ml-[115px] lg:mr-[115px] ml-[50px] mr-[50px] md:ml-50 md:mr-50"
+  >
+    <!-- Product details -->
+    <ProductDetails
+      :product="fetchedProduct"
+      :is-in-wishlist="isWishlisted"
+      @toggle-wishlist="toggleWishlist"
+    />
 
-      <!-- Available in this design section -->
-      <ProductAvailableInThisDesign
-        :loading="loadingAvailable"
-        :products="availableInThisDesign"
-        @toggle-wishlist="toggleWishlist"
-      />
-    </div>
+    <!-- Available in this design section -->
+    <ProductAvailableInThisDesign
+      :loading="loadingAvailable"
+      :products="availableInThisDesign"
+      @toggle-wishlist="toggleWishlist"
+    />
   </div>
+  <!-- </div> -->
 </template>
 
 <script setup>

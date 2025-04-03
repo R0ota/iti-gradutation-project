@@ -1,10 +1,7 @@
 <template>
   <div>
     <!-- Color options -->
-    <div
-      v-if="hasColors"
-      class="mb-6"
-    >
+    <div v-if="hasColors" class="mb-6">
       <label class="block text-gray-700 font-medium mb-2">Color</label>
       <div class="flex flex-wrap gap-3">
         <button
@@ -45,10 +42,7 @@
     </div>
 
     <!-- Size options -->
-    <div
-      v-if="hasSizes"
-      class="mb-6"
-    >
+    <div v-if="hasSizes" class="mb-6">
       <label class="block text-gray-700 font-medium mb-2">Size</label>
       <div class="flex flex-wrap gap-2">
         <button
@@ -68,10 +62,7 @@
     </div>
 
     <!-- Storage options for electronics -->
-    <div
-      v-if="hasStorage"
-      class="mb-6"
-    >
+    <div v-if="hasStorage" class="mb-6">
       <label class="block text-gray-700 font-medium mb-2">Storage</label>
       <div class="flex flex-wrap gap-2">
         <button
@@ -85,16 +76,14 @@
           ]"
           :disabled="!option.inStock"
         >
-          {{ option.name }} {{ option.price > 0 ? `(+$${option.price.toFixed(2)})` : '' }}
+          {{ option.name }}
+          {{ option.price > 0 ? `(+$${option.price.toFixed(2)})` : '' }}
         </button>
       </div>
     </div>
 
     <!-- Style options -->
-    <div
-      v-if="hasStyles"
-      class="mb-6"
-    >
+    <div v-if="hasStyles" class="mb-6">
       <label class="block text-gray-700 font-medium mb-2">Style</label>
       <div class="flex flex-wrap gap-2">
         <button

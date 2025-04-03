@@ -1,33 +1,32 @@
 <template>
-  <div class="flex flex-row-reverse gap-4">
-    <!-- Main image -->
-    <div class="bg-white rounded-lg shadow-md overflow-hidden h-96 flex-grow">
-      <img
-        :src="selectedImage"
-        :alt="product.name"
-        class="w-full h-full object-contain"
-      />
-    </div>
-
-    <!-- Thumbnail gallery - vertical -->
+  <div
+    class="inline-flex lg:flex-row flex-col-reverse justify-start  items-start gap-6"
+  >
     <div
       v-if="productImages.length > 0"
-      class="flex flex-col space-y-2 overflow-y-auto py-2 max-h-96 w-20"
+      class="w-20 inline-flex lg:flex-col flex-row gap-5"
     >
-      <button
+      <div
         v-for="(image, index) in productImages"
         :key="index"
         @click="selectImage(index)"
-        class="flex-shrink-0 w-16 h-16 border-2 rounded-md overflow-hidden transition-all duration-200 ease-in-out"
+        class="h-20 w-20 lg:rounded-3xl rounded-2xl transition-all duration-200 ease-in-out cursor-pointer"
         :class="selectedImageIndex === index ? 'border-blue-500' : 'border-gray-200'"
       >
         <img
           :src="image"
           :alt="`${product.name} - Image ${index + 1}`"
-          class="w-full h-full object-cover"
-        >
-      </button>
+          class="h-20 w-20 lg:rounded-3xl rounded-2xl"
+        />
+      </div>
     </div>
+    <!-- Main image -->
+
+    <img
+      :src="selectedImage"
+      :alt="product.name"
+      class="lg:w-96 w-80 bg-gray-300 self-stretch rounded-[40px]"
+    />
   </div>
 </template>
 
@@ -87,31 +86,22 @@ const selectImage = (index) => {
 };
 </script>
 
-<style scoped>
-/* Added styles for vertical thumbnails */
-.flex-row-reverse {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-@media (max-width: 768px) {
-  .flex-row-reverse {
-    flex-direction: column;
-  }
-
-  div[class^="flex flex-col space-y-2"] {
-    flex-direction: row;
-    max-height: none;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 2px 0;
-  }
-
-  div[class^="flex flex-col space-y-2"] button {
-    margin-right: 0.5rem;
-    margin-bottom: 0;
-  }
-}
-</style>
+<!-- Thumbnail gallery - vertical -->
+<!-- <div
+      v-if="productImages.length > 0"
+      class="flex flex-col space-y-2 overflow-y-auto py-2 max-h-96 w-20"
+    >
+      <button
+        v-for="(image, index) in productImages"
+        :key="index"
+        @click="selectImage(index)"
+        class="flex-shrink-0 w-16 h-16 border-2 rounded-md overflow-hidden transition-all duration-200 ease-in-out"
+        :class="selectedImageIndex === index ? 'border-blue-500' : 'border-gray-200'"
+      >
+        <img
+          :src="image"
+          :alt="`${product.name} - Image ${index + 1}`"
+          class="w-full h-full object-cover"
+        />
+      </button>
+    </div> -->
