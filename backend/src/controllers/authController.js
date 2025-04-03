@@ -26,10 +26,10 @@ const forgetPassword = async (req, res) => {
         await sendEmail(user.email, resetLink)
     }
     catch (err) { 
-        res.json({
-            message: "error sending email",
+        return res.status(500).json({
+            message: "Error sending email",
             error: err
-        })
+        });
     }
     
     res.json({ message: "Password reset link sent"});
