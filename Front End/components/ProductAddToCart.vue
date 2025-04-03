@@ -11,7 +11,7 @@ const toggleState = () => {
 <template>
     <div class="lg:gap-4 gap-3 lg:pb-6 pb-5 inline-flex flex-col justify-start items-start w-full">
         <p
-        class="self-stretch justify-start text-red-800 lg:text-3xl text-2xl font-semibold lg:leading-10 leading-9"
+        class=" justify-start text-red-800 lg:text-3xl text-2xl font-semibold lg:leading-10 leading-9"
       >
         650 EGP
       </p>
