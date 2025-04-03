@@ -13,30 +13,30 @@
       </div>
       <div class="flex flex-col lg:flex-wrap flex-wrap gap-2">
         <p
-          class="self-stretch flex  justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
+          class=" flex  justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
         >
           Details: A modern and futuristic artboard design featuring a blend of
           dark and neon elements. It incorporates abstract geometric patterns
           with a dynamic light and shadow effect.
         </p>
         <p
-          class="self-stretch flex justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
+          class=" flex justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
         >
           Style: Minimalist meets cyberpunk, perfect for branding, posters, and
           apparel printing.
         </p>
         <p
-          class="self-stretch flex justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
+          class=" flex justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
         >
           Dimensions: 60x40 cm (customizable based on use case).
         </p>
         <p
-          class="self-stretch flex justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
+          class=" flex justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
         >
           Color Scheme: Deep blacks, electric blues, and vibrant purples.
         </p>
         <p
-          class="self-stretch flex justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
+          class="flex justify-start text-black lg:text-xl text-base font-medium font-['Tajawal'] lg:leading-loose leading-normal"
         >
           Application: Can be used for hoodie prints, T-shirt graphics,
           packaging, or digital wallpapers.
