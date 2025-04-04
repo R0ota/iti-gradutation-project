@@ -3,7 +3,7 @@
     class="flex h-[43px] justify-center items-end gap-6 self-stretch bg-[#A31D1D] border-b-2 border-[#A31D1D]"
   >
     <NuxtLink
-      to="profilePage"
+      to="profile"
       class="text-[#FFEFD1] text-center font-poppins text-[18px] font-bold leading-[27px] tracking-[-0.342px]
          px-6 py-2 rounded-none 
          hover:bg-[#FFEFD1] hover:text-[#A31D1D] hover:rounded-t-[24px] 
@@ -53,7 +53,7 @@
           <div class="relative w-full mt-1">
             <!-- Input with validation icon inside -->
             <div
-              class="relative flex items-center bg-yellow-50 p-3 rounded-2xl outline outline-1 outline-red-800"
+              class="relative flex items-center bg-yellow-50 p-3 rounded-2xl outline-1 outline-red-800"
             >
               <input
                 v-model="field.value"
@@ -65,7 +65,6 @@
                 class="w-full bg-yellow-50 text-red-800 placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium focus:outline-none"
               />
 
-              <!-- ✅ / ❌ icon -->
               <div
                 v-if="validationStatus[field.key]"
                 class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full"
@@ -76,7 +75,7 @@
                 ></i>
               </div>
 
-              <!-- ⚙️ Setting icon (hidden when validation shown) -->
+              <!-- ⚙ Setting icon (hidden when validation shown) -->
               <i
                 v-if="!validationStatus[field.key]"
                 class="fa-solid fa-gear text-[#A31D1D] ml-3 cursor-pointer"
@@ -122,10 +121,12 @@
 <script setup>
 import { ref } from 'vue'
 import { z } from 'zod'
+import { useAuth } from '~/composables/useAuth';
+const { getUser, updateProfile } = useAuth();
 
-const name = ref('nour')
-const username = ref('nour12')
-const email = ref('nour@gmail.com')
+const name = ref('')
+const username = ref('')
+const email = ref('')
 const location = ref('')
 const phone = ref('')
 
@@ -223,7 +224,54 @@ const clearValidation = (fieldKey) => {
 const saveField = async (fieldKey) => {
   const field = fields.find(f => f.key === fieldKey)
   if (!field) return
-  console.log(`Saving ${fieldKey}:`, field.value)
-  editingField.value = null
+
+  // Validate before saving
+  validateField(fieldKey)
+  if (errors.value[fieldKey]) {
+    return // Don't save if there's a validation error
+  }
+
+  try {
+    // Create an update object with just the field being updated
+    const updates = { [fieldKey]: field.value }
+
+    // Call the updateProfile function with the updates
+    await updateProfile(updates)
+
+    console.log(`Successfully saved ${fieldKey}:`, field.value)
+    editingField.value = null
+  } catch (err) {
+    console.error(`Error saving ${fieldKey}:`, err)
+    // You could set an error message to display to the user here
+  }
 }
+
+import { onMounted } from 'vue'
+
+// Fetch user data and fill form fields
+const fetchProfile = async () => {
+  try {
+    // Get user data using the useAuth composable
+    const userData = await getUser()
+
+    if (userData) {
+      console.log('📦 User data:', userData)
+
+      // Fill form fields with user data if available
+      name.value = userData.name || ''
+      username.value = userData.username || ''
+      email.value = userData.email || ''
+      location.value = userData.location || ''
+      phone.value = userData.phone || ''
+    } else {
+      console.log('⚠️ No user data available')
+    }
+  } catch (err) {
+    console.error('❌ Error fetching user profile:', err)
+  }
+}
+
+onMounted(() => {
+  fetchProfile()
+})
 </script>
