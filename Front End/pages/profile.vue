@@ -41,18 +41,19 @@
   <div class="h-full flex items-center w-full">
     <div class="h-screen flex items-center m-auto">
       <div class="lg:w-[555px] w-full flex flex-col items-start gap-6">
-        <h2 class="text-red-800 text-2xl font-bold">Profile Info</h2>
+        <SectionTitle title="Profile Info" />
 
-        <!-- Dynamic Inputs -->
         <div v-for="field in fields" :key="field.key" class="w-full">
           <label
             :for="field.key"
             class="text-red-800 text-lg font-medium px-2"
             >{{ field.label }}</label
           >
+
           <div class="relative w-full mt-1">
+            <!-- Input with validation icon inside -->
             <div
-              class="flex items-center justify-between bg-yellow-50 p-3 rounded-2xl  outline-1 outline-red-800"
+              class="relative flex items-center bg-yellow-50 p-3 rounded-2xl outline outline-1 outline-red-800"
             >
               <input
                 v-model="field.value"
@@ -63,21 +64,23 @@
                 @focus="clearValidation(field.key)"
                 class="w-full bg-yellow-50 text-red-800 placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium focus:outline-none"
               />
+
+              <!-- ✅ / ❌ icon -->
+              <div
+                v-if="validationStatus[field.key]"
+                class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full"
+                :class="errors[field.key] ? 'bg-red-500 text-white' : 'bg-[#A31D1D] text-white'"
+              >
+                <i
+                  :class="errors[field.key] ? 'fa-solid fa-exclamation' : 'fa-solid fa-check'"
+                ></i>
+              </div>
+
+              <!-- ⚙️ Setting icon (hidden when validation shown) -->
               <i
                 v-if="!validationStatus[field.key]"
                 class="fa-solid fa-gear text-[#A31D1D] ml-3 cursor-pointer"
                 @click="editingField = field.key"
-              />
-            </div>
-
-            <!-- ✅ / ❌ Icon -->
-            <div
-              v-if="validationStatus[field.key]"
-              class="absolute right-3 top-[45%] -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full"
-              :class="errors[field.key] ? 'bg-red-500 text-white' : 'bg-[#A31D1D] text-white'"
-            >
-              <i
-                :class="errors[field.key] ? 'fa-solid fa-exclamation' : 'fa-solid fa-check'"
               ></i>
             </div>
 
@@ -105,7 +108,7 @@
               </div>
             </div>
 
-            <!-- Error Message -->
+            <!-- Error message -->
             <p v-if="errors[field.key]" class="text-sm text-red-500 mt-1">
               {{ errors[field.key] }}
             </p>
@@ -120,9 +123,9 @@
 import { ref } from 'vue'
 import { z } from 'zod'
 
-const name = ref('')
-const username = ref('')
-const email = ref('')
+const name = ref('nour')
+const username = ref('nour12')
+const email = ref('nour@gmail.com')
 const location = ref('')
 const phone = ref('')
 
