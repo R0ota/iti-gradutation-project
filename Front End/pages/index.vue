@@ -1,4 +1,7 @@
+
+
 <template>
+  <Header/>
   <div
     class="landing-page space-y-16 px-4 py-8 lg:ml=[125px] ml-[50px] lg:mr=[125px] mr-[50px]"
   >

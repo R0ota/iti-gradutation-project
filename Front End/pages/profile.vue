@@ -1,42 +1,6 @@
-<template>
-  <nav
-    class="flex h-[43px] justify-center items-end gap-6 self-stretch bg-[#A31D1D] border-b-2 border-[#A31D1D]"
-  >
-    <NuxtLink
-      to="profile"
-      class="text-[#FFEFD1] text-center font-poppins text-[18px] font-bold leading-[27px] tracking-[-0.342px]
-         px-6 py-2 rounded-none 
-         hover:bg-[#FFEFD1] hover:text-[#A31D1D] hover:rounded-t-[24px] 
-         hover:px-6 hover:py-2 hover:gap-[10px] 
-         flex justify-center items-center
-         transition-none transform-none"
-    >
-      Profile
-    </NuxtLink>
 
-    <NuxtLink
-      to="/orderPage"
-      class="text-[#FFEFD1] text-center font-poppins text-[18px] font-bold leading-[27px] tracking-[-0.342px]
-         px-6 py-2 rounded-none 
-         hover:bg-[#FFEFD1] hover:text-[#A31D1D] hover:rounded-t-[24px] 
-         hover:px-6 hover:py-2 hover:gap-[10px] 
-         flex justify-center items-center
-         transition-none transform-none"
-    >
-      Orders
-    </NuxtLink>
-    <NuxtLink
-      to="/security"
-      class="text-[#FFEFD1] text-center font-poppins text-[18px] font-bold leading-[27px] tracking-[-0.342px]
-         px-6 py-2 rounded-none 
-         hover:bg-[#FFEFD1] hover:text-[#A31D1D] hover:rounded-t-[24px] 
-         hover:px-6 hover:py-2 hover:gap-[10px] 
-         flex justify-center items-center
-         transition-none transform-none"
-    >
-      Security
-    </NuxtLink>
-  </nav>
+<template>
+
 
   <div class="h-full flex items-center w-full">
     <div class="h-screen flex items-center m-auto">
@@ -119,6 +83,9 @@
 </template>
 
 <script setup>
+ definePageMeta({
+  layout: "order",
+});
 import { ref } from 'vue'
 import { z } from 'zod'
 import { useAuth } from '~/composables/useAuth';
@@ -274,4 +241,6 @@ const fetchProfile = async () => {
 onMounted(() => {
   fetchProfile()
 })
+
+
 </script>

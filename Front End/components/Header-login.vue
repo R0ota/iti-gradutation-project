@@ -21,10 +21,12 @@
         class="flex items-center justify-center gap-[10px]"
       >
         <!-- Log in Button -->
-      <div class="px-[5px] py-[3px] -flex flex-col">
+      <NuxtLink
+      to="/profile"
+       class="px-[5px] py-[3px] -flex flex-col">
         <p class="text-red-800 text-xs font-medium">Hello</p>
         <p class="text-red-800 text-xs font-extrabold">Nour</p>
-      </div>
+      </NuxtLink>
   
             <!-- Logout Button -->
             <button
@@ -47,7 +49,8 @@
   
   <script setup>
 //   import { useAuthStore } from '~/stores/auth';
-  import { useAuth } from '~/composables/useAuth';
+  import { NuxtLink } from '#components';
+import { useAuth } from '~/composables/useAuth';
   
 //   const authStore = useAuthStore();
   const { logout } = useAuth();

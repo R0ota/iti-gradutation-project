@@ -171,6 +171,12 @@
     </div>
 
     <div v-else class="flex items-center space-x-4">
+      <NuxtLink
+      to="/profile"
+       class="px-[5px] py-[3px] -flex flex-col">
+        <p class="text-red-800 text-xs font-medium">Hello</p>
+        <p class="text-red-800 text-xs font-extrabold">Nour</p>
+      </NuxtLink>
       <!-- Logout Button -->
       <button
         @click="handleLogout"

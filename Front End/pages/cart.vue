@@ -55,7 +55,7 @@
 
 <script setup>
 definePageMeta({
-  layout: "order",
+  layout: "market",
 });
 
 import { useCartStore } from '~/stores/cart';
