@@ -12,7 +12,7 @@ export function useAuth() {
 
     try {
       const res = await $fetch(`${getBaseURL()}/login`, {
-        method: 'POST',
+        method: "POST",
         body: credentials,
       });
 
@@ -73,12 +73,45 @@ export function useAuth() {
     return authStore.user;
   }
 
+  // Update user profile
+  async function updateProfile(updates) {
+    authStore.setLoading(true);
+    authStore.setError(null);
+
+    try {
+      const baseURL = getBaseURL();
+      const token = authStore.token;
+
+      const res = await $fetch(`${baseURL}/user/profile`, {
+        method: "PUT",
+        body: updates,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      // Update local user data
+      authStore.setUser({
+        ...authStore.user,
+        ...updates,
+      });
+
+      return res.user;
+    } catch (error) {
+      authStore.setError(error.message || "Failed to update profile");
+      throw error;
+    } finally {
+      authStore.setLoading(false);
+    }
+  }
+
   return {
     login,
     signup,
     logout,
     checkAuth,
     getUser,
+    updateProfile,
     loading: authStore.loading,
     error: authStore.error,
     isAuthenticated: authStore.isAuthenticated,
