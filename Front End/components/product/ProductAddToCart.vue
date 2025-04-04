@@ -56,7 +56,7 @@
           </defs>
         </svg>
       </div>
-      <span>Add to Cart</span>
+      <span @click="handleAddToCart(product)">Add to Cart</span>
     </button>
 
     <!-- Added to cart message -->
@@ -114,7 +114,12 @@ defineProps({
 
 defineEmits(['addToCart']);
 
+import { useCartStore } from '@/stores/cart';
+const cart = useCartStore();
 
+function handleAddToCart(product) {
+  cart.addItem(product, 1); // or custom quantity
+}
 
 const isAdded = ref(false);
 const toggleState = () => {
