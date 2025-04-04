@@ -1,357 +1,226 @@
 <template>
-  <div class="h-full flex items-center w-full">
-    <!-- Left side - Image -->
-    <img
-      src="../assets/authimage.png"
-      alt="Signup Background"
-      class="h-[100vh] lg:w-1/3 lg:block hidden"
-    />
+  <nav
+    class="flex h-[43px] justify-center items-end gap-6 self-stretch bg-[#A31D1D] border-b-2 border-[#A31D1D]"
+  >
+    <NuxtLink
+      to="profilePage"
+      class="text-[#FFEFD1] text-center font-poppins text-[18px] font-bold leading-[27px] tracking-[-0.342px]
+         px-6 py-2 rounded-none 
+         hover:bg-[#FFEFD1] hover:text-[#A31D1D] hover:rounded-t-[24px] 
+         hover:px-6 hover:py-2 hover:gap-[10px] 
+         flex justify-center items-center
+         transition-none transform-none"
+    >
+      Profile
+    </NuxtLink>
 
-    <!-- Right side - Form -->
+    <NuxtLink
+      to="/orderPage"
+      class="text-[#FFEFD1] text-center font-poppins text-[18px] font-bold leading-[27px] tracking-[-0.342px]
+         px-6 py-2 rounded-none 
+         hover:bg-[#FFEFD1] hover:text-[#A31D1D] hover:rounded-t-[24px] 
+         hover:px-6 hover:py-2 hover:gap-[10px] 
+         flex justify-center items-center
+         transition-none transform-none"
+    >
+      Orders
+    </NuxtLink>
+    <NuxtLink
+      to="/security"
+      class="text-[#FFEFD1] text-center font-poppins text-[18px] font-bold leading-[27px] tracking-[-0.342px]
+         px-6 py-2 rounded-none 
+         hover:bg-[#FFEFD1] hover:text-[#A31D1D] hover:rounded-t-[24px] 
+         hover:px-6 hover:py-2 hover:gap-[10px] 
+         flex justify-center items-center
+         transition-none transform-none"
+    >
+      Security
+    </NuxtLink>
+  </nav>
+
+  <div class="h-full flex items-center w-full">
     <div class="h-screen flex items-center m-auto">
-      <div
-        class="lg:w-[555px] w-full inline-flex flex-col lg:justify-start justify-center items-start gap-14"
-      >
-        <div class="w-full flex lg:justify-start justify-center items-center">
-          <div
-            class="px-6 border-l-[6px] border-red-800 flex justify-center items-center"
+      <div class="lg:w-[555px] w-full flex flex-col items-start gap-6">
+        <h2 class="text-red-800 text-2xl font-bold">Profile Info</h2>
+
+        <!-- Dynamic Inputs -->
+        <div v-for="field in fields" :key="field.key" class="w-full">
+          <label
+            :for="field.key"
+            class="text-red-800 text-lg font-medium px-2"
+            >{{ field.label }}</label
           >
-            <p
-              class="text-red-800 lg:text-3xl text-2xl font-bold leading-loose lg:leading-[48px]"
+          <div class="relative w-full mt-1">
+            <div
+              class="flex items-center justify-between bg-yellow-50 p-3 rounded-2xl  outline-1 outline-red-800"
             >
-              Profile Info
+              <input
+                v-model="field.value"
+                :type="field.type"
+                :id="field.key"
+                :placeholder="field.placeholder"
+                @input="validateField(field.key)"
+                @focus="clearValidation(field.key)"
+                class="w-full bg-yellow-50 text-red-800 placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium focus:outline-none"
+              />
+              <i
+                v-if="!validationStatus[field.key]"
+                class="fa-solid fa-gear text-[#A31D1D] ml-3 cursor-pointer"
+                @click="editingField = field.key"
+              />
+            </div>
+
+            <!-- ✅ / ❌ Icon -->
+            <div
+              v-if="validationStatus[field.key]"
+              class="absolute right-3 top-[45%] -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full"
+              :class="errors[field.key] ? 'bg-red-500 text-white' : 'bg-[#A31D1D] text-white'"
+            >
+              <i
+                :class="errors[field.key] ? 'fa-solid fa-exclamation' : 'fa-solid fa-check'"
+              ></i>
+            </div>
+
+            <!-- Save / Cancel -->
+            <div
+              v-if="editingField === field.key"
+              class="flex justify-end gap-2 mt-2"
+            >
+              <button
+                @click="editingField = null"
+                type="button"
+                class="px-4 py-1 border border-red-800 text-red-800 rounded-xl font-semibold"
+              >
+                Cancel
+              </button>
+              <div
+                class="px-4 py-1.5 bg-red-800 rounded-xl shadow inline-flex justify-center items-center gap-2 cursor-pointer"
+                @click="saveField(field.key)"
+              >
+                <div
+                  class="text-yellow-50 text-base font-semibold leading-snug"
+                >
+                  Save
+                </div>
+              </div>
+            </div>
+
+            <!-- Error Message -->
+            <p v-if="errors[field.key]" class="text-sm text-red-500 mt-1">
+              {{ errors[field.key] }}
             </p>
           </div>
         </div>
-
-        <form
-          @submit.prevent="handleSubmit"
-          class="w-full inline-flex flex-col justify-start items-start gap-2"
-        >
-          <!-- Name -->
-          <div
-            class="relative w-full flex flex-col justify-start items-start gap-0.5"
-          >
-            <label
-              for="name"
-              class="px-2 text-red-800 text-lg font-medium leading-relaxed"
-            >
-              Name
-            </label>
-            <div class="relative w-full">
-              <input
-                v-model="name"
-                @blur="validateField('name')"
-                @input="validateField('name')"
-                @focus="clearValidation('name')"
-                type="text"
-                placeholder="e.g. Nour"
-                id="name"
-                class="w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-800 inline-flex justify-start items-center"
-                :class="errors.name ? 'border-red-500 focus:ring-red-500' : 'border-[#A31D1D] focus:ring-[#A31D1D]'"
-              />
-              <div
-                v-if="validationStatus.name"
-                class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full"
-                :class="errors.name ? 'bg-red-500 text-white' : 'bg-[#A31D1D] text-white'"
-              >
-                <!-- <component :is="errors.name ? 'ErrorIcon' : 'SuccessIcon'" /> -->
-                <i
-                  :class="errors.name ? 'fa-solid fa-exclamation' : 'fa-solid fa-check'"
-                ></i>
-              </div>
-            </div>
-            <p v-if="errors.name" class="mt-1 text-sm text-red-500">
-              {{ errors.name }}
-            </p>
-          </div>
-
-          <!-- Username -->
-          <div
-            class="relative w-full flex flex-col justify-start items-start gap-0.5"
-          >
-            <label
-              for="username"
-              class="px-2 text-red-800 text-lg font-medium leading-relaxed"
-            >
-              User Name
-            </label>
-            <div class="relative w-full">
-              <input
-                v-model="username"
-                @blur="validateField('username')"
-                @input="validateField('username')"
-                @focus="clearValidation('username')"
-                type="text"
-                placeholder="e.g. nour2002"
-                id="username"
-                class="w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-800 inline-flex justify-start items-center"
-                :class="errors.username ? 'border-red-500 focus:ring-red-500' : 'border-[#A31D1D] focus:ring-[#A31D1D]'"
-              />
-              <div
-                v-if="validationStatus.username"
-                class="absolute  right-3 top-1/2 -translate-y-1/2  flex items-center justify-center w-6 h-6 rounded-full"
-                :class="errors.username ? 'bg-red-500 text-white' : 'bg-[#A31D1D] text-white'"
-              >
-                <i
-                  :class="errors.name ? 'fa-solid fa-exclamation' : 'fa-solid fa-check'"
-                ></i>
-              </div>
-            </div>
-            <p v-if="errors.username" class="mt-1 text-sm text-red-500">
-              {{ errors.username }}
-            </p>
-          </div>
-
-          <div
-            class="relative w-full flex flex-col justify-start items-start gap-0.5"
-          >
-            <label
-              for="email"
-              class="px-2 text-red-800 text-lg font-medium leading-relaxed"
-            >
-              Email
-            </label>
-            <div class="relative w-full">
-              <input
-                v-model="email"
-                @blur="validateField('email')"
-                @input="validateField('email')"
-                @focus="clearValidation('email')"
-                type="email"
-                placeholder="example@gmail.com"
-                id="email"
-                class="w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-800 inline-flex justify-start items-center"
-                :class="errors.email ? 'border-red-500 focus:ring-red-500' : 'border-[#A31D1D] focus:ring-[#A31D1D]'"
-              />
-
-              <div
-                v-if="validationStatus.email"
-                class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full"
-                :class="errors.email ? 'bg-red-500 text-white' : 'bg-[#A31D1D] text-white'"
-              >
-                <i
-                  :class="errors.email ? 'fa-solid fa-exclamation' : 'fa-solid fa-check'"
-                ></i>
-              </div>
-            </div>
-            <p v-if="errors.email" class="mt-1 text-sm text-red-500">
-              {{ errors.email }}
-            </p>
-          </div>
-
-          <div
-            class="relative self-stretch flex flex-col justify-start items-start gap-0.5"
-          >
-            <label
-              for="password"
-              class="px-2 text-red-800 text-lg font-medium leading-relaxed"
-            >
-              Password
-            </label>
-            <div class="relative w-full">
-              <input
-                v-model="password"
-                @blur="validateField('password')"
-                @input="validateField('password')"
-                @focus="clearValidation('password')"
-                :type="showPassword ? 'text' : 'password'"
-                placeholder="At least 8 characters"
-                id="password"
-                class="w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-800 inline-flex justify-start items-center"
-                :class="[
-                errors.password ? 'border-red-500 focus:ring-red-500' : 'border-[#A31D1D] focus:ring-[#A31D1D]',
-                'bg-yellow-50'
-                 ]"
-              />
-
-              <!-- Show/hide password icon (always visible) -->
-              <span
-                class="absolute inset-y-0 right-4 flex items-center text-red-800 cursor-pointer"
-                @click="showPassword = !showPassword"
-              >
-                <i
-                  :class="showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"
-                ></i>
-              </span>
-
-              <!-- Validation icon (appears under or near the eye icon) -->
-              <div
-                v-if="validationStatus.password"
-                class="absolute right-12 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full"
-                :class="errors.password ? 'bg-red-500 text-white' : 'bg-[#A31D1D] text-white'"
-              >
-                <i
-                  :class="errors.password ? 'fa-solid fa-exclamation' : 'fa-solid fa-check'"
-                ></i>
-              </div>
-            </div>
-
-            <p v-if="errors.password" class="mt-1 text-sm text-red-500">
-              {{ errors.password }}
-            </p>
-          </div>
-
-          <div
-            class="w-full flex flex-col justify-center items-center gap-2 mt-10 lg:p-0"
-          >
-            <button
-              :class="isFormValid ? 'bg-red-800' : 'bg-[#C7C7C7] cursor-not-allowed'"
-              class="w-80 h-13 py-3 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center text-yellow-50 text-lg font-bold cursor-pointer"
-              :disabled="!isFormValid"
-            >
-              <i
-                v-if="loading"
-                class="fa-solid fa-spinner fa-spin absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-800 text-3xl"
-              ></i>
-
-              <span v-else-if="!loading"> Create Account </span>
-            </button>
-            <div v-if="authError" class="text-center text-red-600 text-sm">
-              {{ authError }}
-            </div>
-            <p class="text-black text-base font-medium">
-              Have an Account ?
-              <NuxtLink to="login" class="text-red-800 text-lg font-bold"
-                >Log in</NuxtLink
-              >
-            </p>
-          </div>
-        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-definePageMeta({
-  layout: "profile",
-});
+import { ref } from 'vue'
+import { z } from 'zod'
 
-import { ref, computed } from "vue";
-import { z } from 'zod';
-import { useAuth } from '../composables/useAuth';
-import { useAuthMiddleware } from '../composables/useAuthMiddleware';
+const name = ref('')
+const username = ref('')
+const email = ref('')
+const location = ref('')
+const phone = ref('')
 
-const { signup } = useAuth();
-const { loading, error: authError } = useAuthStore();
-
-const { guestOnly } = useAuthMiddleware();
-
-// Redirects authenticated users away from the login page
-onMounted(() => {
-  guestOnly();
-});
-
-
-const name = ref('');
-const username = ref('');
-const email = ref('');
-const password = ref('');
-const errors = ref({});
+// Track editing field and validation state
+const editingField = ref(null)
+const errors = ref({})
 const validationStatus = ref({
   name: false,
   username: false,
   email: false,
-  password: false
-});
-const showPassword = ref(false);
+  location: false,
+  phone: false
+})
 
-const signupSchema = z.object({
-  name: z.string()
-    .min(4, 'Name must be at least 4 characters')
-    .max(50, 'Name is too long')
-    .regex(/^[a-zA-Z\s]+$/, 'Name must contain only letters'),
+// Zod schema
+const schema = z.object({
+  name: z.string().min(4).max(50).regex(/^[a-zA-Z\\s]+$/, 'Name must contain only letters'),
+  username: z.string().min(4).max(20).regex(/^(?!\\d+$)[a-zA-Z0-9_]+$/, 'Username must contain at least one letter'),
+  email: z.string().email().min(5).max(50),
+  location: z.string().min(2).max(100),
+  phone: z.string().regex(/^\\+?\\d{10,15}$/, 'Phone number is invalid')
+})
 
-  username: z.string()
-    .min(4, 'Username must be at least 4 characters')
-    .max(20, 'Username is too long')
-    .regex(/^(?!\d+$)[a-zA-Z0-9_]+$/, 'Username must contain at least one letter'),
-    email: z.string()
-    .email('Please enter a valid email address')
-    .min(5, 'Email must be at least 5 characters')
-    .max(50, 'Email must be at most 50 characters'),
-  password: z.string()
-    .min(8, 'Password must be at least 8 characters')
-    .max(20, 'Password must be at most 20 characters')
-    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-    .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
-    .regex(/[0-9]/, 'Password must contain at least one number')
-    .regex(/[@$!%*?&#]/, 'Password must contain at least one special character (@, $, !, %, *, ?, &, #)')
-});
-
-
-
-
-const validateField = (field) => {
-  const value = eval(field).value;
-  if (!value || value.trim() === '') {
-    // Field is empty → reset validation
-    errors.value[field] = null;
-    validationStatus.value[field] = false;
-    return;
+// Fields config
+const fields = [
+  {
+    key: 'name',
+    label: 'Name',
+    placeholder: 'e.g. Nour',
+    type: 'text',
+    get value() { return name.value },
+    set value(val) { name.value = val }
+  },
+  {
+    key: 'username',
+    label: 'Username',
+    placeholder: 'e.g. nour2002',
+    type: 'text',
+    get value() { return username.value },
+    set value(val) { username.value = val }
+  },
+  {
+    key: 'email',
+    label: 'Email',
+    placeholder: 'example@gmail.com',
+    type: 'email',
+    get value() { return email.value },
+    set value(val) { email.value = val }
+  },
+  {
+    key: 'location',
+    label: 'Location',
+    placeholder: 'e.g. Cairo, Egypt',
+    type: 'text',
+    get value() { return location.value },
+    set value(val) { location.value = val }
+  },
+  {
+    key: 'phone',
+    label: 'Phone Number',
+    placeholder: 'Enter your phone Number',
+    type: 'text',
+    get value() { return phone.value },
+    set value(val) { phone.value = val }
   }
-  try {
-    signupSchema.pick({ [field]: true }).parse({ [field]: eval(field).value });
-    errors.value[field] = null;
-    validationStatus.value[field] = true;
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      errors.value[field] = error.errors[0].message;
-      validationStatus.value[field] = true;
-    }
+]
+
+// Validate field
+const validateField = (fieldKey) => {
+  const fieldValue = fields.find(f => f.key === fieldKey)?.value
+  if (!fieldValue || fieldValue.trim() === '') {
+    errors.value[fieldKey] = null
+    validationStatus.value[fieldKey] = false
+    return
   }
-};
-
-const clearValidation = (field) => {
-  errors.value[field] = null;
-  validationStatus.value[field] = false;
-};
-
-// const isFormValid = computed(() => {
-//   return (
-//     validationStatus.value.name &&
-//     validationStatus.value.username &&
-//     validationStatus.value.email &&
-//     validationStatus.value.password
-//   );
-// });
-const isFormValid = computed(() => {
-  const allFieldsFilled =
-    name.value.trim().length > 0 &&
-    username.value.trim().length > 0 &&
-    email.value.trim().length > 0 &&
-    password.value.trim().length > 0;
-
-  const noErrorsExist = Object.values(errors.value).every((error) => !error);
-
-  return allFieldsFilled && noErrorsExist;
-});
-
-const handleSubmit = async () => {
-  errors.value = {};
 
   try {
-    const validatedData = signupSchema.parse({
-      name: name.value,
-      username: username.value,
-      email: email.value,
-      password: password.value
-    });
-
-    // Use the composable for signup
-    await signup({
-      name: validatedData.name,
-      username: validatedData.username,
-      email: validatedData.email,
-      password: validatedData.password
-    });
+    schema.pick({ [fieldKey]: true }).parse({ [fieldKey]: fieldValue })
+    errors.value[fieldKey] = null
+    validationStatus.value[fieldKey] = true
   } catch (error) {
     if (error instanceof z.ZodError) {
-      error.errors.forEach((err) => {
-        errors.value[err.path[0]] = err.message;
-      });
+      errors.value[fieldKey] = error.errors[0].message
+      validationStatus.value[fieldKey] = true
     }
   }
-};
+}
+
+const clearValidation = (fieldKey) => {
+  errors.value[fieldKey] = null
+  validationStatus.value[fieldKey] = false
+}
+
+// Save individual field
+const saveField = async (fieldKey) => {
+  const field = fields.find(f => f.key === fieldKey)
+  if (!field) return
+  console.log(`Saving ${fieldKey}:`, field.value)
+  editingField.value = null
+}
 </script>
