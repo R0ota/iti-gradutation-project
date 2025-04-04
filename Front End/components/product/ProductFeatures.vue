@@ -1,6 +1,6 @@
 <template>
   <div
-    class="py-8 lg:w-full w-80  lg:flex-wrap flex-wrap border-b-[2.50px] border-red-800 inline-flex flex-col justify-start items-start gap-4"
+    class="py-8 lg:w-full w-80  lg:flex-wrap flex-wrap border-b-[2.50px] border-red-800 inline-flex flex-col justify-start items-start gap-4"
   >
     <!-- <div class="border-b border-gray-200 mb-8"> -->
     <div

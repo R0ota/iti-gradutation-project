@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="container mx-auto px-4 py-8"> -->
   <!-- Loading state -->
 
   <!-- Error state -->
@@ -20,8 +19,15 @@
       :products="availableInThisDesign"
       @toggle-wishlist="toggleWishlist"
     />
+<div class="border-b-[2.50px] border-red-800"></div>
+
+      <!-- Other Designs -->
+    <!-- <ProductAvailableInThisDesign
+      :loading="loadingAvailable"
+      :products="availableInThisDesign"
+      @toggle-wishlist="toggleWishlist"
+    /> -->
   </div>
-  <!-- </div> -->
 </template>
 
 <script setup>

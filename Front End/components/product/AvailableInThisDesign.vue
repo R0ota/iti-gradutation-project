@@ -1,14 +1,14 @@
 <template>
   <section
-    class="py-8 lg:w-full w-80  lg:flex-wrap flex-wrap border-b-[2.50px] border-red-800 inline-flex flex-col justify-start items-start gap-4"
+    class="py-8 lg:w-full w-80  lg:flex-wrap flex-wrap  inline-flex flex-col justify-start items-start gap-4"
   >
     <!-- <div class=""> -->
-    <div class="w-full flex flex-row justify-between lg:mt-4 m-2">
+    <div class="w-full flex flex-row justify-between lg:mt-4 m-2">
       <div
-        class="px-6 border-l-[6px] border-red-800 inline-flex justify-center items-center gap-2.5"
+        class="px-6 border-l-[6px] border-red-800 inline-flex justify-center items-center gap-2.5"
       >
         <p
-          class="justify-start text-red-800 text-2xl font-semibold lg:leading-9 leading-normal"
+          class="justify-start text-red-800 text-2xl font-semibold lg:leading-9 leading-normal"
           aria-current="true"
         >
           Available in this design
@@ -50,7 +50,7 @@
     </div>
     <div
       v-else
-      class="flex flex-row lg:w-full w-80 lg:flex-wrap lg:justify-center  overflow-x-auto gap-4"
+      class="flex flex-row lg:w-full w-80 lg:flex-wrap lg:justify-start  overflow-x-auto gap-4"
     >
       <ProductCard
         v-for="product in products"
