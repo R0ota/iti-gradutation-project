@@ -35,12 +35,12 @@
           <option value="3">text-3</option>
         </select>
         <!-- type -->
-        <ProductInfo title="Type">
+        <!-- <ProductInfo title="Type">
           <ProductInfoButton info="type1" />
           <ProductInfoButton info="type2" />
           <ProductInfoButton info="type3" />
           <ProductInfoButton info="type4" />
-        </ProductInfo>
+        </ProductInfo> -->
         <!-- size -->
         <ProductInfo title="Size"
           ><ProductInfoButton info="small" />

@@ -39,7 +39,7 @@ const totalPrice = computed(() => {
         <!-- cart -->
         <div v-for="item in data.products.slice(0, 4)" class="w-full">
           <Cart>
-            <ProductDetails :img="item.thumbnail"/>
+            <ProductData :img="item.thumbnail"/>
           </Cart>
         </div>
       </div>
