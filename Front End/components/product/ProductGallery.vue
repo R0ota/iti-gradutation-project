@@ -1,10 +1,10 @@
 <template>
   <div
-    class="inline-flex lg:flex-row flex-col-reverse justify-start  items-start gap-6"
+    class="inline-flex lg:flex-row flex-col-reverse justify-start  items-start gap-6 w-full"
   >
     <div
       v-if="productImages.length > 0"
-      class="w-20 inline-flex lg:flex-col flex-row gap-5"
+      class="w-20 inline-flex lg:flex-col flex-row gap-5"
     >
       <div
         v-for="(image, index) in productImages"

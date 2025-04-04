@@ -50,7 +50,7 @@ const navigateToProduct = (productId) => {
 
 <template>
     <div
-        class="flex flex-col items-center justify-center w-[254px] lg:gap-[8px] gap-[5.039px] cursor-pointer"
+        class="flex flex-col items-center justify-center w-[254px] lg:gap-[8px] gap-[5px] cursor-pointer"
         @click="navigateToProduct(id)"
     >
         <div class="relative lg:w-full lg:h-[250px] lg:rounded-[40px] bg-[#D9D9D9] flex-shrink-0 aspect-square 

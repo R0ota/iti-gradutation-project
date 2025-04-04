@@ -82,7 +82,7 @@ const formattedCategory = computed(() => {
     </div>
 
     <!-- Display Paginated Products -->
-    <div class="flex flex-row lg:flex-wrap lg:justify-start overflow-x-auto gap-4">
+    <div class="flex flex-row lg:flex-wrap lg:justify-start flex-wrap gap-4">
       <div
         v-for="product in paginatedProducts"
         :key="product._id"
