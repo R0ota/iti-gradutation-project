@@ -10,14 +10,15 @@
     </NuxtLink>
 
     <NuxtLink
-      to="/order/ongoing-order"
-      :class="[
-        baseClasses,
-        route.path === '/order/ongoing-order' ? activeClasses : '',
-      ]"
-    >
-      Orders
-    </NuxtLink>
+  to="/order/ongoing-order"
+  :class="[
+    baseClasses,
+    (route.path === '/order/ongoing-order' || route.path === '/order/order-in-review' || route.path === '/order/previous-order') ? activeClasses : ''
+  ]"
+>
+  Orders
+</NuxtLink>
+
     
     <NuxtLink
       to="/security"
