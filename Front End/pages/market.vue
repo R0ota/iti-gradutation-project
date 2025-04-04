@@ -55,7 +55,7 @@ const navigateToCategory = (categoryName) => {
       <SectionTitle title="Best-selling products"/>
       <NuxtLink to="/market-products" class="flex flex-row items-center gap-1">
         <p
-          class="lg:text-[16px] tracking-[-0.304px] font-semibold cursor-pointer"
+          class="lg:text-[16px] tracking-[-0.304px] font-semibold text-black cursor-pointer"
         >
           more
         </p>

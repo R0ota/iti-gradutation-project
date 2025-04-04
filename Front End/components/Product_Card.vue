@@ -90,7 +90,7 @@ const navigateToProduct = (productId) => {
                 {{ description }}
             </p>
             <p
-                class="lg:text-[18px] lg:tracking-[-0.342px] font-bold leading-[150%] text-[11.339px] tracking-[-0.215px] mt-auto">
+                class="lg:text-[18px] lg:tracking-[-0.342px] text-black font-bold leading-[150%] text-[11.339px] tracking-[-0.215px] mt-auto">
                 {{ price }} {{ currency }}
             </p>
         </div>

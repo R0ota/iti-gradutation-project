@@ -7,8 +7,8 @@
   >
     <!-- Tabi Section -->
     <section class="tabi-section text-center space-y-4">
-      <h1 class="text-4xl font-bold">Tabi</h1>
-      <p class="text-lg leading-relaxed">
+      <h1 class="text-4xl font-bold text-black">Tabi</h1>
+      <p class="text-lg text-black leading-relaxed">
         Turn your ideas into unique products with us! We offer printing services
         on a wide range of products with exceptional quality and custom designs
         that suit your taste.
@@ -24,8 +24,8 @@
 
     <!-- Market Section -->
     <section class="market-section text-center space-y-4">
-      <h2 class="text-3xl font-semibold">Market</h2>
-      <p class="text-lg leading-relaxed">
+      <h2 class="text-3xl font-semibold text-black">Market</h2>
+      <p class="text-lg leading-relaxed text-black">
         Welcome to the market, the place where creativity and quality come
         together in one spot! Here, you can explore a diverse range of unique
         products designed and printed with the highest quality. Whether you're
@@ -34,7 +34,7 @@
       </p>
       <NuxtLink
         to="/market"
-        class="inline-block mt-4 px-6 py-2 bg-black text-white rounded-lg font-medium hover:bg-gray-800"
+        class="inline-block mt-4 px-6 py-2  bg-black text-white rounded-lg font-medium hover:bg-gray-800"
       >
         Go to Market
       </NuxtLink>
@@ -64,8 +64,8 @@
 
     <!-- Our Products Section -->
     <section class="products-section text-center space-y-4">
-      <h2 class="text-3xl font-semibold">Our Products</h2>
-      <p class="text-lg leading-relaxed">
+      <h2 class="text-3xl font-semibold text-black">Our Products</h2>
+      <p class="text-lg leading-relaxed text-black">
         On our website, we offer you a unique collection of high-quality printed
         products with exceptional designs that reflect your personal taste.
         Whether you're looking for stylish clothing, unique mugs, artistic
