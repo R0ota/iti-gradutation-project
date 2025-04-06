@@ -228,7 +228,7 @@ const fetchProfile = async () => {
       location.value = userData.location || ''
       phone.value = userData.phone || ''
     } else {
-      console.log('⚠️ No user data available')
+      console.log(' No user data available')
     }
   } catch (err) {
     console.error(' Error fetching user profile:', err)
