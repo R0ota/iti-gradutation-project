@@ -1,7 +1,4 @@
-
 <template>
-
-
   <div class="h-full flex items-center w-full">
     <div class="h-screen flex items-center m-auto">
       <div class="lg:w-[555px] w-full flex flex-col items-start gap-6">
@@ -234,13 +231,11 @@ const fetchProfile = async () => {
       console.log('⚠️ No user data available')
     }
   } catch (err) {
-    console.error('❌ Error fetching user profile:', err)
+    console.error(' Error fetching user profile:', err)
   }
 }
 
 onMounted(() => {
   fetchProfile()
 })
-
-
 </script>
