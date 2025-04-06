@@ -2,6 +2,7 @@ const User = require("../models/userModel");
 const express = require("express");
 const router = express.Router();
 const { authMiddleware, adminMiddleware } = require("../middleware/authentication");
+const { getUserOrders } = require("../controllers/orderController");
 
 // @desc    Get user profile
 // @route   GET /user/profile
@@ -47,6 +48,10 @@ const deleteUser = async (req, res) => {
         res.status(400).send({ error: error.message });
     }
 };
+
+// @desc    Get user orders
+// @route   GET /user/orders
+router.get("/orders", authMiddleware, getUserOrders);
 
 router.get("/profile", authMiddleware, getUserProfile);
 router.get("/all", authMiddleware, adminMiddleware, getAllUsers);
