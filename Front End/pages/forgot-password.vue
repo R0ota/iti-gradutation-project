@@ -14,7 +14,7 @@ const isFormValid = computed(() => {
 <template>
   <div class="h-full flex items-center w-full">
     <img
-      src="../assets/authimage.png"
+      src="../assets/forgotpass-img.png"
       class="h-[100vh] lg:w-1/3 lg:block hidden"
     />
 

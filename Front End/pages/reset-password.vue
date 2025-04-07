@@ -6,15 +6,17 @@ definePageMeta({
 import { ref, computed } from "vue";
 
 const password = ref("");
+const confirmPassword = ref("");
+const showPassword = ref(false);
 
-const isFormValid = computed(() => {
-    password.value.length >= 8;
-});
+const isFormValid = computed(() => 
+    password.value.length >= 8 && confirmPassword.value === password.value
+);
 </script>
 <template>
   <div class="h-full flex items-center w-full">
     <img
-      src="../assets/authimage.png"
+      src="../assets/newpass-img.png"
       class="h-[100vh] lg:w-1/3 lg:block hidden"
     />
 
@@ -23,7 +25,7 @@ const isFormValid = computed(() => {
         class="lg:w-[555px] w-full inline-flex flex-col lg:justify-start justify-center lg:items-start items-center gap-10"
       >
         <div class="w-full self-stretch inline-flex flex-col justify-start items-start px-8 lg:px-0  lg:gap-6 gap-8">
-            <div classs=" flex justify-start items-center ">
+            <div class=" flex justify-start items-center ">
                 <div
                     class="px-6 border-l-[6px] border-red-800 flex justify-start items-center"
                 >
@@ -41,12 +43,14 @@ const isFormValid = computed(() => {
         </div>
         
         <form class="lg:w-full inline-flex flex-col justify-start items-start gap-10">
+          <div class="flex flex-col gap-4 w-full">
+            <!-- new password -->
             <div
             class="self-stretch flex flex-col justify-start items-start gap-0.5"
           >
             <label
               for="password"
-              class="px-2 jaustify-center items-start text-red-800 text-lg font-medium leading-relaxed"
+              class="px-2 justify-center items-start text-red-800 text-lg font-medium leading-relaxed"
               >Password</label
             >
             <div class="relative w-full">
@@ -70,6 +74,39 @@ const isFormValid = computed(() => {
               </span>
             </div>
           </div>
+
+          <!-- confirm password -->
+          <div
+            class="self-stretch flex flex-col justify-start items-start gap-0.5"
+          >
+            <label
+              for="confirmPassword"
+              class="px-2 jaustify-center items-start text-red-800 text-lg font-medium leading-relaxed"
+              >Confirm Password</label
+            >
+            <div class="relative w-full">
+              <input
+                 v-model="confirmPassword"
+                :type="showPassword ? 'text' : 'password'"
+                placeholder="Make sure to match new password"
+                id="confirmPassword"
+                class="w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-800 inline-flex justify-start items-center"
+              />
+
+              <span
+                class="absolute inset-y-0 right-4 flex items-center text-red-800 cursor-pointer"
+                @click="showPassword = !showPassword"
+              >
+                <i
+                  :class="
+                    showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'
+                  "
+                ></i>
+              </span>
+            </div>
+          </div>
+          </div>
+          
 
             <div
             class="w-full flex flex-col justify-center items-center gap-2 lg:p-0"
