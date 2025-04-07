@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full flex flex-col gap-6">
     <CartItem
       v-for="item in items"
       :key="item.id"

@@ -24,13 +24,13 @@
   <!-- Cart Section -->
   <div
     v-else
-    class="lg:ml-[130px] ml-[20px] md:ml[70px] lg:mr-[130px] mr-[20px] md:mr[70px] pt-10 lg:pb-20 pb-14 flex flex-col lg:gap-8 gap-6  justify-start items-start"
+    class="lg:ml-[120px] ml-[20px] md:ml[70px] lg:mr-[120px] mr-[20px] md:mr[70px] pt-10 lg:pb-20 pb-14 flex flex-col lg:gap-8 gap-6  justify-start items-start"
   >
     <SectionTitle title="Cart" />
 
     <div class="flex lg:flex-row flex-col gap-8 w-full md:flex-row">
       <div
-        class="flex flex-col gap-6 lg:w-[650px] w-96 justify-start items-start lg:pb-0 pb-8 lg:border-none border-b-2 border-red-800"
+        class="flex flex-col lg:w-[650px] w-96 justify-start items-start lg:pb-0 pb-8 lg:border-none border-b-2 border-red-800"
       >
         <!-- Cart Items -->
         <CartItems
