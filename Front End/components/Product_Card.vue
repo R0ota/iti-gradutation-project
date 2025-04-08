@@ -80,8 +80,8 @@ const navigateToProduct = (productId) => {
             >
         </div>
 
-        <div class="flex flex-col items-start lg:gap-2 gap-1.5 self-stretch px-1">
-            <div class="flex flex-col gap-0.5 justify-start items-start">
+        <div class="flex flex-col items-start lg:gap-2 gap-1.5 self-stretch px-1 lg:w-64 w-44">
+            <div class="flex flex-col  gap-0.5 justify-start items-start">
                 <p
                 class="lg:text-xl lg:tracking-[-0.342px] font-bold leading-7 text-xs font-['Poppins'] text-red-800 ">
                   {{ name }}
@@ -97,6 +97,7 @@ const navigateToProduct = (productId) => {
                 class="lg:min-w-2.5 lg:text-xl lg:tracking-[-0.342px] text-black font-semibold leading-7 text-xs tracking-[-0.215px] mt-auto font-['Poppins']">
                 {{ price }} {{ currency }}
             </p>
+
             <div class="relative ">
                 <!-- cart strock -->
             <div class="group-hover:hidden lg:w-8 w-6 lg:h-8 w-6 lg:rounded-xl rounded-lg bg-red-800 p-[3.29px] flex items-center justify-center transition-all duration-300">
