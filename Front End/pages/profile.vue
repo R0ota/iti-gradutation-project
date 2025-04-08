@@ -5,16 +5,21 @@
         <SectionTitle title="Profile Info" />
 
         <div v-for="field in fields" :key="field.key" class="w-full">
-          <label
-            :for="field.key"
-            class="text-red-800 text-lg font-medium px-2"
-            >{{ field.label }}</label
-          >
+          <label :for="field.key" class="text-red-800 text-lg font-medium px-2">
+            {{ field.label }}
+          </label>
 
           <div class="relative w-full mt-1">
             <!-- Input with validation icon inside -->
             <div
-              class="relative flex items-center bg-yellow-50 p-3 rounded-2xl outline-1 outline-red-800"
+              :class="[
+                'relative flex items-center bg-yellow-50 p-3 rounded-2xl outline outline-1',
+                validationStatus[field.key] && !errors[field.key]
+                  ? 'border-[#00BA00] outline-[#00BA00]'
+                  : errors[field.key]
+                    ? 'border-red-500 outline-red-500'
+                    : 'border-[#A31D1D] outline-[#A31D1D]'
+              ]"
             >
               <input
                 v-model="field.value"
@@ -26,17 +31,18 @@
                 class="w-full bg-yellow-50 text-red-800 placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium focus:outline-none"
               />
 
+              <!-- Validation Icon -->
               <div
                 v-if="validationStatus[field.key]"
                 class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full"
-                :class="errors[field.key] ? 'bg-red-500 text-white' : 'bg-[#A31D1D] text-white'"
+                :class="errors[field.key] ? 'bg-red-500 text-white' : 'bg-[#00BA00] text-white'"
               >
                 <i
                   :class="errors[field.key] ? 'fa-solid fa-exclamation' : 'fa-solid fa-check'"
                 ></i>
               </div>
 
-              <!-- ⚙ Setting icon (hidden when validation shown) -->
+              <!-- Gear Icon -->
               <i
                 v-if="!validationStatus[field.key]"
                 class="fa-solid fa-gear text-[#A31D1D] ml-3 cursor-pointer"
@@ -44,7 +50,7 @@
               ></i>
             </div>
 
-            <!-- Save / Cancel -->
+            <!-- Save / Cancel Buttons -->
             <div
               v-if="editingField === field.key"
               class="flex justify-end gap-2 mt-2"
@@ -68,7 +74,7 @@
               </div>
             </div>
 
-            <!-- Error message -->
+            <!-- Error Message -->
             <p v-if="errors[field.key]" class="text-sm text-red-500 mt-1">
               {{ errors[field.key] }}
             </p>
@@ -111,7 +117,7 @@ const schema = z.object({
   username: z.string().min(4).max(20).regex(/^(?!\\d+$)[a-zA-Z0-9_]+$/, 'Username must contain at least one letter'),
   email: z.string().email().min(5).max(50),
   location: z.string().min(2).max(100),
-  phone: z.string().regex(/^\\+?\\d{10,15}$/, 'Phone number is invalid')
+  phone: z.string().regex(/^\+?\d{10,15}$/, 'Phone number is invalid')
 })
 
 // Fields config
@@ -143,7 +149,7 @@ const fields = [
   {
     key: 'location',
     label: 'Location',
-    placeholder: 'e.g. Cairo, Egypt',
+    placeholder: 'Detect your Location',
     type: 'text',
     get value() { return location.value },
     set value(val) { location.value = val }
