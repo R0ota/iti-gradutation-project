@@ -22,99 +22,103 @@ onMounted(async () => {
 
 <template>
   <div
-    class="lg:w-full w-full lg:px-6 lg:py-14 bg-red-800 flex justify-center lg:items-start items-center gap-8 lg:mt-16 px-6 py-14"
+    class="lg:w-full w-full px-6 py-8 bg-red-800 flex lg:flex-row flex-col justify-start items-center gap-6 mt-16 "
   >
-    <div class="w-80 px-4 lg:py-16 py-1.5 flex justify-center items-center gap-2.5">
+    <!-- logo -->
+    <div class="w-80 px-4 py-1.5 flex justify-center items-center gap-2.5 w-full">
       <NuxtLink
         to="/"
-        class="flex justify-center items-center"
+        class="flex justify-center items-start"
       >
         <img
           src="../assets/Light_Logo.svg"
           alt="Logo"
-          class="lg:w-32 w-16"
+          class="lg:w-32 w-20"
         />
       </NuxtLink>
     </div>
 
-    <div class="w-80 flex flex-col justify-start items-start lg:gap-4 mb-32">
+
+    <div class="inline-flex items-start lg:flex-row flex-col justify-start gap-6">
+      <!-- marketPlace -->
+      <div class="w-80 inline-flex flex-col justify-start items-start lg:gap-4 gap-2">
       <div class="lg:px-6 px-4 py-2 inline-flex flex-col justify-center items-center gap-2.5">
-        <p class="justify-start text-red-100 text-xl font-semibold leading-loose">
+        <p class="justify-start text-red-100 text-xl font-semibold leading-loose font-['Poppins']">
           Marketplace
         </p>
       </div>
-      <div class="self-stretch flex-col h-12 lg:px-6 lg:py-2 px-4 py-1 inline-flex justify-start items-start">
+      <div class=" flex-col lg:px-6 px-4 inline-flex justify-start items-start">
         <NuxtLink
           v-for="category in categories"
           :key="category.name"
           :to="`/market-products?category=${encodeURIComponent(category.name)}`"
-          class="text-center justify-start text-red-100 text-base font-medium flex hover:h-12 hover:px-2 py-2 hover:bg-orange-200 hover:w-full hover:text-red-800 hover:rounded-[32px] transition-all duration-300 cursor-pointer"
+          class="text-center h-10 justify-start text-red-100 lg:text-base text-sm font-medium flex  hover:px-20 lg:py-2 py-1 gap-4 hover:bg-orange-200 hover:w-full hover:text-red-800 hover:rounded-[32px] transition-all duration-300 cursor-pointer font-['Poppins']"
         >
           {{ category.name }}
         </NuxtLink>
       </div>
     </div>
-
+    <!-- social Media -->
     <div class="w-80 flex flex-col justify-start items-start lg:gap-4 gap-2">
-      <div class="lg:px-6 px-4 py-2 inline-flex flex-col justify-center items-center">
-        <p class="justify-start text-red-100 text-xl font-semibold leading-loose">
+      <div class="lg:px-6 px-4 py-2 inline-flex flex-col justify-center items-center gap-2.5">
+        <p class="justify-start text-red-100 text-xl font-semibold leading-loose font-['Poppins']">
           Social Media
         </p>
       </div>
-      <div class="self-stretch flex-col h-12 lg:px-6 px-4 lg:py-2 py-1 inline-flex justify-start items-start gap-4">
+      <div class=" flex-col lg:px-6 px-4 inline-flex justify-start items-start lg:gap-0 gap-1">
         <div
-          class="self-stretch lg:h-10 h-6 inline-flex justify-start items-start gap-4 group hover:px-2 py-2 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer"
+          class=" lg:h-10 h-6 inline-flex justify-start items-start gap-4 group hover:px-20 lg:py-2 py-1 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer"
         >
           <div class="relative w-6 flex items-center justify-center">
             <i
               class="fa-brands fa-facebook text-red-100 group-hover:text-red-800 transition-all duration-300 text-xl"></i>
           </div>
 
-          <p class="text-center justify-start text-red-100 text-base font-medium group-hover:text-red-800">
+          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-800 font-['Poppins']">
             FacebooK
           </p>
         </div>
 
         <div
-          class="self-stretch lg:h-10 h-6 inline-flex justify-start items-start gap-4 group hover:px-2 py-2 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer"
+          class="lg:h-10 h-6 inline-flex justify-start items-start gap-4 group hover:px-20 lg:py-2 py-1 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer"
         >
           <div class="relative w-6 flex items-center justify-center">
             <i
               class="fa-brands fa-instagram text-red-100 group-hover:text-red-800 transition-all duration-300 text-xl"></i>
           </div>
 
-          <p class="text-center justify-start text-red-100 text-base font-medium group-hover:text-red-800">
+          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-800 font-['Poppins']">
             Instsgram
           </p>
         </div>
 
         <div
-          class="self-stretch lg:h-10 h-6 inline-flex justify-start items-start gap-4 group hover:px-2 py-2 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer"
+          class="lg:h-10 h-6 inline-flex justify-start items-start gap-4 group hover:px-20 lg:py-2 py-1 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer"
         >
           <div class="relative w-6 flex items-center justify-center">
             <i
               class="fa-brands fa-pinterest text-red-100 group-hover:text-red-800 transition-all duration-300 text-xl"></i>
           </div>
 
-          <p class="text-center justify-start text-red-100 text-base font-medium group-hover:text-red-800">
+          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-800 font-['Poppins']">
             Pinterest
           </p>
         </div>
 
         <div
-          class="self-stretch lg:h-10 h-6 inline-flex justify-start items-start gap-4 group hover:px-2 py-2 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer"
+          class="lg:h-10 h-6 inline-flex justify-start items-start gap-4 group hover:px-20 lg:py-2 py-1 hover:bg-orange-200 hover:rounded-[32px] transition-all duration-300 cursor-pointer"
         >
           <div class="relative w-6 flex items-center justify-center">
             <i
               class="fa-brands fa-linkedin text-red-100 group-hover:text-red-800 transition-all duration-300 text-xl"></i>
           </div>
-          <p class="text-center justify-start text-red-100 text-base font-medium group-hover:text-red-800">
+          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-800 font-['Poppins']">
             Linked in
           </p>
         </div>
       </div>
     </div>
-
+    <!-- contact Us -->
     <div class="w-80 flex flex-col justify-start items-start lg:gap-4 gap-2">
       <div class="lg:px-6 px-4 inline-flex flex-col justify-center items-center gap-2.5">
         <p class="justify-start text-red-100 text-xl font-semibold leading-loose">
@@ -140,5 +144,7 @@ onMounted(async () => {
         </div>
       </div>
     </div>
+    </div>
+  
   </div>
 </template>
