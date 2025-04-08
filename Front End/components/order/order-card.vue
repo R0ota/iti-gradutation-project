@@ -1,7 +1,7 @@
 <template>
     <NuxtLink
     to="/order/order-in-review"
-      class="lg:w-[533px] w-85 lg:px-6 px-4 lg:py-6 py-3  bg-orange-200 hover:bg-orange-300 cursor-pointer group lg:rounded-[48px] rounded-3xl flex flex-col justify-center items-start "
+      class="lg:w-[533px] w-85 lg:px-6 px-4 lg:py-6 py-3  bg-[#EBD4AB] hover:bg-[#CDB17E] cursor-pointer group lg:rounded-[48px] rounded-3xl flex flex-col justify-center items-start "
     >
       <div class="lg:h-44 h-28 inline-flex justify-start items-center lg:gap-4 gap-3 w-full">
         <img src="" class="lg:w-44 w-28 lg:h-44 h-28 bg-yellow-50 lg:rounded-[40px] rounded-3xl" />

@@ -187,7 +187,7 @@
         <!-- Log in Button -->
         <NuxtLink to="login">
           <button
-            class="p-[12px] px-[16px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
+            class="p-[12px] px-[14px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
           >
             Log in
           </button>
@@ -204,16 +204,16 @@
       </div>
 
       <div v-else class="flex items-center space-x-4">
-        <NuxtLink to="/profile" class="px-[5px] py-[3px] -flex flex-col">
-          <p class="text-red-800 text-xs font-medium">Hello</p>
+        <NuxtLink to="/profile" class="px-[8px] py-[5px]  flex flex-col items-center justify-center transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]">
+          <p class="text-black text-xs font-medium">Hello</p>
           <p class="text-red-800 text-xs font-extrabold">Nour</p>
         </NuxtLink>
         <!-- Logout Button -->
         <button
           @click="handleLogout"
-          class="p-[12px] px-[16px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full"
+          class="p-[8px] px-[12px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
         >
-          Logout
+        <i class="fa-solid fa-right-from-bracket rotate-180 "></i>
         </button>
       </div>
     </div>
@@ -354,7 +354,7 @@ const closeMobileMenu = () => {
   isMobileMenuOpen.value = false;
 };
 
-const baseClasses = `px-4 py-2.5 flex justify-center items-center gap-1 transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]`;
+const baseClasses = `px-3.5 py-2 flex justify-center items-center gap-1 transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]`;
 const hoverClasses =`border-b-[2px] border-red-800 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)] hover:outline-red-800 hover:outline-[1.50px] hover:outline-offset-[-1.50px]`;
 
 </script>

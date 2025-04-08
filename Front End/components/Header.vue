@@ -22,12 +22,12 @@
     >
       <!-- Log in Button -->
       <NuxtLink to="login">
-        <button
-          class="p-[12px] px-[16px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full"
-        >
-          Log in
-        </button>
-      </NuxtLink>
+          <button
+            class="p-[12px] px-[14px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
+          >
+            Log in
+          </button>
+        </NuxtLink>
 
       <!-- Sign up Button -->
       <NuxtLink to="sign-up">
@@ -48,11 +48,11 @@
     >
       <!-- Logout Button -->
       <button
-        @click="handleLogout"
-        class="p-[12px] px-[16px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full"
-      >
-        Logout
-      </button>
+          @click="handleLogout"
+          class="p-[8px] px-[12px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
+        >
+        <i class="fa-solid fa-right-from-bracket rotate-180 "></i>
+        </button>
     </div>
   </header>
 </template>
