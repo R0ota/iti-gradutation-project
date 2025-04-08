@@ -24,11 +24,13 @@
       <div
         class="w-full flex flex-col justify-center items-center gap-2 lg:p-0"
       >
-        <button
-          class="w-80 h-13 py-3 bg-red-800  rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center text-yellow-50 text-lg font-bold cursor-pointer"
-        >
-          Back to Log in
-        </button>
+        <NuxtLink to="/login">
+          <button
+            class="w-80 h-13 py-3 bg-red-800 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center text-yellow-50 text-lg font-bold cursor-pointer"
+          >
+            Back to Log in
+          </button>
+        </NuxtLink>
       </div>
     </div>
   </div>
