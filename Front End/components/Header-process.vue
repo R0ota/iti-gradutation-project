@@ -10,19 +10,25 @@
     </NuxtLink>
 
     <NuxtLink
-  to="/order/ongoing-order"
-  :class="[
+      to="/order/ongoing-order"
+      :class="[
     baseClasses,
     (route.path === '/order/ongoing-order' || route.path === '/order/order-in-review' || route.path === '/order/previous-order') ? activeClasses : ''
   ]"
->
-  Orders
-</NuxtLink>
+    >
+      Orders
+    </NuxtLink>
 
-    
     <NuxtLink
-      to="/security"
-      :class="[baseClasses, route.path === '/security' ? activeClasses : '']"
+      to="/security/changePassword"
+      :class="[
+    baseClasses,
+    (route.path === '/security/changePassword' ||
+     route.path === '/security/newPassword' ||
+     route.path === '/security/setting-create')
+      ? activeClasses
+      : ''
+  ]"
     >
       Security
     </NuxtLink>
@@ -33,7 +39,7 @@
 const route = useRoute();
 const baseClasses = `
   text-[#FFEFD1] text-center font-poppins text-[18px] font-bold leading-[27px] tracking-[-0.342px]
-  px-6 py-2 rounded-none 
+  px-6 py-2 rounded-none
   flex justify-center items-center
   transition-none transform-none
 `;
