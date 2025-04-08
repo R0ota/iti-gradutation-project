@@ -12,7 +12,7 @@
       <div
         class="lg:w-[555px] w-full inline-flex flex-col lg:justify-start justify-center items-start gap-14"
       >
-        <div class="w-full flex justify-start  items-center">
+        <div class="w-full flex justify-start items-center">
           <div
             class="px-6 border-l-[6px] border-red-800 flex justify-center items-center"
           >
@@ -39,9 +39,8 @@
               <label
                 for="name"
                 class="px-2 text-red-800 text-lg font-medium leading-relaxed"
+                >Name</label
               >
-                Name
-              </label>
               <div class="relative w-full">
                 <input
                   v-model="name"
@@ -51,15 +50,18 @@
                   type="text"
                   placeholder="e.g. Nour"
                   id="name"
-                  class="w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-800 inline-flex justify-start items-center"
-                  :class="errors.name ? 'border-red-500 focus:ring-red-500' : 'border-[#A31D1D] focus:ring-[#A31D1D]'"
+                  :class="[
+                    'w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px]',
+                    validationStatus.name && !errors.name ? 'border-[#00BA00] outline-[#00BA00] focus:ring-[#00BA00]' :
+                    errors.name ? 'border-red-500 outline-red-500 focus:ring-red-500' :
+                    'border-[#A31D1D] outline-[#A31D1D] focus:ring-[#A31D1D]'
+                  ]"
                 />
                 <div
                   v-if="validationStatus.name"
                   class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full"
-                  :class="errors.name ? 'bg-red-500 text-white' : 'bg-[#A31D1D] text-white'"
+                  :class="errors.name ? 'bg-red-500 text-white' : 'bg-[#00BA00] text-white'"
                 >
-                  <!-- <component :is="errors.name ? 'ErrorIcon' : 'SuccessIcon'" /> -->
                   <i
                     :class="errors.name ? 'fa-solid fa-exclamation' : 'fa-solid fa-check'"
                   ></i>
@@ -77,9 +79,8 @@
               <label
                 for="username"
                 class="px-2 text-red-800 text-lg font-medium leading-relaxed"
+                >User Name</label
               >
-                User Name
-              </label>
               <div class="relative w-full">
                 <input
                   v-model="username"
@@ -89,16 +90,20 @@
                   type="text"
                   placeholder="e.g. nour2002"
                   id="username"
-                  class="w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-800 inline-flex justify-start items-center"
-                  :class="errors.username ? 'border-red-500 focus:ring-red-500' : 'border-[#A31D1D] focus:ring-[#A31D1D]'"
+                  :class="[
+                    'w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px]',
+                    validationStatus.username && !errors.username ? 'border-[#00BA00] outline-[#00BA00] focus:ring-[#00BA00]' :
+                    errors.username ? 'border-red-500 outline-red-500 focus:ring-red-500' :
+                    'border-[#A31D1D] outline-[#A31D1D] focus:ring-[#A31D1D]'
+                  ]"
                 />
                 <div
                   v-if="validationStatus.username"
-                  class="absolute  right-3 top-1/2 -translate-y-1/2  flex items-center justify-center w-6 h-6 rounded-full"
-                  :class="errors.username ? 'bg-red-500 text-white' : 'bg-[#A31D1D] text-white'"
+                  class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full"
+                  :class="errors.username ? 'bg-red-500 text-white' : 'bg-[#00BA00] text-white'"
                 >
                   <i
-                    :class="errors.name ? 'fa-solid fa-exclamation' : 'fa-solid fa-check'"
+                    :class="errors.username ? 'fa-solid fa-exclamation' : 'fa-solid fa-check'"
                   ></i>
                 </div>
               </div>
@@ -108,15 +113,15 @@
             </div>
           </div>
 
+          <!-- Email -->
           <div
             class="relative w-full flex flex-col justify-start items-start gap-0.5"
           >
             <label
               for="email"
               class="px-2 text-red-800 text-lg font-medium leading-relaxed"
+              >Email</label
             >
-              Email
-            </label>
             <div class="relative w-full">
               <!-- <input
                 v-model="email"
@@ -136,14 +141,17 @@
                 type="email"
                 placeholder="example@gmail.com"
                 id="email"
-                class="w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-800 inline-flex justify-start items-center"
-                :class="errors.email ? 'border-red-500 focus:ring-red-500' : 'border-[#A31D1D] focus:ring-[#A31D1D]'"
+                :class="[
+                  'w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px]',
+                  validationStatus.email && !errors.email ? 'border-[#00BA00] outline-[#00BA00] focus:ring-[#00BA00]' :
+                  errors.email ? 'border-red-500 outline-red-500 focus:ring-red-500' :
+                  'border-[#A31D1D] outline-[#A31D1D] focus:ring-[#A31D1D]'
+                ]"
               />
-
               <div
                 v-if="validationStatus.email"
                 class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full"
-                :class="errors.email ? 'bg-red-500 text-white' : 'bg-[#A31D1D] text-white'"
+                :class="errors.email ? 'bg-red-500 text-white' : 'bg-[#00BA00] text-white'"
               >
                 <i
                   :class="errors.email ? 'fa-solid fa-exclamation' : 'fa-solid fa-check'"
@@ -207,9 +215,8 @@
             <label
               for="password"
               class="px-2 text-red-800 text-lg font-medium leading-relaxed"
+              >Password</label
             >
-              Password
-            </label>
             <div class="relative w-full">
               <input
                 v-model="password"
@@ -219,14 +226,13 @@
                 :type="showPassword ? 'text' : 'password'"
                 placeholder="At least 8 characters"
                 id="password"
-                class="w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-800 inline-flex justify-start items-center"
                 :class="[
-                errors.password ? 'border-red-500 focus:ring-red-500' : 'border-[#A31D1D] focus:ring-[#A31D1D]',
-                'bg-yellow-50'
-                 ]"
+                  'w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px]',
+                  validationStatus.password && !errors.password ? 'border-[#00BA00] outline-[#00BA00] focus:ring-[#00BA00]' :
+                  errors.password ? 'border-red-500 outline-red-500 focus:ring-red-500' :
+                  'border-[#A31D1D] outline-[#A31D1D] focus:ring-[#A31D1D]'
+                ]"
               />
-
-              <!-- Show/hide password icon (always visible) -->
               <span
                 class="absolute inset-y-0 right-4 flex items-center text-red-800 cursor-pointer"
                 @click="showPassword = !showPassword"
@@ -235,19 +241,16 @@
                   :class="showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"
                 ></i>
               </span>
-
-              <!-- Validation icon (appears under or near the eye icon) -->
               <div
                 v-if="validationStatus.password"
                 class="absolute right-12 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full"
-                :class="errors.password ? 'bg-red-500 text-white' : 'bg-[#A31D1D] text-white'"
+                :class="errors.password ? 'bg-red-500 text-white' : 'bg-[#00BA00] text-white'"
               >
                 <i
                   :class="errors.password ? 'fa-solid fa-exclamation' : 'fa-solid fa-check'"
                 ></i>
               </div>
             </div>
-
             <p v-if="errors.password" class="mt-1 text-sm text-red-500">
               {{ errors.password }}
             </p>
@@ -328,7 +331,7 @@ const signupSchema = z.object({
     .min(4, 'Username must be at least 4 characters')
     .max(20, 'Username is too long')
     .regex(/^(?!\d+$)[a-zA-Z0-9_]+$/, 'Username must contain at least one letter'),
-    email: z.string()
+  email: z.string()
     .email('Please enter a valid email address')
     .min(5, 'Email must be at least 5 characters')
     .max(50, 'Email must be at most 50 characters'),
