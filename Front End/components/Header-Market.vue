@@ -66,9 +66,9 @@
         <NuxtLink
           to="/"
           :class="[
-            'px-4 py-2.5 flex justify-center items-center gap-1 transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]',
+            baseClasses,
             route.path === '/'
-              ? 'hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50) hover:outline-red-800]'
+              ? hoverClasses
               : '',
           ]"
         >
@@ -87,13 +87,14 @@
             Home
           </p>
         </NuxtLink>
+
         <!-- Marketplace -->
         <NuxtLink
           to="/market"
           :class="[
-            'px-4 py-2.5 flex gap-1 justify-between items-center transition-all duration-300 hover:rounded-full hover:bg-orange-100 hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]',
+            baseClasses,
             route.path === '/market'
-              ? 'border-b-[2px] border-red-800 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)] hover:outline-red-800 hover:outline-[1.50px] hover:outline-offset-[-1.50px]'
+              ? hoverClasses
               : '',
           ]"
         >
@@ -117,7 +118,7 @@
         <NuxtLink
           to="/favorite"
           :class="[
-            'flex items-center justify-between cursor-pointer group px-4 py-2.5 transition-all duration-300 hover:rounded-full hover:bg-orange-100',
+            'flex items-center justify-between cursor-pointer group px-4 py-2.5 transition-all duration-300 hover:rounded-full hover:bg-orange-100 hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]',
             route.path === '/favorite' ? 'border-b-[2px] border-red-800' : '',
           ]"
         >
@@ -145,8 +146,8 @@
         <NuxtLink
           to="/cart"
           :class="[
-            'flex items-center justify-between cursor-pointer px-4 py-2.5 gap-2 transition-all duration-300 hover:rounded-full hover:bg-orange-100 group',
-            route.path === '/cart' ? 'border-b-[2px] border-red-800 ' : '',
+            baseClasses,
+            route.path === '/cart' ? hoverClasses : '',
           ]"
         >
           <div class="relative w-full w-8 h-8 flex items-center">
@@ -186,7 +187,7 @@
         <!-- Log in Button -->
         <NuxtLink to="login">
           <button
-            class="p-[12px] px-[16px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full"
+            class="p-[12px] px-[16px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
           >
             Log in
           </button>
@@ -352,4 +353,8 @@ const toggleMobileMenu = () => {
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false;
 };
+
+const baseClasses = `px-4 py-2.5 flex justify-center items-center gap-1 transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]`;
+const hoverClasses =`border-b-[2px] border-red-800 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)] hover:outline-red-800 hover:outline-[1.50px] hover:outline-offset-[-1.50px]`;
+
 </script>
