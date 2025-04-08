@@ -2,7 +2,7 @@
   <div class="h-full flex items-center w-full">
     <!-- Left side - Image -->
     <img
-      src="../assets/authimage.png"
+      src="../assets/signup-img.png"
       alt="Signup Background"
       class="h-[100vh] lg:w-1/3 lg:block hidden"
     />

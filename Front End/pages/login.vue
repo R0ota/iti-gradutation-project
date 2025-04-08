@@ -2,7 +2,7 @@
   <div class="h-full flex items-center w-full">
     <!-- Left side - Background image (Visible only on large screens) -->
     <img
-      src="../assets/authimage.png"
+      src="../assets/login-img.png"
       class="h-[100vh] lg:w-1/3 lg:block hidden"
     />
 

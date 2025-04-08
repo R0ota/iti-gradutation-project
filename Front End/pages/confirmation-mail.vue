@@ -9,7 +9,7 @@ definePageMeta({
     <div
       class="lg:w-[555px] w-full inline-flex flex-col lg:justify-start justify-center  items-center gap-8 py-10"
     >
-        <img src="../assets/mail 1.png">
+        <img src="../assets/mail 1.png " class="lg:w-44 w-32 lg:h-44 h-32">
       <div
         class="w-full self-stretch inline-flex flex-col justify-start items-start px-8 lg:px-0 lg:gap-6 gap-8"
       >
