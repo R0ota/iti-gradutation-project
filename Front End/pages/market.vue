@@ -8,6 +8,9 @@ definePageMeta({
 import { computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useProductsStore } from "~/stores/products";
+import { useSearchStore } from '~/stores/search';
+
+const searchStore = useSearchStore();
 
 const router = useRouter();
 const productsStore = useProductsStore();
@@ -16,6 +19,21 @@ const productsStore = useProductsStore();
 onMounted(async () => {
   await productsStore.fetchProducts();
 });
+const filteredProducts = computed(() => {
+  const query = searchStore.text?.toLowerCase().trim();
+
+  if (!query) return productsStore.getAllProducts;
+
+  const words = query.split(/\s+/);
+
+  return productsStore.getAllProducts.filter(product => {
+    const name = product.name?.toLowerCase() || '';
+
+    return words.some(word => name.includes(word));
+  });
+});
+
+
 
 // Get all products
 const products = computed(() => productsStore.getAllProducts);
@@ -31,18 +49,15 @@ const navigateToCategory = (categoryName) => {
 
 <template>
   <div
-    class="lg:ml-[120px] lg:mr-[120px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[25px] mr-[25px] "
+    class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px] "
   >
-    <SectionTitle title=" Market Categories"/>
+    <SectionTitle title=" Market Categories" />
 
     <!-- Display Categories -->
     <div
       class="flex flex-row justify-center gap-6 flex-wrap self-stretch pb-10 lg:border-b-[1.50px] border-b-[0.50px] border-red-800"
     >
-      <div
-        v-for="category in categories"
-        :key="category"
-      >
+      <div v-for="category in categories" :key="category">
         <CardType
           :catigory="category.name"
           :img="category.image"
@@ -52,7 +67,7 @@ const navigateToCategory = (categoryName) => {
     </div>
 
     <div class="flex flex-row justify-between lg:mt-4 m-2">
-      <SectionTitle title="Best-selling products"/>
+      <SectionTitle title="Best-selling products" />
       <NuxtLink to="/market-products" class="flex flex-row items-center gap-1">
         <p
           class="lg:text-[16px] tracking-[-0.304px] font-semibold text-black cursor-pointer"
@@ -82,10 +97,13 @@ const navigateToCategory = (categoryName) => {
     </div>
 
     <!-- Display Best-Selling Products -->
-    <div class="flex flex-row lg:flex-wrap lg:justify-start overflow-x-auto gap-4">
+    <div
+      class="flex flex-row lg:flex-wrap lg:justify-start overflow-x-auto gap-4"
+    >
       <div
-        v-for="product in products.slice(0, 4)"
+        v-for="product in filteredProducts"
         :key="product._id"
+        v-bind="product"
         class="flex"
       >
         <ProductCard

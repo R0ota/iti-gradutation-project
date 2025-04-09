@@ -3,26 +3,40 @@ definePageMeta({ layout: 'market' });
 
 import { computed, ref } from 'vue';
 import { useWishlistStore } from '~/stores/wishlist';
+import { useSearchStore } from '~/stores/search';
 
 const wishlistStore = useWishlistStore();
+const searchStore = useSearchStore();
 
 const currentPage = ref(1);
 const itemsPerPage = 6;
-const allFavorites = computed(() => wishlistStore.items);
+
+const filteredFavorites = computed(() => {
+  const query = searchStore.text?.toLowerCase().trim();
+  if (!query) return wishlistStore.items;
+
+  const words = query.split(/\s+/);
+  return wishlistStore.items.filter(product => {
+    const name = product.name?.toLowerCase() || "";
+    return words.every(word => name.includes(word));
+  });
+});
+
 const totalPages = computed(() =>
-  Math.ceil(allFavorites.value.length / itemsPerPage) || 1
+  Math.ceil(filteredFavorites.value.length / itemsPerPage) || 1
 );
 
 const paginatedFavorites = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
-  return allFavorites.value.slice(start, start + itemsPerPage);
+  return filteredFavorites.value.slice(start, start + itemsPerPage);
 });
 </script>
 
 <template>
   <!-- Empty Wishlist Section -->
+
   <div
-    v-if="allFavorites.length === 0"
+    v-if="filteredFavorites.length === 0"
     class="w-full h-screen flex items-center justify-center"
   >
     <div class="flex flex-col items-center justify-center gap-4">
