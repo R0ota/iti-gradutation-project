@@ -42,7 +42,6 @@
               v-model="email"
               @blur="validateField('email')"
               @focus="clearValidation('email')"
-              
               type="email"
               placeholder="example@gmail.com"
               id="email"
@@ -65,7 +64,6 @@
                 v-model="password"
                 @blur="validateField('password')"
                 @focus="clearValidation('password')"
-                 
                 :type="showPassword ? 'text' : 'password'"
                 placeholder="+8 Characters"
                 id="password"
@@ -90,7 +88,10 @@
             <p v-if="errors.password" class="mt-1 text-sm text-red-500">
               {{ errors.password }}
             </p>
-            <NuxtLink to="forgot-password"  class="text-black text-base font-medium w-full flex justify-end cursor-pointer ">
+            <NuxtLink
+              to="forgot-password"
+              class="text-black text-base font-medium w-full flex justify-end cursor-pointer "
+            >
               Forgot Password ?
             </NuxtLink>
           </div>
@@ -101,10 +102,9 @@
           >
             <button
               type="submit"
-              :class="isFormValid ? 'bg-red-800' : 'bg-gray-400 cursor-not-allowed'"
+              :class="isFormValid ? 'bg-red-800' : 'bg-[#C7C7C7] cursor-not-allowed'"
               class="w-80  h-13 py-3  rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center text-yellow-50 text-lg font-bold cursor-pointer"
               :disabled="!isFormValid || loading"
-            
             >
               <span v-if="loading">Logging in...</span>
               <span v-else>Log in</span>
