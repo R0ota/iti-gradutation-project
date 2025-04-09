@@ -1,96 +1,84 @@
 <script setup>
 const props = defineProps({
-    id: {
-        type: String,
-        required: true,
-    },
-    name: {
-        type: String,
-        required: true,
-    },
-    type: {
-        type: String,
-        default: "Unknown",
-    },
-    description: {
-        type: String,
-        default: "No description available.",
-    },
-    price: {
-        type: Number,
-        default: 0,
-    },
-    image: {
-        type: String,
-        default: "/placeholder-image.png", // Provide a default placeholder image
-    },
-    currency: {
-        type: String,
-        default: "EGP",
-    },
+  id: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    default: "Unknown",
+  },
+  description: {
+    type: String,
+    default: "No description available.",
+  },
+  price: {
+    type: Number,
+    default: 0,
+  },
+  image: {
+    type: String,
+    default: "/placeholder-image.png", // Provide a default placeholder image
+  },
+  currency: {
+    type: String,
+    default: "EGP",
+  },
 });
 
-import { computed, ref } from "vue";
+import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCartStore } from '~/stores/cart';
+import { useWishlistStore } from '~/stores/wishlist';
 
 const router = useRouter();
+const wishlistStore = useWishlistStore();
 const cartStore = useCartStore();
-const isFavorite = ref(false);
+
+const isFavorite = computed(() => wishlistStore.isInWishlist(props.id));
+const isInCart = computed(() => cartStore.isInCart(props.id));
 const showAddedMessage = ref(false);
 
-// Check if the item is in the cart using the cart store's method
-const isInCart = computed(() => {
-    return cartStore.isInCart(props.id);
-});
+const toggleFavorite = (e) => {
+  e.stopPropagation();
 
-const toggleFavorite = (event) => {
-    // Stop event propagation to prevent navigating when clicking the favorite button
-    event.stopPropagation();
-    isFavorite.value = !isFavorite.value;
-    console.log("Favorite status:", isFavorite.value);
+  if (isFavorite.value) {
+    wishlistStore.removeFromWishlist(props.id);
+  } else {
+    const product = {
+      id: props.id,
+      name: props.name,
+      type: props.type,
+      price: props.price,
+      image: props.image,
+      description: props.description,
+      currency: props.currency
+    };
+
+    wishlistStore.addToWishlist(product);
+  }
+};
+
+const addToCart = (e) => {
+  e.stopPropagation();
+  cartStore.addItem({ ...props, quantity: 1, SKU: props.id }, 1);
+  showAddedMessage.value = true;
+  setTimeout(() => (showAddedMessage.value = false), 2000);
 };
 
 const navigateToProduct = (productId) => {
-    router.push(`/market-products/${productId}`);
+  router.push(`/market-products/'${productId}`);
 };
 
-const addToCart = (event) => {
-    // Stop event propagation to prevent navigating when clicking the add to cart button
-    event.stopPropagation();
-
-    const cartItem = {
-        id: props.id,
-        name: props.name,
-        price: props.price,
-        image: props.image,
-        quantity: 1,
-        options: {},
-        SKU: props.id // Using id as SKU if not available
-    };
-
-    cartStore.addItem(cartItem, 1);
-
-    // Show feedback
-    showAddedMessage.value = true;
-    setTimeout(() => {
-        showAddedMessage.value = false;
-    }, 2000);
-
-    console.log("Product added to cart:", props.name);
-};
-
-const removeFromCart = (event) => {
-    // Stop event propagation to prevent navigating when clicking the remove from cart button
-    event.stopPropagation();
-
-    cartStore.removeItem(props.id);
-
-    // Show feedback
-    showAddedMessage.value = true;
-    setTimeout(() => {
-        showAddedMessage.value = false;
-    }, 2000);
+const removeFromCart = (e) => {
+  e.stopPropagation();
+  cartStore.removeItem(props.id);
+  showAddedMessage.value = true;
+  setTimeout(() => (showAddedMessage.value = false), 2000);
 };
 </script>
 
@@ -103,24 +91,27 @@ const removeFromCart = (event) => {
       class="relative lg:w-64 w-44 lg:h-64 h-40 lg:rounded-[42.35px] bg-[#D9D9D9] flex-shrink-0 aspect-square 
          rounded-3xl"
     >
+      <!-- Favorite Icon -->
       <div class="group">
+        <!-- ❤️ Filled -->
         <div
           v-if="isFavorite"
           @click="toggleFavorite($event)"
-          class="lg:w-8 w-6 lg:h-8 h-6  bg-orange-100 group-hover:bg-red-800 group-hover:rounded-[50px] rounded-[9.53px] flex items-center justify-center z-10 absolute pointer-events-auto lg:top-3 lg:right-3 top-2 right-2 cursor-pointer outline-1 outline-offset-[-1px] outline-red-800 transition-all duration-300"
+          class="lg:w-8 w-6 lg:h-8 h-6 bg-orange-100 group-hover:bg-red-800 group-hover:rounded-[50px] rounded-[9.53px] flex items-center justify-center z-10 absolute pointer-events-auto lg:top-3 lg:right-3 top-2 right-2 cursor-pointer outline-1 outline-offset-[-1px] outline-red-800 transition-all duration-300"
         >
           <i
             class="fa-solid fa-heart fill text-[#A31D1D] group-hover:text-orange-100"
           />
         </div>
 
+        <!-- 🤍 Empty -->
         <div
           v-else
           @click="toggleFavorite($event)"
-          class="lg:w-8 w-6 lg:h-8 h-6  bg-white rounded-[9.53px] flex items-center justify-center group-hover:rounded-[50px] group-hover:bg-red-800 z-10 absolute pointer-events-auto lg:top-4 lg:right-3.5 top-2 right-2 cursor-pointer transition-all duration-300 "
+          class="lg:w-8 w-6 lg:h-8 h-6 bg-white rounded-[9.53px] flex items-center justify-center group-hover:rounded-[50px] group-hover:bg-red-800 z-10 absolute pointer-events-auto lg:top-4 lg:right-3.5 top-2 right-2 cursor-pointer transition-all duration-300"
         >
           <i
-            class="fa-regular fa-heart fill text-red-800 group-hover:text-orange-100 "
+            class="fa-regular fa-heart fill text-red-800 group-hover:text-orange-100"
           />
         </div>
       </div>
@@ -191,23 +182,23 @@ const removeFromCart = (event) => {
 
 <style>
 .animate-fade-in-out {
-    animation: fadeInOut 2s ease-in-out;
+  animation: fadeInOut 2s ease-in-out;
 }
 
 @keyframes fadeInOut {
 
-    0%,
-    100% {
-        opacity: 0;
-    }
+  0%,
+  100% {
+    opacity: 0;
+  }
 
-    10%,
-    90% {
-        opacity: 1;
-    }
+  10%,
+  90% {
+    opacity: 1;
+  }
 }
 
 .message-notification {
-    width: max-content;
+  width: max-content;
 }
 </style>

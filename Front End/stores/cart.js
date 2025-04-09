@@ -51,6 +51,9 @@ export const useCartStore = defineStore("cart", {
     isInCart(productId) {
       return this.items.some((item) => item.id === productId);
     },
+    isInCart(productId) {
+      return this.items.some((item) => item.id === productId);
+    },
     saveCartToLocalStorage() {
       if (typeof window !== "undefined") {
         localStorage.setItem("cart_items", JSON.stringify(this.items));
