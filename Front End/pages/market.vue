@@ -31,7 +31,7 @@ const navigateToCategory = (categoryName) => {
 
 <template>
   <div
-    class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px] "
+    class="lg:ml-[120px] lg:mr-[120px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[25px] mr-[25px] "
   >
     <SectionTitle title=" Market Categories"/>
 
