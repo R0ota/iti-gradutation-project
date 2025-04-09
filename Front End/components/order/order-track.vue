@@ -21,12 +21,12 @@ const imgSrc = computed(() => {
 
 <template>
   <div
-    class="flex flex-col items-center justify-start gap-2 w-28"
+    class="flex flex-col items-center justify-center lg:gap-2 gap-0.5 lg:w-28 w-22"
     :class="{ 'opacity-50': isDisabled && !isFinalClicked }"
   >
-    <img :src="imgSrc" class="w-14 h-14" />
+    <img :src="imgSrc" class="lg:w-14 lg:h-14 w-10 h-10" />
 
-    <div class="flex py-[1.5px] gap-2 items-center">
+    <div class="flex lg:py-[1.5px] py-[1px] lg:gap-2 gap-1 items-center">
       <!-- حالة الأيقونة -->
       <i
         v-if="isDone"
@@ -45,7 +45,7 @@ const imgSrc = computed(() => {
       ></i>
 
       <!-- النص حسب الحالة -->
-      <p class="text-red-800 text-base font-bold font-['Poppins']">
+      <p class="text-red-800 lg:text-base text-xs font-bold font-['Poppins'] w-full">
         {{ isDone ? finalStatus : currentStatus }}
       </p>
     </div>

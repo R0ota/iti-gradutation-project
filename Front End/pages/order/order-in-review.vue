@@ -30,6 +30,10 @@ watch(congratulationBlock, (newVal) => {
   document.body.classList.toggle('overflow-hidden', newVal);
 });
 
+const handleScroll = () => {
+  congratulationBlock.value = false;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 </script>
 
 <template>
@@ -37,7 +41,7 @@ watch(congratulationBlock, (newVal) => {
     class="relative lg:ml-[120px] ml-[25px] lg:mr-[120px] mr-[25px] pt-10 pb-20 flex flex-col justify-start items-start gap-10"
   >
     <SectionTitle title="Ongoing Order" />
-    <div class="w-full flex items-center justify-center gap-4">
+    <div class="w-full flex items-center justify-center lg:gap-4 gap-1.5">
       <div @click="currentStep === 0 && goToNextStep()">
         <OrderTrack
           currentStatus="In Review"
@@ -80,8 +84,8 @@ watch(congratulationBlock, (newVal) => {
       </div>
     </div>
 
-    <div class="w-full flex flex-wrap justify-between">
-      <div class="w-[680px] flex flex-col gap-6">
+    <div class="w-full flex flex-wrap justify-between lg:gap-0 gap-16">
+      <div class="lg:w-[55%] w-[100%] flex flex-col gap-6">
         <OrderProduct />
         <OrderProduct />
         <OrderProduct />
@@ -89,7 +93,7 @@ watch(congratulationBlock, (newVal) => {
       </div>
 
       <div
-        class="w-80 px-4 py-10 bg-gradient-to-br from-red-800 to-red-950 rounded-[32px] flex flex-col justify-start items-start gap-6"
+        class="lg:w-[35%] px-4 py-10 bg-gradient-to-br from-red-800 to-red-950 rounded-[32px] flex flex-col justify-start items-start gap-6"
       >
         <div
           class="px-6 border-l-[6px] border-orange-100 inline-flex justify-center items-center gap-2.5"
@@ -147,25 +151,9 @@ watch(congratulationBlock, (newVal) => {
   </div>
 
   <!-- congratulation block -->
-  <div :class="[
-    congratulationBlock ? 'flex' : 'hidden',
-    'w-full h-screen items-center justify-center left-0 top-0 absolute bg-zinc-600/70']">
-    <!-- block -->
-    <div class="px-6 py-11   bg-orange-50 rounded-[42.35px] flex flex-col justify-center items-center gap-6">
-      <div class="flex flex-col gap-4 items-center justify-centers w-96">
-        <img src="~/assets/party-popper 1.png" class="w-44 h-44">
-        <div class="flex flex-col gap-4 items-center justify-center w-full">
-          <p class="text-red-800 text-4xl font-bold font-['Poppins']">Congratulation</p>
-          <p class="text-black text-base text-center font-medium font-['Poppins']">Your order has been received, Enjoy your experience with Tabi, 
-            and we look forward to your next order!</p>
-        </div>
-        <!-- order details -->
-        <button 
-          @click="congratulationBlock = false"
-          class="flex items-center justify-center cursor-pointer text-orange-50 text-xl font-bold font-['Poppins'] px-8 py-4 bg-red-800 rounded-2xl shadow-[0px_0px_4.235293865203857px_0px_rgba(0,0,0,0.25)]">
-          Oreder Details
-        </button>
-      </div>
+   <div :class="[
+    congratulationBlock ? 'flex' : 'hidden']">
+    <CongratulationBlock  @scroll="handleScroll"/>
     </div>
-  </div>
+ 
 </template>

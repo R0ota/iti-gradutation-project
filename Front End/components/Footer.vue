@@ -22,7 +22,7 @@ onMounted(async () => {
 
 <template>
   <div
-    class="lg:w-full w-full px-6 py-8 bg-red-800 flex lg:flex-row flex-col justify-start items-center gap-6 mt-16 "
+    class="lg:w-full md:w-full w-full px-6 py-8 bg-red-800 flex lg:flex-row flex-col justify-start items-center gap-6 mt-16 "
   >
     <!-- logo -->
     <div class="w-80 px-4 py-1.5 flex justify-center items-center gap-2.5 w-full">
