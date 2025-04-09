@@ -1,56 +1,55 @@
-<script setup>
-    import { ref, defineProps } from "vue";
 
-const checked = ref(false);
+ <script setup>
+import { defineProps } from "vue";
 
-const prop = defineProps(["currentStatus", "finalStatus", "img"]);
+const props = defineProps({
+  currentStatus : String,
+  finalStatus : String,
+  img : String,
+  isActive : Boolean,
+  isDisabled : Boolean,
+  isDone : Boolean,
+  isFinalClicked : Boolean,
+  currentImg: String,
+  finalImg: String,
+});
+
+const imgSrc = computed(() => {
+  return props.isDisabled ? props.currentImg : props.finalImg;
+});
 </script>
 
-<!-- <template>
-    <div class="flex flex-col items-center justify-start gap-2 w-28">
-        <div class="w-14 h-14 bg-zinc-300"></div>
-        <div class="flex py-[1.5px] gap-2 items-center">
-          <i
-            v-if="!checked"
-            @click="checked = true"
-            class="fa-regular fa-circle text-red-800 cursor-pointer"
-          >
-          </i>
-          <i
-            v-else
-            class="fa-solid fa-circle-check text-red-800 cursor-pointer"
-          ></i>
-          <p class="text-red-800 text-base font-bold font-['Poppins'">
-           {{ status }}
-          </p>
-        </div>
-      </div>
-</template> -->
-
 <template>
-    <div
-      class="flex flex-col items-center justify-start gap-2 w-28"
-      :class="{ 'opacity-50': checked }"
-    >
-      <img :src="img" class="w-14 h-14 "/>
-      
-      <div class="flex py-[1.5px] gap-2 items-center">
-        <i
-          v-if="!checked"
-          @click="checked = true"
-          class="fa-regular fa-circle text-red-800 cursor-pointer"
-        ></i>
+  <div
+    class="flex flex-col items-center justify-start gap-2 w-28"
+    :class="{ 'opacity-50': isDisabled && !isFinalClicked }"
+  >
+    <img :src="imgSrc" class="w-14 h-14" />
+
+    <div class="flex py-[1.5px] gap-2 items-center">
+      <!-- حالة الأيقونة -->
+      <i
+        v-if="isDone"
+        class="fa-solid fa-circle-check text-red-800 "
+      ></i>
+
+      <i
+        v-else-if="!isActive"
         
-        <i
-          v-else
-          class="fa-solid fa-circle-check text-red-800 cursor-pointer"
-        ></i>
-  
-        <p class="text-red-800 text-base font-bold font-['Poppins']">
-          {{ checked ? finalStatus : currentStatus }}
-        </p>
-      </div>
+       class="fa-regular fa-circle text-red-800 ">
+      </i>
+
+      <i
+        v-else
+        class="fa-regular fa-circle-dot text-red-800 cursor-pointer"
+      ></i>
+
+      <!-- النص حسب الحالة -->
+      <p class="text-red-800 text-base font-bold font-['Poppins']">
+        {{ isDone ? finalStatus : currentStatus }}
+      </p>
     </div>
-  </template>
+  </div>
+</template>
 
   
