@@ -71,7 +71,7 @@ const addToCart = (e) => {
 };
 
 const navigateToProduct = (productId) => {
-  router.push(`/market-products/'${productId}`);
+  router.push(`/market-products/${productId}`);
 };
 
 const removeFromCart = (e) => {
