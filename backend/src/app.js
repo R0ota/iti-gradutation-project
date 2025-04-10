@@ -11,6 +11,9 @@ const connectDB = require("./config/connectDB");
 const auth = require("./routes/auth");
 const userRoute = require("./routes/userRoute");
 const productRoute = require("./routes/productRoutes");
+const cartRoute = require("./routes/cartRoute");
+const orderRoute = require("./routes/orderRoute");
+
 const cors = require("cors");
 
 const PORT = process.env.PORT || 3000;
@@ -25,6 +28,8 @@ app.use("/", auth);
 app.use("/user", authMiddleware, userRoute);
 app.use("/admin", authMiddleware, adminMiddleware, userRoute);
 app.use("/products", productRoute);
+app.use("/cart/", authMiddleware, cartRoute);
+app.use("/orders/", authMiddleware, orderRoute);
 app.listen(PORT, async () => {
   await connectDB();
 
