@@ -1,5 +1,9 @@
-<template>
-    <div class="h-screen w-[20%] bg-red-900">
+<script setup>
+    definePageMeta({
+        layout : "admin",
+    });
+</script>
 
-    </div>
+<template>
+   <h1 class="text-black">Hello</h1>
 </template>
