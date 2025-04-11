@@ -3,12 +3,7 @@ const bcrypt = require("bcryptjs");
 const express = require("express");
 const router = express.Router();
 
-const User = require("../models/userModel");
-const {
-  forgetPassword,
-  verifyToken,
-  resetPassword,
-} = require("../controllers/authController");
+
 
 const User = require("../models/userModel");
 const {
@@ -21,7 +16,7 @@ router.post("/signup", async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = new User({
-        name: req.body.name,
+      name: req.body.name,
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
