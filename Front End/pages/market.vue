@@ -14,6 +14,7 @@ const productsStore = useProductsStore();
 
 // Fetch products on component mount
 onMounted(async () => {
+  await productsStore.fetchCategories();
   await productsStore.fetchProducts();
 });
 

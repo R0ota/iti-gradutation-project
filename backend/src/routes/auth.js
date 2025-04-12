@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const express = require("express");
 const router = express.Router();
 
-router.post("/signup", async (req, res) => {
+router.post("/auth/signup", async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = new User({
@@ -21,7 +21,7 @@ router.post("/signup", async (req, res) => {
       { _id: user._id, role: user.role },
       process.env.JWT_SECRET
     );
-
+    console.log("Token generated:", token);
     // Return user object and token
     res.send({
       user: {
@@ -36,7 +36,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
+router.post("/auth/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {

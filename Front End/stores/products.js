@@ -55,7 +55,6 @@ export const useProductsStore = defineStore('products', {
         }));
 
         this.products = modifiedProducts || [];
-        this.extractCategories(); // Extract categories after fetching products
       } catch (error) {
         console.error('Error fetching products:', error);
         this.error = error.message || 'Failed to load products';
@@ -64,17 +63,26 @@ export const useProductsStore = defineStore('products', {
       }
     },
 
-    // Extract unique categories with the first image of the product in each category
-    extractCategories() {
-      const categoryMap = new Map();
+    async fetchCategories() {
+      if (this.categories.length > 0 || this.loading) {
+        return; // Return early if categories are already loaded or loading
+      }
 
-      this.products.forEach(product => {
-        if (!categoryMap.has(product.category)) {
-          categoryMap.set(product.category, { name: product.category, image: product.image });
-        }
-      });
+      this.loading = true;
+      this.error = null;
 
-      this.categories = Array.from(categoryMap.values());
+      try {
+        const response = await $fetch(`${getBaseURL()}/categories`, {
+          method: 'GET'
+        });
+
+        this.categories = response || [];
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+        this.error = error.message || 'Failed to load categories';
+      } finally {
+        this.loading = false;
+      }
     },
 
     // Fetch products by category

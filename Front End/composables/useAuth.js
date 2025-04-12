@@ -11,7 +11,7 @@ export function useAuth() {
     authStore.setError(null);
 
     try {
-      const res = await $fetch(`${getBaseURL()}/login`, {
+      const res = await $fetch(`${getBaseURL()}/auth/login`, {
         method: "POST",
         body: credentials,
       });
@@ -38,7 +38,7 @@ export function useAuth() {
     try {
       const baseURL = getBaseURL();
 
-      const res = await $fetch(`${baseURL}/signup`, {
+      const res = await $fetch(`${baseURL}/auth/signup`, {
         method: "POST",
         body: credentials,
       });
