@@ -140,7 +140,7 @@ const updateStatus = (orderId, newStatus) => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-8 m-[30px] ml-[240px] fixed w-[80%]">
+  <div class="flex flex-col gap-8 m-[30px] ml-[250px] fixed w-[80%]">
     <!-- header -->
     <div class="flex items-center justify-between w-full">
       <AdminTitle route="Orders" />
