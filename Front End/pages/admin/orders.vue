@@ -12,8 +12,8 @@ const orders = ref([
     total: "200 EGP",
     date: "20/8/2024",
     status: "Reviewing",
-    approved : "false",
-    rejected: "false"
+    approved: "false",
+    rejected: "false",
   },
   {
     id: "N2",
@@ -23,8 +23,8 @@ const orders = ref([
     total: "200 EGP",
     date: "2/8/2024",
     status: "Printing",
-     approved : "true",
-    rejected: "false"
+    approved: "true",
+    rejected: "false",
   },
   {
     id: "R3",
@@ -34,8 +34,8 @@ const orders = ref([
     total: "200 EGP",
     date: "20/8/2024",
     status: "Rejected",
-     approved : "false",
-    rejected: "true"
+    approved: "false",
+    rejected: "true",
   },
   {
     id: "S4",
@@ -45,8 +45,8 @@ const orders = ref([
     total: "200 EGP",
     date: "20/8/2024",
     status: "Delivering",
-     approved : "true",
-    rejected: "false"
+    approved: "true",
+    rejected: "false",
   },
   {
     id: "A5",
@@ -56,8 +56,8 @@ const orders = ref([
     total: "200 EGP",
     date: "20/8/2024",
     status: "Completed",
-     approved : "true",
-    rejected: "false"
+    approved: "true",
+    rejected: "false",
   },
 ]);
 
@@ -129,7 +129,6 @@ const deleteAll = () => {
   selectAll.value = false;
 };
 
-
 // update status
 const updateStatus = (orderId, newStatus) => {
   const order = orders.value.find((order) => order.id === orderId);
@@ -163,7 +162,8 @@ const updateStatus = (orderId, newStatus) => {
               :class="
                 isSelect
                   ? 'fa-solid fa-square-check'
-                  : 'fa-regular fa-square-full'"
+                  : 'fa-regular fa-square-full'
+              "
             >
             </i>
           </th>
@@ -176,7 +176,7 @@ const updateStatus = (orderId, newStatus) => {
           <th :class="headClasses">ٍStatus</th>
           <th :class="headClasses">Action</th>
           <!-- delete all -->
-          <th class="fa-regular fa-square-full text-white">
+          <th class="w-6 h-6 text-white py-1 px-1.5">
             <i
               v-if="isSelect"
               @click="deleteAll"
@@ -200,7 +200,8 @@ const updateStatus = (orderId, newStatus) => {
               :class="
                 selectedRows.includes(order.id)
                   ? 'fa-solid fa-square-check'
-                  : 'fa-regular fa-square-full'"
+                  : 'fa-regular fa-square-full'
+              "
             ></i>
           </td>
           <td :class="bodyClasses">#{{ order.id }}</td>
@@ -210,61 +211,57 @@ const updateStatus = (orderId, newStatus) => {
           <td :class="bodyClasses">{{ order.total }}</td>
           <td :class="bodyClasses">{{ order.date }}</td>
           <td class="flex-1/2 text-center px-2 py-1">
-            <!-- <span
-              class="flex-1/2 text-center flex gap-1 items-center rounded-[20px] justify-center font-['Poppins'] font-medium text-sm px-2 py-[3px]"
-              :class="statusClass(order.status)"
-            >
-              {{ order.status }}</span
-            > -->
-
             <!-- span state -->
             <span
-            v-if="order.status === 'Reviewing' || 'Rejected'"
+              v-if="order.status === 'Reviewing' || order.status === 'Rejected'"
               class="flex-1/2 text-center flex gap-1 items-center rounded-[20px] justify-center font-['Poppins'] font-medium text-sm px-2 py-[3px]"
               :class="statusClass(order.status)"
             >
               {{ order.status }}
             </span>
+
             <!-- dropdown -->
-            <select 
-                v-else="order.status === 'Printing'" v-model="order.status" class="bg-gray-300 border-none rounded-md">
-                <option value="" disabled selected hidden>Printing</option>
-                <option value="Printing" >  Printing</option>
-                <option value="Delivering">Delivering</option>
-                <option value="Completed">Completed</option>
-              
+            <select
+              v-else
+              v-model="order.status"
+              :class="[
+                'border-none rounded-[20px] text-sm px-2 py-1',
+                statusClass(order.status),
+              ]"
+            >
+              <option value="Printing">Printing</option>
+              <option value="Delivering">Delivering</option>
+              <option value="Completed">Completed</option>
             </select>
           </td>
           <!-- action btns-->
           <td class="flex-1/2 py-1 flex justify-center items-left gap-2">
-            <!-- <div v-if="order.status === 'Reviewing'" class="flex gap-0.5">
-                <button
-        
-              class="bg-[#FFBFBC] text-[#D60000] font-['Poppins'] font-medium text-sm px-2 py-[3px] rounded-[20px] cursor-pointer"
-            >
-              Reject
-            </button>
             <button
+              v-if="
+                order.status === 'Reviewing' ||
+                order.status === 'Printing' ||
+                order.status === 'Delivering' ||
+                order.status === 'Completed'
+              "
+              @click="
+                updateStatus(order.id, 'Printing');
+                order.approved = true;
+              "
               class="bg-green-200 text-green-600 text-sm px-2 py-[3px] rounded-[20px] cursor-pointer"
             >
               Approve
             </button>
-            </div> -->
 
-            <button 
-            v-if="order.status === 'Reviewing' || (order.approved = true)" 
-            @click="updateStatus(order.id, 'Printing'); order.approved = true"
-            class="bg-green-200 text-green-600 text-sm px-2 py-[3px] rounded-[20px] cursor-pointer">
-            Approve
-          </button>
-
-          <button 
-            v-if="order.status === 'Reviewing' || order.status === 'Rejected'" 
-            @click="updateStatus(order.id, 'Rejected'); order.rejected = true"
-            class="bg-[#FFBFBC] text-[#D60000] font-['Poppins'] font-medium text-sm px-2 py-[3px] rounded-[20px] cursor-pointer">
-            Reject
-          </button>
-            
+            <button
+              v-if="order.status === 'Reviewing' || order.status === 'Rejected'"
+              @click="
+                updateStatus(order.id, 'Rejected');
+                order.rejected = true;
+              "
+              class="bg-[#FFBFBC] text-[#D60000] font-['Poppins'] font-medium text-sm px-2 py-[3px] rounded-[20px] cursor-pointer"
+            >
+              Reject
+            </button>
           </td>
           <!-- delete row -->
           <td class="flex-1">
