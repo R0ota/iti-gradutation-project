@@ -51,7 +51,7 @@ export const useProductsStore = defineStore("products", {
         });
 
         // Add an image key to each product
-        const modifiedProducts = response.map((product) => ({
+        const modifiedProducts = response.data.map((product) => ({
           ...product,
           image: this.getProductImageUrl(product), // Use the computed property
         }));
