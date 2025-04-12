@@ -167,7 +167,7 @@
             route.path === '/cart' ? hoverClasses : '',
           ]"
         >
-          <div class="relative w-full w-8 h-8 flex items-center">
+          <div class="relative lg:w-full w-8 h-8 flex items-center">
             <img
               v-if="route.path !== '/cart'"
               src="../assets/cart-shopping.svg"

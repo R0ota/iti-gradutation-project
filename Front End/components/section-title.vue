@@ -6,12 +6,13 @@
    });
 </script>
 <template>
-    <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center">
+    <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center gap-3">
       <p
-        class="justify-start text-red-800 lg:text-2xl text-xl font-bold leading-loose lg:leading-9"
+        class="justify-start text-red-800 lg:text-2xl text-xl font-bold font-['Poppins']"
       >
         {{ title }}
     </p>
+    <slot />
     </div>
     
 </template>
