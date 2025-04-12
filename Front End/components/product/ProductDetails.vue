@@ -25,7 +25,7 @@
         <!-- model selection -->
         <select
           placeholder="Choose the model you want"
-          class="w-full cursor-pointer text-red-800 lg:px-6 px-5 lg:py-3.5 py-3 bg-yellow-50 lg:rounded-2xl rounded-xl outline outline-[1.50px] outline-offset-[-1.50px] outline-red-800 inline-flex justify-between items-center"
+          class="w-full cursor-pointer text-red-800 lg:px-6 px-5 lg:py-3.5 py-3 bg-yellow-50 lg:rounded-2xl rounded-xl outline-[1.50px] outline-offset-[-1.50px] outline-red-800 inline-flex justify-between items-center"
         >
           <option value="" disabled selected hidden>
             Choose the model you want

@@ -12,6 +12,8 @@ const orders = ref([
     total: "200 EGP",
     date: "20/8/2024",
     status: "Reviewing",
+    approved : "false",
+    rejected: "false"
   },
   {
     id: "N2",
@@ -21,6 +23,8 @@ const orders = ref([
     total: "200 EGP",
     date: "2/8/2024",
     status: "Printing",
+     approved : "true",
+    rejected: "false"
   },
   {
     id: "R3",
@@ -30,6 +34,8 @@ const orders = ref([
     total: "200 EGP",
     date: "20/8/2024",
     status: "Rejected",
+     approved : "false",
+    rejected: "true"
   },
   {
     id: "S4",
@@ -39,6 +45,8 @@ const orders = ref([
     total: "200 EGP",
     date: "20/8/2024",
     status: "Delivering",
+     approved : "true",
+    rejected: "false"
   },
   {
     id: "A5",
@@ -48,6 +56,8 @@ const orders = ref([
     total: "200 EGP",
     date: "20/8/2024",
     status: "Completed",
+     approved : "true",
+    rejected: "false"
   },
 ]);
 
@@ -117,6 +127,15 @@ const deleteAll = () => {
 
   selectedRows.value = [];
   selectAll.value = false;
+};
+
+
+// update status
+const updateStatus = (orderId, newStatus) => {
+  const order = orders.value.find((order) => order.id === orderId);
+  if (order) {
+    order.status = newStatus;
+  }
 };
 </script>
 
@@ -191,27 +210,61 @@ const deleteAll = () => {
           <td :class="bodyClasses">{{ order.total }}</td>
           <td :class="bodyClasses">{{ order.date }}</td>
           <td class="flex-1/2 text-center px-2 py-1">
-            <span
+            <!-- <span
               class="flex-1/2 text-center flex gap-1 items-center rounded-[20px] justify-center font-['Poppins'] font-medium text-sm px-2 py-[3px]"
               :class="statusClass(order.status)"
             >
               {{ order.status }}</span
+            > -->
+
+            <!-- span state -->
+            <span
+            v-if="order.status === 'Reviewing' || 'Rejected'"
+              class="flex-1/2 text-center flex gap-1 items-center rounded-[20px] justify-center font-['Poppins'] font-medium text-sm px-2 py-[3px]"
+              :class="statusClass(order.status)"
             >
+              {{ order.status }}
+            </span>
+            <!-- dropdown -->
+            <select 
+                v-else="order.status === 'Printing'" v-model="order.status" class="bg-gray-300 border-none rounded-md">
+                <option value="" disabled selected hidden>Printing</option>
+                <option value="Printing" >  Printing</option>
+                <option value="Delivering">Delivering</option>
+                <option value="Completed">Completed</option>
+              
+            </select>
           </td>
           <!-- action btns-->
           <td class="flex-1/2 py-1 flex justify-center items-left gap-2">
-            <button
-              v-if="order.status === 'Rejected'"
+            <!-- <div v-if="order.status === 'Reviewing'" class="flex gap-0.5">
+                <button
+        
               class="bg-[#FFBFBC] text-[#D60000] font-['Poppins'] font-medium text-sm px-2 py-[3px] rounded-[20px] cursor-pointer"
             >
               Reject
             </button>
             <button
-              v-if="order.status !== 'Rejected'"
               class="bg-green-200 text-green-600 text-sm px-2 py-[3px] rounded-[20px] cursor-pointer"
             >
               Approve
             </button>
+            </div> -->
+
+            <button 
+            v-if="order.status === 'Reviewing' || (order.approved = true)" 
+            @click="updateStatus(order.id, 'Printing'); order.approved = true"
+            class="bg-green-200 text-green-600 text-sm px-2 py-[3px] rounded-[20px] cursor-pointer">
+            Approve
+          </button>
+
+          <button 
+            v-if="order.status === 'Reviewing' || order.status === 'Rejected'" 
+            @click="updateStatus(order.id, 'Rejected'); order.rejected = true"
+            class="bg-[#FFBFBC] text-[#D60000] font-['Poppins'] font-medium text-sm px-2 py-[3px] rounded-[20px] cursor-pointer">
+            Reject
+          </button>
+            
           </td>
           <!-- delete row -->
           <td class="flex-1">
