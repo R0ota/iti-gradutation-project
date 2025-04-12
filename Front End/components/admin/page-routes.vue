@@ -1,6 +1,12 @@
 <script setup>
 const route = useRoute();
-const props = defineProps(["path", "baseIcon", "activeIcon", "title"]);
+const props = defineProps({
+  path: String,
+  baseIcon : String,
+  activeIcon : String,
+  title : String,
+  collapsed : Boolean
+});
 const activeClasses = "bg-orange-100 rounded-[50px] ";
 </script>
 
@@ -8,15 +14,18 @@ const activeClasses = "bg-orange-100 rounded-[50px] ";
   <NuxtLink
     :to="path"
     :class="[
-      'flex items-center gap-2 py-3 px-4 cursor-pointer',
+      '   py-3 px-3 cursor-pointer',
+      collapsed ? 'flex items-center justify-center' : 'flex items-center justify-start gap-2',
       route.path === path ? activeClasses : '',
     ]"
   >
-    <img :src="route.path === path ? activeIcon : baseIcon" class="w-6 h-5" />
+    <img :src="route.path === path ? activeIcon : baseIcon" class="w-6 h-6" />
     <p
+      
       :class="[
-        ' font-[Poppins] font-semibold text-lg  ',
+        ' font-[Poppins] font-semibold text-lg  transition-all duration-300',
         route.path === path ? 'text-red-900' : 'text-orange-100',
+        collapsed ? 'opacity-0 w-0' : 'opacity-100'
       ]"
     >
       {{ title }}

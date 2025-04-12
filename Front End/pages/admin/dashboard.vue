@@ -5,5 +5,7 @@
 </script>
 
 <template>
-   <h1 class="text-black">Hello</h1>
+    <div class="flex flex-col gap-m m-[30px] ml-[240px] fixed w-[80%]">
+    <SectionTitle title="Dashboard"/>
+  </div>
 </template>

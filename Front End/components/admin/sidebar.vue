@@ -1,11 +1,26 @@
+<script setup>
+    const isCollapsed = ref(false)
+    
+    const toggleState = () => {
+      isCollapsed.value = !isCollapsed.value;
+    }
+</script>
+
 <template>
+  <!-- sidebar -->
   <div
-    class="h-screen w-[20%] bg-red-900 p-8 flex flex-col items-start justify-between relative"
+    :class="['h-screen bg-red-900 p-4 pt-6 flex flex-col items-start justify-between transition-all duration-300 relative',
+      isCollapsed ? 'w-[7%]' : 'w-[15%]'
+    ]"
   >
+  <!-- close icon -->
     <div
+    @click="toggleState"
       class="border-3 border-red-900 rounded-[35px] w-8 h-8 absolute right-[-10px] flex justify-center items-center bg-orange-100 cursor-pointer"
     >
-      <i class="fa-solid fa-angle-left text-red-900"></i>
+      <i :class="['fa-solid  text-red-900',
+        isCollapsed ? 'fa-angle-right' : 'fa-angle-left'
+      ]"></i>
     </div>
 
     <div class="flex flex-col gap-10">
@@ -22,6 +37,7 @@
           baseIcon="/admin/Dashboard-light.svg"
           activeIcon="/admin/Dashboard-fill.svg"
           title="Dashboard"
+          :collapsed="isCollapsed"
         />
 
         <!-- users -->
@@ -29,7 +45,8 @@
           path="/admin/users"
           baseIcon="/admin/user.svg"
           activeIcon="/admin/user-fill.svg"
-          title="Users"
+          title="User"
+          :collapsed="isCollapsed"
         />
 
         <!-- orders -->
@@ -37,7 +54,8 @@
           path="/admin/orders"
           baseIcon="/admin/orders.svg"
           activeIcon="/admin/orders-fill.svg"
-          title="Orders"
+          title="Order"
+          :collapsed="isCollapsed"
         />
 
         <!-- designs -->
@@ -45,7 +63,8 @@
           path="/admin/designs"
           baseIcon="/admin/designs.svg"
           activeIcon="/admin/designs-fill.svg"
-          title="Designs"
+          title="Design"
+          :collapsed="isCollapsed"
         />
 
         <!-- products -->
@@ -53,13 +72,14 @@
           path="/admin/products"
           baseIcon="/admin/products.svg"
           activeIcon="/admin/products-fill.svg"
-          title="Products"
+          title="Product"
+          :collapsed="isCollapsed"
         />
       </div>
     </div>
 
     <!-- LOG OUT -->
-    <AdminPageRoutes path="/" baseIcon="/admin/Log out.svg" title="Log out">
+    <AdminPageRoutes path="/" baseIcon="/admin/Log out.svg" title="Log out"  :collapsed="isCollapsed">
     </AdminPageRoutes>
   </div>
 </template>

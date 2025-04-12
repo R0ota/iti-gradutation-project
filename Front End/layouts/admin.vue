@@ -1,6 +1,7 @@
 <template>
-    <AdminSidebar/>
-    <div>
+    
+    <div class="flex ">
+        <AdminSidebar/>
         <slot/>
     </div>
 </template>
