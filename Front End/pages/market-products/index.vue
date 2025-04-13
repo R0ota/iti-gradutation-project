@@ -69,9 +69,13 @@ const formattedCategory = computed(() => {
 </script>
 
 <template>
-  <div class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px]">
+  <div
+    class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px]"
+  >
     <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center">
-      <p class="justify-start text-red-800 lg:text-3xl text-xl font-bold leading-loose lg:leading-[48px]">
+      <p
+        class="justify-start text-red-800 lg:text-3xl text-xl font-bold leading-loose lg:leading-[48px]"
+      >
         Market
         <span
           class="px-2 bg-red-800 inline-flex justify-center items-center text-white lg:text-2xl text-xl font-bold leading-9"
@@ -83,18 +87,14 @@ const formattedCategory = computed(() => {
 
     <!-- Display Paginated Products -->
     <div class="flex flex-row lg:flex-wrap lg:justify-start flex-wrap gap-4">
-      <div
-        v-for="product in paginatedProducts"
-        :key="product._id"
-        class="flex"
-      >
+      <div v-for="product in paginatedProducts" :key="product._id" class="flex">
         <ProductCard
           :id="product._id"
           :name="product.name"
           :type="product.category"
           :price="product.price"
           :description="product.description"
-          :image="product.image || product.thumbnail" 
+          :image="product.image || product.thumbnail"
           currency="EGP"
         />
       </div>

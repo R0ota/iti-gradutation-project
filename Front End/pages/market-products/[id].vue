@@ -19,9 +19,9 @@
       :products="availableInThisDesign"
       @toggle-wishlist="toggleWishlist"
     />
-<div class="border-b-[2.50px] border-red-800"></div>
+    <div class="border-b-[2.50px] border-red-800"></div>
 
-      <!-- Other Designs -->
+    <!-- Other Designs -->
     <!-- <ProductAvailableInThisDesign
       :loading="loadingAvailable"
       :products="availableInThisDesign"

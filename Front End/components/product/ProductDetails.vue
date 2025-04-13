@@ -167,8 +167,9 @@ const currentItemInStock = computed(() => {
   }
 
   // If no color is selected, check if any color has stock
-  return currentProduct.value.colors.some(color => color.stock > 0);
+  return currentProduct.value.colors?.some(color => color.stock > 0);
 });
+
 
 // Get available images based on selected color
 const availableImages = computed(() => {

@@ -46,17 +46,17 @@ export const useProductsStore = defineStore("products", {
       this.error = null;
 
       try {
-        const response = await $fetch(`${getBaseURL()}/products`, {
+        const response = await $fetch(`${getBaseURL()}/products?limit=1000`, {
           method: "GET",
         });
 
-        // Add an image key to each product
-        const modifiedProducts = response.data.map((product) => ({
-          ...product,
-          image: this.getProductImageUrl(product), // Use the computed property
-        }));
+        // // Add an image key to each product
+        // const modifiedProducts = response.data.map((product) => ({
+        //   ...product,
+        //   image: this.getProductImageUrl(product), // Use the computed property
+        // }));
 
-        this.products = modifiedProducts || [];
+        this.products = response.data || [];
       } catch (error) {
         console.error("Error fetching products:", error);
         this.error = error.message || "Failed to load products";
@@ -122,13 +122,13 @@ export const useProductsStore = defineStore("products", {
           method: "GET",
         });
 
-        // Add an image key to the product
-        const modifiedProducts = {
-          ...response,
-          image: this.getProductImageUrl(response), // Use the computed property
-        };
+        // // Add an image key to the product
+        // const modifiedProducts = {
+        //   ...response,
+        //   image: this.getProductImageUrl(response), // Use the computed property
+        // };
 
-        return modifiedProducts;
+        return response.data;
       } catch (error) {
         console.error(`Error fetching product with ID ${id}:`, error);
         this.error = error.message || "Failed to load product";
