@@ -124,17 +124,17 @@ const deleteAll = () => {
 <template>
   <div class="flex flex-col gap-8 m-[30px] ml-[250px] fixed w-[77%]">
     <!-- header -->
-    <div class="flex items-center justify-between w-full">
+    <div class="flex items-center justify-between w-[100%]">
       <AdminTitle route="Orders" />
       <div class="w-[50%] flex gap-4">
         <Search />
-        <AdminUploadBtn type="Design"/>
+        <AdminUploadBtn type="Design" path="/admin/design/upload-design"/>
       </div>
     </div>
 
     <!-- table data -->
-    <table class="flex flex-col gap-4 w-full">
-      <thead>
+    <table class="flex flex-col gap-4 w-[100%]">
+      <thead class="w-full">
         <tr
           class="flex items-center justify-between gap-2 py-2 border-b-2 border-red-800"
         >
@@ -158,6 +158,7 @@ const deleteAll = () => {
           <th :class="headClasses">Admin</th>
           <th :class="headClasses">Date Added</th>
           <th :class="headClasses">Status</th>
+          <th class="flex-1 w-4 h-4"></th>
           <!-- delete all -->
           <th class="w-6 h-6 text-white py-1 px-1.5">
             <i
@@ -206,9 +207,13 @@ const deleteAll = () => {
               <option value="Suspended">Suspended</option>
             </select>
           </td>
-          
+          <!-- edit -->
+          <!-- <td class="w-6 h-6">
+            <img src="/admin/editpen.svg" class="w-6 h-6"/>
+          </td> -->
           <!-- delete row -->
-          <td class="flex-1">
+          <td class="flex-1 flex gap-1 items-center">
+            <img src="/admin/editpen.svg" class="w-10 h-10 cursor-pointer"/>
             <i
               @click="deleteUser(design.id)"
               class="fa-solid fa-trash text-red-800 cursor-pointer"

@@ -60,7 +60,7 @@
 
         <!-- designs -->
         <AdminPageRoutes
-          path="/admin/designs"
+          :path="['/admin/design/designs', '/admin/design/upload-design'] "
           baseIcon="/admin/designs.svg"
           activeIcon="/admin/designs-fill.svg"
           title="Design"
