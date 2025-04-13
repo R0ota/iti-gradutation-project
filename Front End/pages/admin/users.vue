@@ -60,11 +60,12 @@ const users = ref([
 const statusClass = (status) => {
   switch (status) {
     case "Active":
-      return "bg-[#FFBFBC] text-[#D60000] py-1";
+        return "bg-[#CCFFCC] text-[#01D001]";
     case "Suspended":
-      return "bg-[#CCFFCC] text-[#01D001]";
+        return "bg-[#FFBFBC] text-[#D60000] py-1";
   }
 };
+
 
 
 // style thead & tbody
