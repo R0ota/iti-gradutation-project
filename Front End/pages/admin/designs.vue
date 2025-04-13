@@ -207,6 +207,16 @@ const deleteAll = () => {
             </select>
           </td>
           
+          <!-- edit -->
+          <td class="flex-1">
+            <!-- <NuxtLink to="/"> -->
+              <img
+              src="/public/admin/editpen.svg" />
+            
+            <!-- </NuxtLink> -->
+            
+          </td>
+
           <!-- delete row -->
           <td class="flex-1">
             <i
