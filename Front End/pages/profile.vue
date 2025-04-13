@@ -13,7 +13,7 @@
             <!-- Input with validation icon inside -->
             <div
               :class="[
-                'relative flex items-center bg-yellow-50 p-3 rounded-2xl outline outline-1',
+                'relative flex items-center bg-yellow-50 p-3 rounded-2xl outline-1',
                 validationStatus[field.key] && !errors[field.key]
                   ? 'border-[#00BA00] outline-[#00BA00]'
                   : errors[field.key]

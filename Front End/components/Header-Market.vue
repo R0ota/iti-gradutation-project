@@ -212,7 +212,7 @@
       <div v-else class="flex items-center space-x-4">
         <NuxtLink
           to="/profile"
-          class="px-[8px] py-[5px]  flex flex-col items-center justify-center transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
+          class="px-[8px] py-[5px]  flex flex-col items-center justify-center]"
         >
           <p class="text-black text-xs font-medium">Hello</p>
           <p class="text-red-800 text-xs font-extrabold">Nour</p>
@@ -271,23 +271,23 @@
             route.path === '/favorite' ? 'border-b-[2px] border-red-800' : '',
           ]"
         >
-          <div class="relative w-8 h-7 flex items-center justify-center">
-            <i
+          <!-- <div class="relative w-8 h-7 flex items-center justify-center"> -->
+            <!-- <i
               :class="[
               'relative text-2xl text-red-800 mr-3',
               route.path === '/favorite'
                 ? 'fa-solid fa-heart fill'
                 : 'fa-regular fa-heart fill',
             ]"
-            >
+            > -->
               <span
                 v-if="wishlistCount > 0"
                 class="absolute -top-3 -right-3 bg-[#A31D1D] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
               >
                 {{ wishlistCount }}
               </span>
-            </i>
-          </div>
+            <!-- </i> -->
+          <!-- </div> -->
 
           <p
             :class="[
@@ -399,5 +399,5 @@ const closeMobileMenu = () => {
 };
 
 const baseClasses = `px-3.5 py-2 flex justify-center items-center gap-1 transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]`;
-const hoverClasses =`border-b-[2px] border-red-800 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)] hover:outline-red-800 hover:outline-[1.50px] hover:outline-offset-[-1.50px]`;
+const hoverClasses =`border-b-[2px] border-red-800 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)] `;
 </script>
