@@ -75,11 +75,20 @@
           title="Product"
           :collapsed="isCollapsed"
         />
+
+        <!-- category -->
+        <AdminPageRoutes
+          path="/admin/category"
+          baseIcon="/admin/category.svg"
+          activeIcon="/admin/category-fill.svg"
+          title="Category"
+          :collapsed="isCollapsed"
+        />
       </div>
     </div>
 
     <!-- LOG OUT -->
-    <AdminPageRoutes path="/" baseIcon="/admin/Log out.svg" title="Log out"  :collapsed="isCollapsed">
+    <AdminPageRoutes path="/sign-up" baseIcon="/admin/Log out.svg" title="Log out"  :collapsed="isCollapsed">
     </AdminPageRoutes>
   </div>
 </template>
