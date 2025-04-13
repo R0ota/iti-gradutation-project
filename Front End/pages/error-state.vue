@@ -1,8 +1,4 @@
-<!-- <script setup>
-    definePageMeta({
-        layout : 'error'
-    })
-</script> -->
+
 <template>
     <div class="h-screen w-full flex items-center justify-center">
         <div class="flex flex-col gp-4 items-center justify-center">
