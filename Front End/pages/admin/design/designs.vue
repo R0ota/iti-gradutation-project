@@ -3,38 +3,36 @@ definePageMeta({
   layout: "admin",
 });
 
-
-import { useDesignStore } from '@/stores/design'
+import { useDesignStore } from "@/stores/design";
 const designStore = useDesignStore();
- onMounted(() => {
+onMounted(() => {
   designStore.loadDesigns();
-  
+
   // console.log('Loaded designs:', designStore.designs);
- }) 
+});
 
 const designs = computed(() => designStore.designs);
-
 
 const statusClass = (status) => {
   switch (status) {
     case "Active":
-        return "bg-[#CCFFCC] text-[#01D001]";
+      return "bg-[#CCFFCC] text-[#01D001]";
     case "Suspended":
-        return "bg-[#FFBFBC] text-[#D60000] py-1";
+      return "bg-[#FFBFBC] text-[#D60000] py-1";
   }
 };
 
-// edit 
+// edit
 const editDesign = (design) => {
   navigateTo({
-    path: '/admin/design/edit-design',
+    path: "/admin/design/edit-design",
     query: {
       id: design.id,
       title: design.title,
-      description: design.description,  
+      description: design.description,
       category: design.category,
-      tags: design.tags
-    }
+      tags: design.tags,
+    },
   });
 };
 
@@ -70,34 +68,12 @@ const toggleSelectAll = () => {
 };
 
 // delete one
-// const deleteUser = (id) => {
-//   const index = designs.value.findIndex((design) => design.id === id);
-//   if (index !== -1) {
-//     designs.value.splice(index, 1);
-//   }
-//   selectedRows.value = selectedRows.value.filter((i) => i !== id);
-// };
-
 const deleteDesign = (id) => {
   designStore.deleteDesign(id);
   selectedRows.value = selectedRows.value.filter((i) => i !== id);
 };
 
-
 // delete all
-// const deleteAll = () => {
-//   selectedRows.value.forEach((id) => {
-//     const index = designs.value.findIndex((design) => design.id === id);
-//     if (index !== -1) {
-//       designs.value.splice(index, 1);
-//     }
-//   });
-
-//   selectedRows.value = [];
-//   selectAll.value = false;
-// };
-
-
 const deleteAll = () => {
   selectedRows.value.forEach((id) => {
     designStore.deleteDesign(id);
@@ -105,7 +81,6 @@ const deleteAll = () => {
   selectedRows.value = [];
   selectAll.value = false;
 };
-
 </script>
 
 <template>
@@ -115,7 +90,7 @@ const deleteAll = () => {
       <AdminTitle route="Orders" />
       <div class="w-[50%] flex gap-4">
         <Search />
-        <AdminUploadBtn type="Design" path="/admin/design/upload-design"/>
+        <AdminUploadBtn type="Design" path="/admin/design/upload-design" />
       </div>
     </div>
 
@@ -193,14 +168,18 @@ const deleteAll = () => {
               <option value="Active">Active</option>
               <option value="Suspended">Suspended</option>
             </select>
-          </td>]
-          
+          </td>
+
           <td class="flex-1 flex gap-1 items-center">
             <!-- edit  -->
-             <!-- <button > -->
-              <img @click="editDesign(design)" src="/admin/editpen.svg" class="w-10 h-10 cursor-pointer"/>
-             <!-- </button> -->
-            
+            <!-- <button > -->
+            <img
+              @click="editDesign(design)"
+              src="/admin/editpen.svg"
+              class="w-10 h-10 cursor-pointer"
+            />
+            <!-- </button> -->
+
             <!-- delete row -->
             <i
               @click="deleteDesign(design.id)"
