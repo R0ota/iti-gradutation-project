@@ -3,58 +3,17 @@ definePageMeta({
   layout: "admin",
 });
 
-const designs = ref([
-  {
-    id: "2297",
-    img: "image",
-    title: "Flower",
-    category: "Art",
-    admin: "User",
-    date: "20/8/2024",
-    status: "Active",
-    
-  },
-  {
-    id: "2972",
-    img: "image",
-    title: "Flower",
-    category: "Art",
-    admin: "User",
-    date: "20/8/2024",
-    status: "Active",
-    
-  },
-  {
-    id: "9722",
-    img: "image",
-    title: "Flower",
-    category: "Art",
-    admin: "User",
-    date: "20/8/2024",
-    status: "Active",
-    
-  },
-  {
-    id: "7229",
-    img: "image",
-    title: "Flower",
-    category: "Art",
-    admin: "User",
-    date: "20/8/2024",
-    status: "Active",
-    
-  },
-  {
-    id: "0101",
-    img: "image",
-    title: "Flower",
-    category: "Art",
-    admin: "User",
-    date: "20/8/2024",
-    status: "Active",
-    
-  },
-]);
+
+import { useDesignStore } from '@/stores/design'
+const designStore = useDesignStore();
+ onMounted(() => {
+  designStore.loadDesigns();
+  
+  // console.log('Loaded designs:', designStore.designs);
+ }) 
+
+const designs = computed(() => designStore.designs);
+
 
 const statusClass = (status) => {
   switch (status) {
@@ -65,6 +24,19 @@ const statusClass = (status) => {
   }
 };
 
+// edit 
+const editDesign = (design) => {
+  navigateTo({
+    path: '/admin/design/edit-design',
+    query: {
+      id: design.id,
+      title: design.title,
+      description: design.description,  
+      category: design.category,
+      tags: design.tags
+    }
+  });
+};
 
 // style thead & tbody
 const headClasses = `flex-1/2 py-1 px-1.5 text-red-900 font-semibold font-['Poppins'] text-lg w-full`;
@@ -98,23 +70,38 @@ const toggleSelectAll = () => {
 };
 
 // delete one
-const deleteUser = (id) => {
-  const index = designs.value.findIndex((design) => design.id === id);
-  if (index !== -1) {
-    designs.value.splice(index, 1);
-  }
+// const deleteUser = (id) => {
+//   const index = designs.value.findIndex((design) => design.id === id);
+//   if (index !== -1) {
+//     designs.value.splice(index, 1);
+//   }
+//   selectedRows.value = selectedRows.value.filter((i) => i !== id);
+// };
+
+const deleteDesign = (id) => {
+  designStore.deleteDesign(id);
   selectedRows.value = selectedRows.value.filter((i) => i !== id);
 };
 
+
 // delete all
+// const deleteAll = () => {
+//   selectedRows.value.forEach((id) => {
+//     const index = designs.value.findIndex((design) => design.id === id);
+//     if (index !== -1) {
+//       designs.value.splice(index, 1);
+//     }
+//   });
+
+//   selectedRows.value = [];
+//   selectAll.value = false;
+// };
+
+
 const deleteAll = () => {
   selectedRows.value.forEach((id) => {
-    const index = designs.value.findIndex((design) => design.id === id);
-    if (index !== -1) {
-      designs.value.splice(index, 1);
-    }
+    designStore.deleteDesign(id);
   });
-
   selectedRows.value = [];
   selectAll.value = false;
 };
@@ -206,16 +193,17 @@ const deleteAll = () => {
               <option value="Active">Active</option>
               <option value="Suspended">Suspended</option>
             </select>
-          </td>
-          <!-- edit -->
-          <!-- <td class="w-6 h-6">
-            <img src="/admin/editpen.svg" class="w-6 h-6"/>
-          </td> -->
-          <!-- delete row -->
+          </td>]
+          
           <td class="flex-1 flex gap-1 items-center">
-            <img src="/admin/editpen.svg" class="w-10 h-10 cursor-pointer"/>
+            <!-- edit  -->
+             <!-- <button > -->
+              <img @click="editDesign(design)" src="/admin/editpen.svg" class="w-10 h-10 cursor-pointer"/>
+             <!-- </button> -->
+            
+            <!-- delete row -->
             <i
-              @click="deleteUser(design.id)"
+              @click="deleteDesign(design.id)"
               class="fa-solid fa-trash text-red-800 cursor-pointer"
             ></i>
           </td>

@@ -9,22 +9,37 @@ import { useDesignStore } from '@/stores/design';
 
 
 const designStore = useDesignStore();
-// designStore.loadDesigns();
-const title = ref('')
-const description = ref('')
-const category = ref('')
-const tags = ref('')
-// const img = ref('')
 
+// icoming data
+const route = useRoute();
+const id = ref(route.query.id || '')
+const title = ref(route.query.title || '');
+const description = ref(route.query.description || '');
+const category = ref(route.query.category || '');
+const tags = ref(route.query.tags || '');
+console.log('list',route.query)
+
+// save design info
 const saveDesign = () => {
-  designStore.saveDesign({
+  const designInfo = ({
     title: title.value,
     description: description.value,
     category: category.value,
     tags: tags.value,
   });
 
-  navigateTo('/admin/design/select-product')
+if (id.value) {
+    const oldDesign = designStore.designs.find(d => d.id === id.value);
+    if (oldDesign) {
+      const merged = { ...oldDesign, ...designInfo };
+      designStore.updateDesign(merged);
+    }
+  } else {
+    designStore.saveDesign({
+      ...designInfo,
+    });
+  }
+  navigateTo('/admin/design/designs')
 }
 
 const inputClasses ='px-4 py-3 flex items-start text-stone-900 text-lg font-medium font-[Poppins] placeholder:text-stone-900/75 placeholder:text-lg placeholder:font-medium placholder:font-[Poppins] bg-yellow-50 rounded-2xl outline-1 outline-offset-[-1px] outline-red-800 self-stretch w-full'
