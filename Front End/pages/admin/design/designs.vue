@@ -3,68 +3,38 @@ definePageMeta({
   layout: "admin",
 });
 
-const designs = ref([
-  {
-    id: "2297",
-    img: "image",
-    title: "Flower",
-    category: "Art",
-    admin: "User",
-    date: "20/8/2024",
-    status: "Active",
-    
-  },
-  {
-    id: "2972",
-    img: "image",
-    title: "Flower",
-    category: "Art",
-    admin: "User",
-    date: "20/8/2024",
-    status: "Active",
-    
-  },
-  {
-    id: "9722",
-    img: "image",
-    title: "Flower",
-    category: "Art",
-    admin: "User",
-    date: "20/8/2024",
-    status: "Active",
-    
-  },
-  {
-    id: "7229",
-    img: "image",
-    title: "Flower",
-    category: "Art",
-    admin: "User",
-    date: "20/8/2024",
-    status: "Active",
-    
-  },
-  {
-    id: "0101",
-    img: "image",
-    title: "Flower",
-    category: "Art",
-    admin: "User",
-    date: "20/8/2024",
-    status: "Active",
-    
-  },
-]);
+import { useDesignStore } from "@/stores/design";
+const designStore = useDesignStore();
+onMounted(() => {
+  designStore.loadDesigns();
+
+  // console.log('Loaded designs:', designStore.designs);
+});
+
+const designs = computed(() => designStore.designs);
 
 const statusClass = (status) => {
   switch (status) {
     case "Active":
-        return "bg-[#CCFFCC] text-[#01D001]";
+      return "bg-[#CCFFCC] text-[#01D001]";
     case "Suspended":
-        return "bg-[#FFBFBC] text-[#D60000] py-1";
+      return "bg-[#FFBFBC] text-[#D60000] py-1";
   }
 };
 
+// edit
+const editDesign = (design) => {
+  navigateTo({
+    path: "/admin/design/edit-design",
+    query: {
+      id: design.id,
+      title: design.title,
+      description: design.description,
+      category: design.category,
+      tags: design.tags,
+    },
+  });
+};
 
 // style thead & tbody
 const headClasses = `flex-1/2 py-1 px-1.5 text-red-900 font-semibold font-['Poppins'] text-lg w-full`;
@@ -98,43 +68,35 @@ const toggleSelectAll = () => {
 };
 
 // delete one
-const deleteUser = (id) => {
-  const index = designs.value.findIndex((design) => design.id === id);
-  if (index !== -1) {
-    designs.value.splice(index, 1);
-  }
+const deleteDesign = (id) => {
+  designStore.deleteDesign(id);
   selectedRows.value = selectedRows.value.filter((i) => i !== id);
 };
 
 // delete all
 const deleteAll = () => {
   selectedRows.value.forEach((id) => {
-    const index = designs.value.findIndex((design) => design.id === id);
-    if (index !== -1) {
-      designs.value.splice(index, 1);
-    }
+    designStore.deleteDesign(id);
   });
-
   selectedRows.value = [];
   selectAll.value = false;
 };
-
 </script>
 
 <template>
   <div class="flex flex-col gap-8 m-[30px] ml-[250px] fixed w-[77%]">
     <!-- header -->
-    <div class="flex items-center justify-between w-full">
+    <div class="flex items-center justify-between w-[100%]">
       <AdminTitle route="Orders" />
       <div class="w-[50%] flex gap-4">
         <Search />
-        <AdminUploadBtn type="Design"/>
+        <AdminUploadBtn type="Design" path="/admin/design/upload-design" />
       </div>
     </div>
 
     <!-- table data -->
-    <table class="flex flex-col gap-4 w-full">
-      <thead>
+    <table class="flex flex-col gap-4 w-[100%]">
+      <thead class="w-full">
         <tr
           class="flex items-center justify-between gap-2 py-2 border-b-2 border-red-800"
         >
@@ -158,6 +120,7 @@ const deleteAll = () => {
           <th :class="headClasses">Admin</th>
           <th :class="headClasses">Date Added</th>
           <th :class="headClasses">Status</th>
+          <th class="flex-1 w-4 h-4"></th>
           <!-- delete all -->
           <th class="w-6 h-6 text-white py-1 px-1.5">
             <i
@@ -206,21 +169,17 @@ const deleteAll = () => {
               <option value="Suspended">Suspended</option>
             </select>
           </td>
-          
-          <!-- edit -->
-          <td class="flex-1">
-            <!-- <NuxtLink to="/"> -->
-              <img
-              src="/public/admin/editpen.svg" />
-            
-            <!-- </NuxtLink> -->
-            
-          </td>
 
-          <!-- delete row -->
-          <td class="flex-1">
+          <td class="flex-1 flex gap-1 items-center">
+            <!-- edit  -->
+            <img
+              @click="editDesign(design)"
+              src="/admin/editpen.svg"
+              class="w-10 h-10 cursor-pointer"
+            />
+            <!-- delete row -->
             <i
-              @click="deleteUser(design.id)"
+              @click="deleteDesign(design.id)"
               class="fa-solid fa-trash text-red-800 cursor-pointer"
             ></i>
           </td>
