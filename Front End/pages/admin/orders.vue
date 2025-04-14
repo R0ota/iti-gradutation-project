@@ -139,7 +139,7 @@ const updateStatus = (orderId, newStatus) => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-8 m-[30px] ml-[250px] fixed w-[80%]">
+  <div class="flex flex-col gap-8 m-[30px] ml-[250px] fixed w-[77%]">
     <!-- header -->
     <div class="flex items-center justify-between w-full">
       <AdminTitle route="Orders" />
@@ -214,7 +214,7 @@ const updateStatus = (orderId, newStatus) => {
             <!-- span state -->
             <span
               v-if="order.status === 'Reviewing' || order.status === 'Rejected'"
-              class="flex-1/2 text-center flex gap-1 items-center rounded-[20px] justify-center font-['Poppins'] font-medium text-sm px-2 py-[3px]"
+              class="flex-1/2 text-center flex gap-1 items-center rounded-[20px] justify-center font-['Poppins'] font-medium text-sm px-2 py-1"
               :class="statusClass(order.status)"
             >
               {{ order.status }}
@@ -247,7 +247,7 @@ const updateStatus = (orderId, newStatus) => {
                 updateStatus(order.id, 'Printing');
                 order.approved = true;
               "
-              class="bg-green-200 text-green-600 text-sm px-2 py-[3px] rounded-[20px] cursor-pointer"
+              class="bg-green-200 text-green-600 text-sm px-2 py-1 text-center rounded-[20px] cursor-pointer"
             >
               Approve
             </button>
@@ -258,7 +258,7 @@ const updateStatus = (orderId, newStatus) => {
                 updateStatus(order.id, 'Rejected');
                 order.rejected = true;
               "
-              class="bg-[#FFBFBC] text-[#D60000] font-['Poppins'] font-medium text-sm px-2 py-[3px] rounded-[20px] cursor-pointer"
+              class="bg-[#FFBFBC] text-[#D60000] font-['Poppins'] font-medium text-sm px-2 py-1 text-center rounded-[20px] cursor-pointer"
             >
               Reject
             </button>
