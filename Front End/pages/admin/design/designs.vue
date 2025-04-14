@@ -172,14 +172,11 @@ const deleteAll = () => {
 
           <td class="flex-1 flex gap-1 items-center">
             <!-- edit  -->
-            <!-- <button > -->
             <img
               @click="editDesign(design)"
               src="/admin/editpen.svg"
               class="w-10 h-10 cursor-pointer"
             />
-            <!-- </button> -->
-
             <!-- delete row -->
             <i
               @click="deleteDesign(design.id)"
