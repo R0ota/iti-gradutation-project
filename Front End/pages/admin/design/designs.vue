@@ -87,7 +87,7 @@ const deleteAll = () => {
   <div class="flex flex-col gap-8 m-[30px] ml-[250px] fixed w-[77%]">
     <!-- header -->
     <div class="flex items-center justify-between w-[100%]">
-      <AdminTitle route="Orders" />
+      <AdminTitle route="Designs" />
       <div class="w-[50%] flex gap-4">
         <Search />
         <AdminUploadBtn type="Design" path="/admin/design/upload-design" />
