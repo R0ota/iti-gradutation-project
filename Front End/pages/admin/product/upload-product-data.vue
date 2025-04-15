@@ -94,7 +94,7 @@ const labelCasses = "px-2 text-red-900 text-xl font-[Poppins] font-medium";
                  <AdminInputData label="Price" placeholder="100.00 EGP" v-model="price" />
                 <!-- <h2 class="text-black font-bold text-xl">Price Range</h2> -->
             <!-- design price range -->
-             <label for="Price Range" class="font-semibold font-['Poppins'] leading-relaxed">Design Price Range</label>
+             <label for="Price Range" class="text-black font-semibold font-['Poppins'] leading-relaxed">Design Price Range</label>
                 <div class="flex flex-row  gap-1 w-full">
                     <AdminInputData label="Min Price" placeholder="100.00 EGP" v-model="minPrice" />
 
