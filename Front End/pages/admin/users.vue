@@ -129,7 +129,7 @@ const deleteAll = () => {
     <div class="flex items-center justify-between w-full">
       <AdminTitle route="Users"/>
       <div class="w-[40%]">
-        <Search/>
+        <Search search="Find the user you looking for"/>
        </div>
     </div>
 

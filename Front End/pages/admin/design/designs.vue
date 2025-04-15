@@ -89,7 +89,7 @@ const deleteAll = () => {
     <div class="flex items-center justify-between w-[100%]">
       <AdminTitle route="Designs" />
       <div class="w-[50%] flex gap-4">
-        <Search />
+        <Search search="Find the design you looking for" />
         <AdminUploadBtn type="Design" path="/admin/design/upload-design" />
       </div>
     </div>

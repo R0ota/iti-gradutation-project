@@ -1,4 +1,5 @@
 <script setup>
+const prop = defineProps(['search'])
     const searchText = ref("");
 
 const clearInput = () => {
@@ -29,7 +30,7 @@ const clearInput = () => {
         <input
           type="text"
           v-model="searchText"
-          placeholder="Find the user you looking for"
+          :placeholder="search"
           class="flex-1  pl-10 pr-10 outline-none placeholder-[#B24343] text-[#B24343]"
         />
 

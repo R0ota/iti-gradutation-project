@@ -5,7 +5,7 @@ definePageMeta({
   layout: "market",
 });
 
-import { computed, onMounted } from "vue";
+import { computed, onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useProductsStore } from "~/stores/products";
 import { useSearchStore } from '~/stores/search';
@@ -33,7 +33,12 @@ const filteredProducts = computed(() => {
   });
 });
 
-
+// no result for seaarch
+watch(filteredProducts, (newResults) => {
+  if (searchStore.text && newResults.length === 0) {
+    router.push('/status/search-fail');
+  }  
+});
 
 // Get all products
 const products = computed(() => productsStore.getAllProducts);
