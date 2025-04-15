@@ -8,7 +8,6 @@ definePageMeta({
 import { useDesignStore } from "@/stores/design";
 
 const designStore = useDesignStore();
-
 const title = ref("");
 const description = ref("");
 const category = ref("");
