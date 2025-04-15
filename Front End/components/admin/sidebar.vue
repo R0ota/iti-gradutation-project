@@ -69,7 +69,7 @@
 
         <!-- products -->
         <AdminPageRoutes
-          path="/admin/products"
+          path="/admin/product/products"
           baseIcon="/admin/products.svg"
           activeIcon="/admin/products-fill.svg"
           title="Product"
@@ -78,7 +78,7 @@
 
         <!-- category -->
         <AdminPageRoutes
-          path="/admin/category"
+          path="/admin/category/category"
           baseIcon="/admin/category.svg"
           activeIcon="/admin/category-fill.svg"
           title="Category"
