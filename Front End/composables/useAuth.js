@@ -1,5 +1,7 @@
 import { useAuthStore } from "~/stores/auth";
 import { getBaseURL } from "./helpers";
+import { useCartStore } from "~/stores/cart";
+import { useWishlistStore } from "~/stores/wishlist";
 
 export function useAuth() {
   const authStore = useAuthStore();
@@ -59,6 +61,15 @@ export function useAuth() {
 
   // Logout function
   function logout() {
+    // localStorage.removeItem("cart_items");
+    // localStorage.removeItem("wishlist");
+
+    const cartStore = useCartStore();
+    cartStore.clearCart();
+  
+    const wishlistStore = useWishlistStore();
+    wishlistStore.clearWishlist();
+
     authStore.clearAuth();
     router.push("/");
   }

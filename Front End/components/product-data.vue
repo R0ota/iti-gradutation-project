@@ -5,6 +5,8 @@ const props = defineProps({
     required: true
   }
 });
+
+console.log("Item:", props.item);
 </script>
 
 <template>
@@ -16,7 +18,7 @@ const props = defineProps({
     <div class="flex flex-col justify-start lg:h-32 h-25 py-1">
       <div class="flex flex-col lg:gap-1 gap-0.5">
         <p class="text-red-800 lg:text-lg text-sm font-bold leading-relaxed">
-          {{ item.name }}
+          {{ item.title }}
         </p>
         <p
           v-if="item.type"

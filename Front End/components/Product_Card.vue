@@ -4,7 +4,7 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  name: {
+  title: {
     type: String,
     required: true,
   },
@@ -34,6 +34,7 @@ import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCartStore } from '~/stores/cart';
 import { useWishlistStore } from '~/stores/wishlist';
+import { useAuthStore } from "~/stores/auth";
 
 const router = useRouter();
 const wishlistStore = useWishlistStore();
@@ -42,16 +43,25 @@ const cartStore = useCartStore();
 const isFavorite = computed(() => wishlistStore.isInWishlist(props.id));
 const isInCart = computed(() => cartStore.isInCart(props.id));
 const showAddedMessage = ref(false);
+const authStore = useAuthStore();
+
+const isAuthenticated = computed(() => authStore.isAuthenticated);
 
 const toggleFavorite = (e) => {
   e.stopPropagation();
+
+  if (!isAuthenticated.value) {
+    showAddedMessage.value = true;
+    setTimeout(() => (showAddedMessage.value = false), 2000);
+    return;
+  }
 
   if (isFavorite.value) {
     wishlistStore.removeFromWishlist(props.id);
   } else {
     const product = {
       id: props.id,
-      name: props.name,
+      title: props.title,
       type: props.type,
       price: props.price,
       image: props.image,
@@ -64,6 +74,11 @@ const toggleFavorite = (e) => {
 };
 
 const addToCart = (e) => {
+  if (!isAuthenticated.value) {
+    showAddedMessage.value = true;
+    setTimeout(() => (showAddedMessage.value = false), 2000);
+    return;
+  }
   e.stopPropagation();
   cartStore.addItem({ ...props, quantity: 1, SKU: props.id }, 1);
   showAddedMessage.value = true;
@@ -85,8 +100,7 @@ const removeFromCart = (e) => {
 
 <template>
   <div
-    class="flex flex-col items-center justify-center lg:gap-2 gap-1.5 cursor-pointer group"
-    @click="navigateToProduct(id)"
+    class="flex flex-col items-center justify-center lg:gap-2 gap-1.5 group"
   >
     <div
       class="relative lg:w-64 w-44 lg:h-64 h-40 lg:rounded-[42.35px] bg-[#D9D9D9] flex-shrink-0 aspect-square 
@@ -118,16 +132,17 @@ const removeFromCart = (e) => {
       </div>
 
       <img
+       @click="navigateToProduct(id)"
         :src="image"
-        class="lg:w-64 w-44 lg:h-64 h-40 lg:rounded-[40px] rounded-[25.197px] "
+        class="lg:w-64 w-44 lg:h-64 h-40 lg:rounded-[40px] rounded-[25.197px] cursor-pointer"
       />
 
       <!-- message notification -->
       <div
-        v-if="showAddedMessage"
+        v-if="showAddedMessage&&isAuthenticated"
         class="message-notification absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-2 py-1 rounded-full text-xs lg:text-sm animate-fade-in-out"
       >
-        {{ isInCart ? 'Added to cart!' : 'Removed from cart!' }}
+       Added to cart!
       </div>
     </div>
 
@@ -136,9 +151,10 @@ const removeFromCart = (e) => {
     >
       <div class="flex flex-col  gap-0.5 justify-start items-start">
         <p
-          class="lg:text-xl lg:tracking-[-0.342px] font-bold leading-7 text-xs font-['Poppins'] text-red-800 "
+         @click="navigateToProduct(id)"
+          class="lg:text-xl lg:tracking-[-0.342px] font-bold leading-7 text-xs font-['Poppins'] cursor-pointer text-red-800 "
         >
-          {{ name }}
+          {{ title }}
         </p>
         <p
           class="lg:text-sm text-[9.53px] text-black font-medium leading-[150%] lg:tracking-[-0.266px] tracking-[-0.191] font-['Poppins']"
@@ -177,6 +193,12 @@ const removeFromCart = (e) => {
           </div>
         </div>
       </div>
+    </div>
+    <div
+      v-if="!isAuthenticated && showAddedMessage"
+      class="mt-4 p-2 bg-green-100 text-red-800 rounded-md text-center"
+    >
+      you need to login first!
     </div>
   </div>
 </template>

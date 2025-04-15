@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-defineProps({
+const props=defineProps({
   items: {
     type: Array,
     required: true
@@ -20,4 +20,6 @@ defineProps({
 });
 
 defineEmits(['remove', 'increase', 'decrease']);
+
+console.log('items', props.items);
 </script>

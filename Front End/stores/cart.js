@@ -1,3 +1,4 @@
+import { Title } from "#components";
 import { defineStore } from "pinia";
 
 export const useCartStore = defineStore("cart", {
@@ -31,6 +32,7 @@ export const useCartStore = defineStore("cart", {
     },
   },
   actions: {
+    // Existing actions — DO NOT CHANGE
     addItem(product, quantity = 1) {
       const existingItem = this.items.find((item) => item.id === product.id);
       if (existingItem) {
@@ -51,9 +53,6 @@ export const useCartStore = defineStore("cart", {
     isInCart(productId) {
       return this.items.some((item) => item.id === productId);
     },
-    isInCart(productId) {
-      return this.items.some((item) => item.id === productId);
-    },
     saveCartToLocalStorage() {
       if (typeof window !== "undefined") {
         localStorage.setItem("cart_items", JSON.stringify(this.items));
@@ -70,6 +69,65 @@ export const useCartStore = defineStore("cart", {
             localStorage.removeItem("cart_items");
           }
         }
+      }
+    },
+
+    //  New: Load cart from server
+    async loadCartFromServer() {
+      try {
+        const res = await $fetch("/cart");
+        const serverCartItems = res.data.items.map((item) => ({
+          id: item.product, // must be aligned with backend `_id`
+          price: item.price,
+          quantity: item.quantity,
+          title: item.title,
+          image: item.image,
+          // You can add more fields if populated on backend
+        }));
+        this.items = serverCartItems;
+        this.saveCartToLocalStorage(); // Optional
+      } catch (error) {
+        console.error("Failed to load cart:", error);
+      }
+    },
+
+    // New: Add to cart (sync with backend)
+    async syncAddToCart(productId, quantity = 1) {
+      try {
+        await $fetch("/cart/add", {
+          method: "POST",
+          body: {
+            designedProductId: productId,
+            quantity,
+          },
+        });
+        await this.loadCartFromServer();
+      } catch (error) {
+        console.error("Add to cart failed:", error);
+      }
+    },
+
+    //  New: Remove item by cart item ID (not productId!)
+    async syncRemoveItem(cartItemId) {
+      try {
+        await $fetch(`/cart/remove/${cartItemId}`, {
+          method: "DELETE",
+        });
+        await this.loadCartFromServer();
+      } catch (error) {
+        console.error("Remove from cart failed:", error);
+      }
+    },
+
+    //  New: Clear cart
+    async syncClearCart() {
+      try {
+        await $fetch("/cart/clear", {
+          method: "DELETE",
+        });
+        this.clearCart(); // use existing action
+      } catch (error) {
+        console.error("Clear cart failed:", error);
       }
     },
   },

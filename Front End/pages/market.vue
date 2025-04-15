@@ -8,18 +8,27 @@ definePageMeta({
 import { computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useProductsStore } from "~/stores/products";
+import {usedesignedProductsStore} from "~/stores/designedProduct";
 
 const router = useRouter();
 const productsStore = useProductsStore();
+
+const designedProductsStore = usedesignedProductsStore();
+
 
 // Fetch products on component mount
 onMounted(async () => {
   await productsStore.fetchCategories();
   await productsStore.fetchProducts();
+  await designedProductsStore.fetchdesignedProducts();
+
 });
 
-// Get all products
-const products = computed(() => productsStore.getAllProducts);
+// Get all products from the store
+const allDesignedProducts = computed(() => designedProductsStore.getAlldesignedProducts);
+
+console.log("All Products:", allDesignedProducts.value);
+
 
 // Get categories
 const categories = computed(() => productsStore.getAllCategories);
@@ -85,13 +94,13 @@ const navigateToCategory = (categoryName) => {
     <!-- Display Best-Selling Products -->
     <div class="flex flex-row lg:flex-wrap lg:justify-start overflow-x-auto gap-4">
       <div
-        v-for="product in products.slice(0, 4)"
+        v-for="product in allDesignedProducts.slice(0, 4)"
         :key="product._id"
         class="flex"
       >
         <ProductCard
           :id="product._id"
-          :name="product.name"
+          :title="product.title"
           :type="product.category"
           :description="product.description"
           :price="product.price"

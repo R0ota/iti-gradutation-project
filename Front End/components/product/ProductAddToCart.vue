@@ -11,7 +11,7 @@
 
     <!-- Add to cart button -->
     <button
-      @click="$emit('addToCart'); toggleState()"
+      @click="isAuthenticated && $emit('addToCart'); toggleState()"
       class="lg:text-lg text-sm font-bold font-['Poppins'] leading-relaxed cursor-pointer inline-flex w-full items-center justify-center gap-4 h-14 py-3.5 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]"
       :disabled="!inStock"
       :class="[ 
@@ -57,14 +57,21 @@
         </svg>
       </div>
       <span @click="handleAddToCart(product)">Add to Cart</span>
+
     </button>
 
     <!-- Added to cart message -->
     <div
-      v-if="showMessage"
+      v-if="showMessage && isAuthenticated"
       class="mt-4 p-2 bg-green-100 text-green-800 rounded-md text-center"
     >
       Added to cart successfully!
+    </div>
+    <div
+      v-if="!isAuthenticated && showErrorMessage"
+      class="mt-4 p-2 bg-green-100 text-red-800 rounded-md text-center"
+    >
+      you need to login first!
     </div>
   </div>
 </template>
@@ -115,14 +122,33 @@ defineProps({
 defineEmits(['addToCart']);
 
 import { useCartStore } from '@/stores/cart';
+import { useAuthStore } from "~/stores/auth";
+
 const cart = useCartStore();
+const authStore = useAuthStore();
+
+const isAuthenticated = computed(() => authStore.isAuthenticated);
 
 function handleAddToCart(product) {
-  cart.addItem(product, 1); // or custom quantity
+  if (!isAuthenticated.value) {
+    return;
+  } else{
+    cart.addItem(product, 1);
+  }
 }
+console.log(isAuthenticated.value, 'isAuthenticated.value');
 
 const isAdded = ref(false);
+const showErrorMessage = ref(false);
+
 const toggleState = () => {
-  isAdded.value = !isAdded.value;
+
+  if (!isAuthenticated.value) {
+    showErrorMessage.value = true;
+    setTimeout(() => (showErrorMessage.value = false), 2000);
+    return;
+  } else{
+    isAdded.value = !isAdded.value;
+  }
 }
 </script>

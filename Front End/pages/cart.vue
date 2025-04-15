@@ -83,4 +83,6 @@ const checkout = () => {
   alert('Proceeding to checkout... (Stripe payment integration)');
   cartStore.clearCart();
 };
+
+console.log("Cart Items:", cartItems.value);
 </script>
