@@ -1,6 +1,6 @@
 <template>
   <div
-    class="px-6 py-4 bg-red-800/95 rounded-3xl flex flex-col items-start gap-4 w-[600px]"
+    class="px-6 py-4 bg-red-900/95 rounded-3xl flex flex-col items-start gap-4 w-[600px]"
   >
     <!-- Title and Value -->
     <div class="flex flex-col gap-2">
@@ -50,13 +50,13 @@
         class="absolute top-0 w-full h-44 opacity-20 bg-gradient-to-b from-blue-400 to-blue-400/0"
       ></div>
       <div
-        class="absolute top-0 w-full h-36 outline outline-1 outline-sky-500"
+        class="absolute top-0 w-full h-36 outline-1 outline-sky-500"
       ></div>
       <div
         class="absolute top-0 w-full h-56 opacity-20 bg-gradient-to-b from-green-600 to-green-600/0"
       ></div>
       <div
-        class="absolute top-0 w-full h-56 outline outline-1 outline-green-600"
+        class="absolute top-0 w-full h-56 outline-1 outline-green-600"
       ></div>
       <!-- Points -->
       <div

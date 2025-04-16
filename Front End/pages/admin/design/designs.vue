@@ -5,13 +5,20 @@ definePageMeta({
 
 import { useDesignStore } from "@/stores/design";
 const designStore = useDesignStore();
-onMounted(() => {
-  designStore.loadDesigns();
+const router = useRouter();
 
-  // console.log('Loaded designs:', designStore.designs);
+onMounted(async () => {
+  // router.push('/status/loading-state');
+
+  await designStore.fetchdesigns();
+  console.log('data', designStore.getAlldesigns)
+  if (designStore.error) {
+    router.push('/status/error-state');
+  }
 });
 
-const designs = computed(() => designStore.designs);
+const designs = computed(() => designStore.getAlldesigns);
+// const loading = computed(() => designStore.loading);
 
 const statusClass = (status) => {
   switch (status) {
@@ -27,7 +34,7 @@ const editDesign = (design) => {
   navigateTo({
     path: "/admin/design/edit-design",
     query: {
-      id: design.id,
+      id: design._id,
       title: design.title,
       description: design.description,
       category: design.category,
@@ -62,13 +69,13 @@ const toggleSelectAll = () => {
   if (selectAll.value) {
     selectedRows.value = [];
   } else {
-    selectedRows.value = designs.value.map((design) => design.id);
+    selectedRows.value = designs.value.map((design) => design._id);
   }
   selectAll.value = !selectAll.value;
 };
 
 // delete one
-const deleteDesign = (id) => {
+const deleteDesign = async (id) => {
   designStore.deleteDesign(id);
   selectedRows.value = selectedRows.value.filter((i) => i !== id);
 };
@@ -84,7 +91,7 @@ const deleteAll = () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-8 m-[30px] ml-[250px] fixed w-[77%]">
+  <div class="flex flex-col gap-8 m-[30px]  w-[77%]">
     <!-- header -->
     <div class="flex items-center justify-between w-[100%]">
       <AdminTitle route="Designs" />
@@ -135,25 +142,25 @@ const deleteAll = () => {
       <tbody class="w-full">
         <tr
           v-for="design in designs"
-          :key="design.id"
+          :key="design._id"
           class="py-1 flex items-center gap-2 justify-between w-full"
         >
           <!-- check icon -->
           <td>
             <i
-              @click="toggleSelect(design.id)"
+              @click="toggleSelect(design._id)"
               class="text-black w-4 h-4 cursor-pointer"
               :class="
-                selectedRows.includes(design.id)
+                selectedRows.includes(design._id)
                   ? 'fa-solid fa-square-check'
                   : 'fa-regular fa-square-full'
               "
             ></i>
           </td>
-          <td :class="bodyClasses">#{{ design.id }}</td>
-          <td :class="bodyClasses">{{ design.img }}</td>
+          <td :class="bodyClasses"> #{{ design._id.slice(0, 4) }}...{{ design._id.slice(-4) }}</td>
+          <td :class="bodyClasses"><a :href=" design.image ">{View}</a></td>
           <td :class="bodyClasses">{{ design.title }}</td>
-          <td :class="bodyClasses">{{ design.category }}</td>
+          <td :class="bodyClasses">{{ design.category.slice(0, 4) }}...{{ design.category.slice(-4) }}</td>
           <td :class="bodyClasses">{{ design.admin }}</td>
           <td :class="bodyClasses">{{ design.date }}</td>
           <td class="flex-1/2 text-center px-2 py-1">
@@ -179,7 +186,7 @@ const deleteAll = () => {
             />
             <!-- delete row -->
             <i
-              @click="deleteDesign(design.id)"
+              @click="deleteDesign(design._id)"
               class="fa-solid fa-trash text-red-800 cursor-pointer"
             ></i>
           </td>

@@ -1,34 +1,51 @@
 <script setup>
-import { AdminInputData } from "#components";
-
 definePageMeta({
   layout: "admin",
 });
 
+
+import { AdminInputData } from "#components";
+import { ref } from "vue";
 import { useDesignStore } from "@/stores/design";
 
+const router = useRouter();
 const designStore = useDesignStore();
+
 const title = ref("");
 const description = ref("");
 const category = ref("");
 const tags = ref("");
-// const img = ref('')
+const imageUrl = ref("");
+const imageFile = ref(null);
 
-const saveDesign = () => {
-  designStore.saveDesign({
+const handleImageUpload = (event) => {
+  const file = event.target.files[0];
+  designStore.uploadImage(file);
+};
+
+const saveDesign = async () => {
+  if (!imageUrl.value) {
+    alert("Please upload an image .");
+    return;
+  }
+
+  const newDesign = {
     title: title.value,
     description: description.value,
     category: category.value,
     tags: tags.value,
-  });
+    image: imageUrl.value,
+  };
 
-  navigateTo("/admin/design/select-product");
+  await designStore.createDesign(newDesign);
+  router.push("/admin/design/select-product");
 };
 
 const inputClasses =
   "px-4 py-3 flex items-start text-stone-900 text-lg font-medium font-[Poppins] placeholder:text-stone-900/75 placeholder:text-lg placeholder:font-medium placholder:font-[Poppins] bg-yellow-50 rounded-2xl outline-1 outline-offset-[-1px] outline-red-800 self-stretch w-full";
 const labelCasses = "px-2 text-red-900 text-xl font-[Poppins] font-medium";
 </script>
+
 <template>
   <div
     class="flex justify-between items-center m-[30px] ml-[250px] fixed w-[77%]"
@@ -37,8 +54,15 @@ const labelCasses = "px-2 text-red-900 text-xl font-[Poppins] font-medium";
       <!-- upload design -->
       <div class="flex flex-col items-center justify-center gap-4 h-screen">
         <img src="/admin/upload.png" />
-        <p href="#" class="text-black text-base font-semibold font-['Poppins']">
-          Image Link
+        <input
+          type="file"
+          accept="image/*"
+          @change="handleImageUpload"
+          placeholder="Image Link"
+          class="text-black cursor-pointer text-base mt-4 font-semibold placeholder:text-black placeholder:font-semibold"
+        />
+        <p v-if="imageUrl" class="mt-2 text-green-500">
+          Image uploaded successfully
         </p>
       </div>
     </div>
