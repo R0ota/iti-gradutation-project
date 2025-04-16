@@ -1,7 +1,7 @@
 <template>
-  <div class="h-full flex items-center w-full">
-    <div class="h-screen flex items-center m-auto">
-      <div class="lg:w-[555px] w-full flex flex-col items-start gap-6">
+  <!-- <div class="h-full flex items-center w-full"> -->
+    <div class=" pt-11 pb-20  flex items-center justify-center">
+      <div class="lg:w-[565px] w-full flex flex-col items-start gap-11 px-4">
         <SectionTitle title="Profile Info" />
 
         <div v-for="field in fields" :key="field.key" class="w-full">
@@ -82,7 +82,7 @@
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script setup>

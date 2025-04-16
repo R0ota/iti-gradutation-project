@@ -44,17 +44,18 @@ export const useProductsStore = defineStore('products', {
       this.error = null;
 
       try {
-        const response = await $fetch(`${getBaseURL()}/products`, {
+        const response = await $fetch(`${getBaseURL()}/products?limit=1000`, {
           method: 'GET'
         });
 
         // Add an image key to each product
-        const modifiedProducts = response.map(product => ({
-          ...product,
-          image: this.getProductImageUrl(product) // Use the computed property
-        }));
+        // const modifiedProducts = response.data.map(product => ({
+        //   ...product,
+        //   image: this.getProductImageUrl(product) // Use the computed property
+        // }));
 
-        this.products = modifiedProducts || [];
+        // this.products = modifiedProducts || [];
+        this.products = response.data || []
         this.extractCategories(); // Extract categories after fetching products
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -87,7 +88,7 @@ export const useProductsStore = defineStore('products', {
           method: 'GET'
         });
 
-        this.products = response || [];
+        this.products = response.data || [];
       } catch (error) {
         console.error(`Error fetching products for category ${categorySlug}:`, error);
         this.error = error.message || 'Failed to load products';
@@ -107,12 +108,13 @@ export const useProductsStore = defineStore('products', {
         });
 
         // Add an image key to the product
-        const modifiedProducts = {
-          ...response,
-          image: this.getProductImageUrl(response) // Use the computed property
-        };
+        // const modifiedProducts = {
+        //   ...response,
+        //   image: this.getProductImageUrl(response) // Use the computed property
+        // };
 
-        return modifiedProducts;
+        // return modifiedProducts;
+      return response.data
       } catch (error) {
         console.error(`Error fetching product with ID ${id}:`, error);
         this.error = error.message || 'Failed to load product';

@@ -2,7 +2,7 @@
   <header class="flex items-center gap-10 justify-between py-[16px] px-[24px]">
     <!-- logo -->
     <div
-      class="text-black text-center font-poppins text-[20px] font-bold leading-[30px] tracking-[-0.38px]"
+      class="text-black text-center text-[20px] font-bold leading-[30px] tracking-[-0.38px]"
     >
       <NuxtLink to="/" class="cursor-pointer">
         <img src="../Logo.svg" alt="Logo" />
@@ -291,7 +291,7 @@
 
           <p
             :class="[
-            'text-red-800 text-lg font-[Poppins]',
+            'text-red-800 text-lg ',
             route.path === '/favorite' ? 'font-bold' : 'font-medium',
           ]"
           >

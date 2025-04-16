@@ -22,7 +22,7 @@ onMounted(async () => {
 
 <template>
   <div
-    class="lg:w-full md:w-full w-full px-6 py-8 bg-red-900 flex lg:flex-row md:flex-row sm:flex-col flex-col justify-start items-center gap-6 mt-16 "
+    class="lg:w-full md:w-full w-full px-6 py-8 bg-red-900 flex lg:flex-row md:flex-row  sm:flex-col flex-col justify-start items-center lg:gap-6 md:gap-0 mt-16 "
   >
     <!-- logo -->
     <div class="w-80 px-4 py-1.5 flex justify-center items-center gap-2.5 lg:w-full">
@@ -39,9 +39,9 @@ onMounted(async () => {
     </div>
 
 
-    <div class="inline-flex items-start lg:flex-row flex-col justify-start gap-6">
+    <div class="inline-flex items-start lg:flex-row flex-col justify-start lg:gap-6 gap-4 w-full">
       <!-- marketPlace -->
-      <div class="w-80 inline-flex flex-col justify-start items-start lg:gap-4 gap-2">
+      <div class="lg:w-80 md:w-60 inline-flex flex-col justify-start items-start lg:gap-4 gap-2">
       <div class="lg:px-6 px-4 py-2 inline-flex flex-col justify-center items-center gap-2.5">
         <p class="justify-start text-red-100 text-xl font-semibold leading-loose font-['Poppins']">
           Marketplace
@@ -59,7 +59,7 @@ onMounted(async () => {
       </div>
     </div>
     <!-- social Media -->
-    <div class="w-80 flex flex-col justify-start items-start lg:gap-4 gap-2">
+    <div class="lg:w-80 md:w-60 flex flex-col justify-start items-start lg:gap-4 gap-2">
       <div class="lg:px-6 px-4 py-2 inline-flex flex-col justify-center items-center gap-2.5">
         <p class="justify-start text-red-100 text-xl font-semibold leading-loose font-['Poppins']">
           Social Media

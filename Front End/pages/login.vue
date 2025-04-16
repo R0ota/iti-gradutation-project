@@ -7,12 +7,12 @@
     />
 
     <!-- Right side - Login Form -->
-    <div class="h-screen flex items-center m-auto">
+    <div class="h-screen flex items-center justify-center w-full">
       <div
-        class="lg:w-[555px] w-full inline-flex flex-col justify-start  items-start  gap-14"
+        class="lg:w-[555px] w-full inline-flex flex-col justify-start  items-start  gap-14 lg:px-0 px-4"
       >
         <!-- Section Title -->
-        <div classs="w-full flex justify-start  items-start">
+        <!-- <div classs="w-full flex justify-start  items-start">
           <div
             class="px-6 border-l-[6px] border-red-800 flex justify-start items-start"
           >
@@ -22,7 +22,8 @@
               Log in
             </p>
           </div>
-        </div>
+        </div> -->
+        <SectionTitle title="Log in"/>
 
         <!-- Login Form -->
         <form
@@ -217,5 +218,9 @@ const handleSubmit = async () => {
 // Computes if the form is valid based on validation status
 const isFormValid = computed(() => {
   return validationStatus.value.email && validationStatus.value.password;
+});
+
+definePageMeta ({
+  layout : "auth",
 });
 </script>

@@ -89,7 +89,7 @@ const removeFromCart = (e) => {
     @click="navigateToProduct(id)"
   >
     <div
-      class="relative lg:w-64 w-44 lg:h-64 h-40 lg:rounded-[42.35px] bg-[#D9D9D9] flex-shrink-0 aspect-square 
+      class="relative lg:w-64 w-42 lg:h-64 h-40 lg:rounded-[42.35px] bg-[#D9D9D9] flex-shrink-0 aspect-square 
          rounded-3xl"
     >
       <!-- Favorite Icon -->
@@ -119,7 +119,7 @@ const removeFromCart = (e) => {
 
       <img
         :src="image"
-        class="lg:w-64 w-44 lg:h-64 h-40 lg:rounded-[40px] rounded-[25.197px] "
+        class="lg:w-64 w-42 lg:h-64 h-40 lg:rounded-[40px] rounded-[25.197px] "
       />
 
       <!-- message notification -->

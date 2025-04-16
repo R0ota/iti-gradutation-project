@@ -69,7 +69,7 @@ const formattedCategory = computed(() => {
 </script>
 
 <template>
-  <div class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px]">
+  <div class="lg:px-32 lg:mt-[40px] mt-[20px] lg:gap-[32px] flex flex-col gap-[24px] px-4">
     <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center">
       <p class="justify-start text-red-800 lg:text-3xl text-xl font-bold leading-loose lg:leading-[48px]">
         Market
@@ -82,7 +82,7 @@ const formattedCategory = computed(() => {
     </div>
 
     <!-- Display Paginated Products -->
-    <div class="flex flex-row lg:flex-wrap lg:justify-start flex-wrap gap-4">
+    <div class="flex flex-row lg:flex-wrap lg:justify-start justify-center flex-wrap gap-3">
       <div
         v-for="product in paginatedProducts"
         :key="product._id"

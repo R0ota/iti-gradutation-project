@@ -10,7 +10,14 @@ export default defineNuxtConfig({
     "./assets/css/main.css",
     "@fortawesome/fontawesome-free/css/all.min.css",
   ],
-  modules: ["@nuxt/ui", "@pinia/nuxt", "@nuxt/icon"],
+  modules: ["@nuxt/ui", "@pinia/nuxt", "@nuxt/icon", "@nuxtjs/google-fonts"],
+  googleFonts: {
+    families: {
+      Poppins: [300, 400, 500, 600, 700, 800],
+    },
+    display: 'swap'
+  },
+
   app: {
     head: {
       title: "My Nuxt App",

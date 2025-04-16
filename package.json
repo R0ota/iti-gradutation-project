@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@nuxtjs/google-fonts": "^3.2.0",
     "concurrently": "^9.1.2"
   },
   "scripts": {

@@ -8,11 +8,11 @@
     />
 
     <!-- Right side - Form -->
-    <div class="h-screen flex items-center m-auto">
+    <div class="h-screen flex items-center justify-center w-full">
       <div
-        class="lg:w-[555px] w-full inline-flex flex-col lg:justify-start justify-center items-start gap-14"
+        class="lg:w-[555px] w-full inline-flex flex-col lg:justify-start justify-center items-start lg:px-0 px-4 gap-14"
       >
-        <div class="w-full flex justify-start items-center">
+        <!-- <div class="w-full flex justify-start items-center">
           <div
             class="px-6 border-l-[6px] border-red-800 flex justify-center items-center"
           >
@@ -22,7 +22,9 @@
               Sign up
             </p>
           </div>
-        </div>
+        </div> -->
+
+        <SectionTitle title="Sign up"/>
 
         <form
           @submit.prevent="handleSubmit"
