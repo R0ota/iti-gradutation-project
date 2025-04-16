@@ -22,10 +22,17 @@
         to="/profile"
         class="px-[8px] py-[5px]  flex flex-col items-center justify-center transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
       >
-        <p class="text-black text-xs font-medium">Hello</p>
-        <p class="text-red-800 text-xs font-extrabold">
-          {{ authStore.user.name }}
-        </p>
+        <div v-if="!authStore?.user" class="flex items-center justify-center">
+          <!-- loading icon -->
+          <i class="fa-solid fa-spinner animate-spin text-[#A31D1D]"></i>
+        </div>
+        <div v-else>
+          <p class="text-black text-xs font-medium">Hello</p>
+          <p class="text-red-800 text-xs font-extrabold">
+            {{ authStore.user.name }}
+          </p>
+        
+        </div>
       </NuxtLink>
 
       <!-- Logout Button -->

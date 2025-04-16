@@ -43,17 +43,17 @@ export const useCartStore = defineStore("cart", {
       }
 
       await this.syncAddToCart(product.id, quantity); // Sync with backend
-      this.saveCartToLocalStorage();
+      // this.saveCartToLocalStorage();
     },
     async removeItem(productId) {
       this.items = this.items.filter((item) => item.id !== productId);
       await this.syncRemoveItem(productId); // Sync with backend
-      this.saveCartToLocalStorage();
+      // this.saveCartToLocalStorage();
     },
     async clearCart() {
       this.items = [];
       await this.syncClearCart(); // Sync with backend
-      this.saveCartToLocalStorage();
+      // this.saveCartToLocalStorage();
     },
     isInCart(productId) {
       return this.items.some((item) => item.id === productId);
@@ -103,10 +103,11 @@ export const useCartStore = defineStore("cart", {
           quantity: item.quantity,
           title: item.product.title,
           image: item.product.image,
+          cartItemId: item._id, // Cart item ID from backend
           // You can add more fields if populated on backend
         }));
         this.items = serverCartItems;
-        this.saveCartToLocalStorage(); // Optional
+        // this.saveCartToLocalStorage(); // Optional
       } catch (error) {
         console.error("Failed to load cart:", error);
       }

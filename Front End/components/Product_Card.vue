@@ -43,6 +43,7 @@ const cartStore = useCartStore();
 
 const isFavorite = computed(() => wishlistStore.isInWishlist(props.id));
 const isInCart = computed(() => cartStore.isInCart(props.id));
+const isLoading = computed(() => wishlistStore.loadingId === props.id);
 const showAddedMessage = ref(false);
 const authStore = useAuthStore();
 
@@ -57,21 +58,15 @@ const toggleFavorite = (e) => {
     return;
   }
 
-  if (isFavorite.value) {
-    wishlistStore.removeFromWishlist(props.id);
-  } else {
-    const product = {
-      id: props.id,
-      title: props.title,
-      type: props.type,
-      price: props.price,
-      image: props.image,
-      description: props.description,
-      currency: props.currency
-    };
+  const productId = props.id;
+  wishlistStore.toggleWishlistItem(productId);
 
-    wishlistStore.addToWishlist(product);
-  }
+  // if (isFavorite.value) {
+  //   wishlistStore.removeFromWishlist(props.id);
+  // } else {
+  //   const productId = props.id;
+  //   wishlistStore.toggleWishlistItem(productId);
+  // }
 };
 
 const addToCart = (e) => {
@@ -107,10 +102,18 @@ const removeFromCart = (e) => {
     >
       <!-- Favorite Icon -->
       <div class="group">
+        <!-- Loading state -->
+        <span
+          v-if="isLoading"
+          class="lg:w-8 w-6 lg:h-8 h-6 bg-orange-100  group-hover:rounded-[50px] rounded-[9.53px] flex items-center justify-center z-10 absolute pointer-events-auto lg:top-3 lg:right-3 top-2 right-2"
+        >
+          <i class="fa-solid fa-spinner animate-spin text-red-800" />
+        </span>
+
         <!-- ❤️ Filled -->
         <div
-          v-if="isFavorite"
-          @click="toggleWishlistItem($event)"
+          v-else-if="isFavorite"
+          @click="toggleFavorite($event)"
           class="lg:w-8 w-6 lg:h-8 h-6 bg-orange-100 group-hover:bg-red-800 group-hover:rounded-[50px] rounded-[9.53px] flex items-center justify-center z-10 absolute pointer-events-auto lg:top-3 lg:right-3 top-2 right-2 cursor-pointer outline-1 outline-offset-[-1px] outline-red-800 transition-all duration-300"
         >
           <i

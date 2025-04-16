@@ -1,7 +1,7 @@
-import { useWishlistStore } from '~/stores/wishlist';
+import { useWishlistStore } from "~/stores/wishlist";
 
 export default defineNuxtPlugin({
-  name: 'wishlist-plugin',
+  name: "wishlist-plugin",
   setup() {
     const wishlistStore = useWishlistStore();
 
@@ -9,5 +9,5 @@ export default defineNuxtPlugin({
     if (process.client) {
       wishlistStore.loadwishlistFromLocalStorage();
     }
-  }
+  },
 });

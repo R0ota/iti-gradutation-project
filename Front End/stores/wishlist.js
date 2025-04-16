@@ -6,15 +6,29 @@ import { getBaseURL } from "~/composables/helpers";
 export const useWishlistStore = defineStore("wishlist", {
   state: () => ({
     items: [],
+    loadingId: null,
+    isLoading: false,
   }),
   actions: {
     async loadwishlistFromServer() {
       try {
-        const res = await $fetch("/wishlist");
-        this.items = res.data.map((entry) => entry.Item);
+        this.isLoading = true;
+        const res = await $fetch(`${getBaseURL()}/wishlist`, {
+          method: "get",
+          ...this.getAuthHeaders(),
+        });
+        console.log("res.data", res.data);
+        this.items = res.data.map((item) => {
+          return {
+            ...item,
+            id: item._id,
+          };
+        });
         this.saveToLocalStorage(); // optional
       } catch (error) {
         console.error("Failed to load wishlist:", error);
+      } finally {
+        this.isLoading = false;
       }
     },
     // Helper method to get auth headers
@@ -26,18 +40,20 @@ export const useWishlistStore = defineStore("wishlist", {
         },
       };
     },
-    async toggleWishlistItem(product) {
+    async toggleWishlistItem(productId) {
       try {
-        const res = await $fetch(`/wishlist/${product._id}`, {
+        this.loadingId = productId;
+        await $fetch(`${getBaseURL()}/wishlist/${productId}`, {
           method: "patch",
           ...this.getAuthHeaders(),
         });
         await this.loadwishlistFromServer(); // Refresh list
       } catch (error) {
         console.error("Toggle wishlist failed:", error);
+      } finally {
+        this.loadingId = null;
       }
     },
-   
 
     addToWishlist(product) {
       if (!this.items.find((item) => item.id === product.id)) {
@@ -59,8 +75,12 @@ export const useWishlistStore = defineStore("wishlist", {
       this.items = [];
       this.saveToLocalStorage();
     },
-    loadwishlistFromLocalStorage() {
+    async loadwishlistFromLocalStorage() {
       if (typeof window !== "undefined") {
+        // Load from server first
+        await this.loadwishlistFromServer();
+
+        // Then load from localStorage
         const stored = localStorage.getItem("wishlist");
         if (stored) {
           try {
