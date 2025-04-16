@@ -5,8 +5,8 @@ definePageMeta({
     layout: "admin",
 });
 
-const sizeInput = `<div class="flex flex-row gap-0.5 w-full"><div class="flex flex-col gap-0.5 w-full"><label for="input" class="px-2 text-red-900 text-xl font-[Poppins] font-medium"></label><input type="text" id="input" placeholder="e.g. S, M, L, XL" class="px-4 py-3 flex items-start text-stone-900 text-lg font-medium font-[Poppins] placeholder:text-stone-900/75 placeholder:text-lg placeholder:font-medium placholder:font-[Poppins] bg-yellow-50 rounded-2xl outline-1 outline-offset-[-1px] outline-red-900 self-stretch w-full"></div><div class="w-full"></div><img src="/_nuxt/assets/minus-solid.svg" alt="" onclick="this.parentNode.remove();"></div>`
-const colorInput = `<div class="flex flex-row gap-2 w-full items-center"><div class="flex flex-col gap-0.5 w-full"><label for="input" class="px-2 text-red-900 text-xl font-[Poppins] font-medium"></label><input type="text" id="input" placeholder="e.g. Red, Blue, Green" class="px-4 py-3 flex items-start text-stone-900 text-lg font-medium font-[Poppins] placeholder:text-stone-900/75 placeholder:text-lg placeholder:font-medium placholder:font-[Poppins] bg-yellow-50 rounded-2xl outline-1 outline-offset-[-1px] outline-red-900 self-stretch w-full"></div><span class="text-black w-full text-center"><div class="relative inline-block group"><!-- The text --><span class="text-blue-600 cursor-pointer">Image Link</span><!-- The image (hidden by default, shown on hover) --><img src="https://placehold.co/600x400/orange/white" alt="Preview" class="absolute left-0 mt-2 w-40 h-auto rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div></span><img src="/_nuxt/assets/minus-solid.svg" alt="" onclick="this.parentNode.remove();"></div>`
+const sizeInput = `<div class="flex flex-row gap-10 w-full"><div class="flex flex-col gap-0.5 w-full"><label for="input" class="px-2 text-red-900 text-xl font-[Poppins] font-medium"></label><input type="text" id="input" placeholder="e.g. S, M, L, XL" class="px-4 py-3 flex items-start text-stone-900 text-lg font-medium font-[Poppins] placeholder:text-stone-900/75 placeholder:text-lg placeholder:font-medium placholder:font-[Poppins] bg-yellow-50 rounded-2xl outline-1 outline-offset-[-1px] outline-red-900 self-stretch w-full"></div><img src="/_nuxt/assets/minus-solid.svg" alt="" onclick="this.parentNode.remove();"></div>`
+const colorInput = `<div class="flex flex-row w-full items-center gap-5"><div class="flex flex-col gap-0.5 w-full"><label for="input" class="px-2 text-red-900 text-xl font-[Poppins] font-medium"></label><input type="text" id="input" placeholder="e.g. Red, Blue, Green" class="px-4 py-3 flex items-start text-stone-900 text-lg font-medium font-[Poppins] placeholder:text-stone-900/75 placeholder:text-lg placeholder:font-medium placholder:font-[Poppins] bg-yellow-50 rounded-2xl outline-1 outline-offset-[-1px] outline-red-900 self-stretch w-full"></div><span class="text-black w-full text-right"><div class="relative inline-block group"><!-- The text --><span class="text-black cursor-pointer">Image Link</span><!-- The image (hidden by default, shown on hover) --><img src="https://placehold.co/600x400/orange/white" alt="Preview" class="absolute left-0 mt-2 w-40 h-auto rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div></span><img src="/_nuxt/assets/minus-solid.svg" alt="" onclick="this.parentNode.remove();"></div>`
 const addSize = () => {
     document.getElementById("size").innerHTML += sizeInput;
     console.log(document.getElementById("size"));
@@ -128,12 +128,7 @@ const labelCasses = "px-2 text-red-900 text-xl font-[Poppins] font-medium";
                     </div>
                    
                     <div id="size" class="flex flex-col gap-1 w-full justify-center">
-                        <div class="flex flex-row gap-10 w-full">
-                            <AdminInputData placeholder="e.g. S, M, L, XL" v-model="size" />
-                            <img src="../../../assets/minus-solid.svg" alt="" onclick="this.parentNode.remove();"/>
-                           
-
-                        </div>
+                        
                     </div>
                     <div class="flex flex-row gap-2 w-full" @click="addSize">
                         <img src="../../../assets/add.svg" alt=""><span class=" text-black text-[16px]">Attribute</span>
@@ -151,21 +146,7 @@ const labelCasses = "px-2 text-red-900 text-xl font-[Poppins] font-medium";
                     </div>
                     
                     <div id="color" class="flex flex-col gap-2 w-full justify-center">
-                        <div class="flex flex-row w-full items-center gap-5">
-                            <AdminInputData placeholder="e.g. Red, Blue, Green" v-model="color" />
-                            <span class="text-black w-full text-right">
-                                <div class="relative inline-block group">
-                                    <!-- The text -->
-                                    <span class="text-black cursor-pointer">Image Link</span>
-
-                                    <!-- The image (hidden by default, shown on hover) -->
-                                    <img src="https://placehold.co/600x400/orange/white" alt="Preview"
-                                        class="absolute left-0 mt-2 w-40 h-auto rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                                </div>
-
-                            </span>
-                            <img src="../../../assets/minus-solid.svg" alt="" onclick="this.parentNode.remove();">
-                        </div>
+                        
                     </div>
                     <div class="flex flex-row gap-2 w-full" @click="addColor">
                         <img src="../../../assets/add.svg" alt=""><span class=" text-black text-[16px]">Attribute</span>
@@ -186,3 +167,6 @@ const labelCasses = "px-2 text-red-900 text-xl font-[Poppins] font-medium";
         </form>
     </div>
 </template>
+
+
+

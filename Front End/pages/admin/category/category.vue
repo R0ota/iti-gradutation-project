@@ -113,7 +113,7 @@ const deleteAll = () => {
       <AdminTitle route="Category" />
       <div class="w-[50%] flex gap-4">
         <Search />
-        <AdminUploadBtn type="Category"/>
+        <AdminUploadBtn type="Category" path="/admin/category/add-category"/>
       </div>
     </div>
 
