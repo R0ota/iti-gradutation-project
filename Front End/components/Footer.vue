@@ -61,7 +61,7 @@ onMounted(async () => {
     <!-- social Media -->
     <div class="lg:w-80 md:w-60 flex flex-col justify-start items-start lg:gap-4 gap-2">
       <div class="lg:px-6 px-4 py-2 inline-flex flex-col justify-center items-center gap-2.5">
-        <p class="justify-start text-red-100 text-xl font-semibold leading-loose font-['Poppins']">
+        <p class="justify-start text-red-100 text-xl font-semibold leading-loose ">
           Social Media
         </p>
       </div>
@@ -71,10 +71,10 @@ onMounted(async () => {
         >
           <div class="relative w-6 flex items-center justify-center">
             <i
-              class="fa-brands fa-facebook text-red-100 group-hover:text-red-800 transition-all duration-300 text-xl"></i>
+              class="fa-brands fa-facebook text-red-100 group-hover:text-red-900 transition-all duration-300 text-xl"></i>
           </div>
 
-          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-800 font-['Poppins']">
+          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-900 ">
             FacebooK
           </p>
         </div>
@@ -84,10 +84,10 @@ onMounted(async () => {
         >
           <div class="relative w-6 flex items-center justify-center">
             <i
-              class="fa-brands fa-instagram text-red-100 group-hover:text-red-800 transition-all duration-300 text-xl"></i>
+              class="fa-brands fa-instagram text-red-100 group-hover:text-red-900 transition-all duration-300 text-xl"></i>
           </div>
 
-          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-800 font-['Poppins']">
+          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-900 ">
             Instsgram
           </p>
         </div>
@@ -97,10 +97,10 @@ onMounted(async () => {
         >
           <div class="relative w-6 flex items-center justify-center">
             <i
-              class="fa-brands fa-pinterest text-red-100 group-hover:text-red-800 transition-all duration-300 text-xl"></i>
+              class="fa-brands fa-pinterest text-red-100 group-hover:text-red-900 transition-all duration-300 text-xl"></i>
           </div>
 
-          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-800 font-['Poppins']">
+          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-900 ">
             Pinterest
           </p>
         </div>
@@ -110,9 +110,9 @@ onMounted(async () => {
         >
           <div class="relative w-6 flex items-center justify-center">
             <i
-              class="fa-brands fa-linkedin text-red-100 group-hover:text-red-800 transition-all duration-300 text-xl"></i>
+              class="fa-brands fa-linkedin text-red-100 group-hover:text-red-900 transition-all duration-300 text-xl"></i>
           </div>
-          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-800 font-['Poppins']">
+          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-900 ">
             Linked in
           </p>
         </div>
@@ -137,7 +137,7 @@ onMounted(async () => {
           class="self-stretch py-2.5 cursor-pointer bg-orange-200 rounded-2xl hover:bg-orange-300 group hover:rounded-full transition-all duration-300 shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center gap-2.5"
         >
           <button
-            class="text-right justify-start text-red-800 cursor-pointer text-lg font-bold leading-relaxed group-hover:text-red-100 group-transition-all group-duration-300"
+            class="text-right justify-start text-red-900 cursor-pointer text-lg font-bold leading-relaxed group-hover:text-red-100 group-transition-all group-duration-300"
           >
             Send
           </button>

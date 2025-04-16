@@ -98,7 +98,7 @@ const removeFromCart = (e) => {
         <div
           v-if="isFavorite"
           @click="toggleFavorite($event)"
-          class="lg:w-8 w-6 lg:h-8 h-6 bg-orange-100 group-hover:bg-red-800 group-hover:rounded-[50px] rounded-[9.53px] flex items-center justify-center z-10 absolute pointer-events-auto lg:top-3 lg:right-3 top-2 right-2 cursor-pointer outline-1 outline-offset-[-1px] outline-red-800 transition-all duration-300"
+          class="lg:w-8 w-6 lg:h-8 h-6 bg-orange-100 group-hover:bg-red-900 group-hover:rounded-[50px] rounded-[9.53px] flex items-center justify-center z-10 absolute pointer-events-auto lg:top-3 lg:right-3 top-2 right-2 cursor-pointer outline-1 outline-offset-[-1px] outline-red-800 transition-all duration-300"
         >
           <i
             class="fa-solid fa-heart fill text-[#A31D1D] group-hover:text-orange-100"
@@ -112,7 +112,7 @@ const removeFromCart = (e) => {
           class="lg:w-8 w-6 lg:h-8 h-6 bg-white rounded-[9.53px] flex items-center justify-center group-hover:rounded-[50px] group-hover:bg-red-800 z-10 absolute pointer-events-auto lg:top-4 lg:right-3.5 top-2 right-2 cursor-pointer transition-all duration-300"
         >
           <i
-            class="fa-regular fa-heart fill text-red-800 group-hover:text-orange-100"
+            class="fa-regular fa-heart fill text-red-900 group-hover:text-orange-100"
           />
         </div>
       </div>
@@ -136,12 +136,12 @@ const removeFromCart = (e) => {
     >
       <div class="flex flex-col  gap-0.5 justify-start items-start">
         <p
-          class="lg:text-xl lg:tracking-[-0.342px] font-bold leading-7 text-xs font-['Poppins'] text-red-800 "
+          class="lg:text-xl lg:tracking-[-0.342px] font-bold leading-7 text-xs  text-red-900 "
         >
           {{ name }}
         </p>
         <p
-          class="lg:text-sm text-[9.53px] text-black font-medium leading-[150%] lg:tracking-[-0.266px] tracking-[-0.191] font-['Poppins']"
+          class="lg:text-sm text-[9.53px] text-black font-medium leading-[150%] lg:tracking-[-0.266px] tracking-[-0.191] "
         >
           {{ description }}
         </p>
@@ -158,7 +158,7 @@ const removeFromCart = (e) => {
           <div
             v-if="isInCart"
             @click="removeFromCart($event)"
-            class="lg:w-8 w-6 lg:h-8 h-6 lg:rounded-xl rounded-lg bg-red-800 p-[3.29px] flex items-center justify-center transition-all duration-300 cursor-pointer"
+            class="lg:w-8 w-6 lg:h-8 h-6 lg:rounded-xl rounded-lg bg-red-900 p-[3.29px] flex items-center justify-center transition-all duration-300 cursor-pointer"
           >
             <img
               src="../assets/cart-shopping-white.svg"
@@ -168,7 +168,7 @@ const removeFromCart = (e) => {
           <div
             v-else
             @click="addToCart($event)"
-            class="lg:w-8 w-6 lg:h-8 h-6 lg:rounded-xl rounded-lg bg-red-800 p-[3.29px] flex items-center justify-center transition-all duration-300 cursor-pointer"
+            class="lg:w-8 w-6 lg:h-8 h-6 lg:rounded-xl rounded-lg bg-red-900 p-[3.29px] flex items-center justify-center transition-all duration-300 cursor-pointer"
           >
             <img
               src="../assets/cart-shopping-stroke.svg"

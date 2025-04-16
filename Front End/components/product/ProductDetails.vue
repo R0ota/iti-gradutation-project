@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex lg:flex-row flex-col lg:justify-between justify-start lg:gap-10 gap-6 items-start pt-10 pb-10"
+    class="lg:w-full w-90 flex lg:flex-row flex-col lg:justify-between  justify-start lg:gap-10 gap-6  pt-10 pb-10"
   >
     <!-- Product Gallery -->
     <ProductGallery
@@ -11,7 +11,7 @@
 
     <!-- Product info container -->
     <div
-      class="lg:w-200 w-80 inline-flex flex-col justify-start items-start gap-4"
+      class="lg:w-200 w-88 inline-flex flex-col justify-start items-start gap-4"
     >
       <div
         class="w-full lg:border-b-2 border-b-1 border-red-800 lg:gap-4 gap-3 lg:pb-6 pb-5 inline-flex flex-col justify-start items-start"

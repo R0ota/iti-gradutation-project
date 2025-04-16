@@ -45,6 +45,6 @@ const baseClasses = `
 `;
 
 const activeClasses = `
-  bg-[#FFEFD1] text-red-800 lg:rounded-t-[24px] rounded-t-2xl lg:px-6 px-3.5 lg:py-2 py-1.5 gap-[10px]
+  bg-[#FFEFD1] text-red-900 lg:rounded-t-[24px] rounded-t-2xl lg:px-6 px-3.5 lg:py-2 py-1.5 gap-[10px]
 `;
 </script>

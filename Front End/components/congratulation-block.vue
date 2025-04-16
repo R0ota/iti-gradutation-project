@@ -24,7 +24,7 @@ const prop =defineProps (['text'])
       <div class="flex flex-col gap-4  items-center justify-centers w-96">
         <img src="~/assets/party-popper 1.png" class="lg:w-44 w-32 lg:h-44 h-32">
           <p class="text-red-800 lg:text-4xl text-2xl font-bold font-['Poppins']">Congratulation</p>
-          <p class="text-black text-base text-center font-medium font-['Poppins'] lg:w-full w-[70%]">{{ text }}</p> 
+          <p class="text-black text-base text-center font-medium lg:w-full w-[70%]">{{ text }}</p> 
       </div>
       
     </div>

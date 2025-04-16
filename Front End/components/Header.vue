@@ -2,7 +2,7 @@
   <header class="flex py-[16px] px-[24px] justify-between items-center">
     <NuxtLink to="market">
       <div
-        class="text-center justify-start text-red-800 text-lg font-medium font-['Poppins'] leading-relaxed"
+        class="text-center justify-start text-red-900 text-lg font-medium leading-relaxed"
       >
         Explore Marketplace
       </div>
@@ -10,7 +10,7 @@
     <!-- Logo -->
     <NuxtLink to="/">
       <div
-        class="text-black text-center font-[Poppins] text-[20px] not-italic font-bold leading-[30px] tracking-[-0.38px]"
+        class="text-black text-center text-[20px] not-italic font-bold leading-[30px] tracking-[-0.38px]"
       >
         <img src="../Logo.svg" />
       </div>
@@ -23,7 +23,7 @@
       <!-- Log in Button -->
       <NuxtLink to="login">
           <button
-            class="p-[12px] px-[14px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
+            class="p-[12px] px-[14px] text-red-900 text-center text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
           >
             Log in
           </button>

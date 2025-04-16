@@ -12,7 +12,7 @@
     <!-- Add to cart button -->
     <button
       @click="$emit('addToCart'); toggleState()"
-      class="lg:text-lg text-sm font-bold font-['Poppins'] leading-relaxed cursor-pointer inline-flex w-full items-center justify-center gap-4 h-14 py-3.5 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]"
+      class="lg:text-lg text-sm font-bold leading-relaxed cursor-pointer inline-flex w-full items-center justify-center gap-4 h-14 py-3.5 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]"
       :disabled="!inStock"
       :class="[ 
     { 'opacity-50 cursor-not-allowed': !inStock },

@@ -1,9 +1,9 @@
 <template>
   <div
-    class="py-8 lg:w-full w-80  lg:flex-wrap flex-wrap border-b-[2.50px] border-red-800 inline-flex flex-col justify-start items-start gap-4"
+    class="py-8 lg:w-full w-88  lg:flex-wrap flex-wrap border-b-[2.50px] border-red-800 inline-flex flex-col justify-start items-start gap-4"
   >
     <!-- <div class="border-b border-gray-200 mb-8"> -->
-    <div
+    <!-- <div
       class="lg:px-6 px-4 border-l-[6px] border-red-800 inline-flex justify-center items-center gap-2.5"
     >
       <p
@@ -12,7 +12,8 @@
       >
         Product Features
       </p>
-    </div>
+    </div> -->
+    <SectionTitle title="Product Features"/>
     <!-- </div> -->
 
     <div class="flex flex-col lg:flex-wrap flex-wrap gap-2">

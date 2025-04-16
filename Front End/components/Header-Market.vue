@@ -79,7 +79,7 @@
           <img v-else src="../assets/home-stroke.svg" class="w-8 h-8" />
           <p
             :class="[
-            'text-red-800 text-lg font-[Poppins]',
+            'text-red-900 text-lg ',
             route.path === '/' ? 'font-bold' : 'font-medium',
           ]"
           >
@@ -105,7 +105,7 @@
           <img v-else src="../assets/store-fill.svg" class="w-8 h-8" />
           <p
             :class="[
-            'text-red-800 text-lg font-[Poppins] ',
+            'text-red-900 text-lg',
             route.path === '/market' ? 'font-bold' : 'font-medium',
           ]"
           >
@@ -118,13 +118,13 @@
           to="/favorite"
           :class="[
             'relative flex items-center justify-between cursor-pointer group px-4 py-2.5 transition-all duration-300 hover:rounded-full hover:bg-orange-100 hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]',
-            route.path === '/favorite' ? 'border-b-[2px] border-red-800' : '',
+            route.path === '/favorite' ? 'border-b-[2px] border-red-900' : '',
           ]"
         >
           <div class="relative w-8 h-7 flex items-center justify-center">
             <i
               :class="[
-              'relative text-2xl text-red-800 mr-3',
+              'relative text-2xl text-red-900 mr-3',
               route.path === '/favorite'
                 ? 'fa-solid fa-heart fill '
                 : 'fa-regular fa-heart fill ',
@@ -140,7 +140,7 @@
           </div>
           <p
             :class="[
-            'text-red-800 text-lg font-[Poppins] ',
+            'text-red-900 text-lg  ',
             route.path === '/favorite' ? 'font-bold' : 'font-medium',
           ]"
           >
@@ -177,7 +177,7 @@
 
           <p
             :class="[
-            'text-red-800 text-lg font-[Poppins] ',
+            'text-red-800 text-lg',
             route.path === '/cart' ? 'font-bold' : 'font-medium',
           ]"
           >
@@ -193,7 +193,7 @@
         <!-- Log in Button -->
         <NuxtLink to="login">
           <button
-            class="p-[12px] px-[14px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
+            class="p-[12px] px-[14px] text-[#A31D1D] text-center text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
           >
             Log in
           </button>
@@ -202,7 +202,7 @@
         <!-- Sign up Button -->
         <NuxtLink to="sign-up">
           <button
-            class="p-[10px] px-[24px] rounded-[16px] bg-[#A31D1D] shadow-[0px_0px_4px_rgba(0,0,0,0.50)] text-[#ECDCBF] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition duration-300 ease-in-out py-3 hover:bg-[#6D1313] hover:shadow-lg hover:rounded-[50px]"
+            class="p-[10px] px-[24px] rounded-[16px] bg-[#A31D1D] shadow-[0px_0px_4px_rgba(0,0,0,0.50)] text-[#ECDCBF] text-center text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition duration-300 ease-in-out py-3 hover:bg-[#6D1313] hover:shadow-lg hover:rounded-[50px]"
           >
             Sign up
           </button>
@@ -215,12 +215,12 @@
           class="px-[8px] py-[5px]  flex flex-col items-center justify-center]"
         >
           <p class="text-black text-xs font-medium">Hello</p>
-          <p class="text-red-800 text-xs font-extrabold">Nour</p>
+          <p class="text-red-900 text-xs font-extrabold">Nour</p>
         </NuxtLink>
         <!-- Logout Button -->
         <button
           @click="handleLogout"
-          class="p-[8px] px-[12px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
+          class="p-[8px] px-[12px] text-[#A31D1D] text-center text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
         >
           <i class="fa-solid fa-right-from-bracket rotate-180 "></i>
         </button>
@@ -243,7 +243,7 @@
         <!-- Home -->
         <NuxtLink
           to="/"
-          class="flex items-center gap-2 text-red-800 font-[Poppins]"
+          class="flex items-center gap-2 text-red-900"
           @click="closeMobileMenu"
         >
           <span :class="route.path === '/' ? 'font-bold' : 'font-medium'"
@@ -254,7 +254,7 @@
         <!-- Marketplace -->
         <NuxtLink
           to="/market"
-          class="flex items-center gap-2 text-red-800 font-[Poppins]"
+          class="flex items-center gap-2 text-red-900"
           @click="closeMobileMenu"
         >
           <span :class="route.path === '/market' ? 'font-bold' : 'font-medium'"
@@ -268,7 +268,7 @@
           @click="closeMobileMenu"
           :class="[
             'relative flex items-center justify-between cursor-pointer group px-4 py-2.5 transition-all duration-300 hover:rounded-full hover:bg-orange-100 hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]',
-            route.path === '/favorite' ? 'border-b-[2px] border-red-800' : '',
+            route.path === '/favorite' ? 'border-b-[2px] border-red-900' : '',
           ]"
         >
           <!-- <div class="relative w-8 h-7 flex items-center justify-center"> -->
@@ -291,7 +291,7 @@
 
           <p
             :class="[
-            'text-red-800 text-lg ',
+            'text-red-900 text-lg ',
             route.path === '/favorite' ? 'font-bold' : 'font-medium',
           ]"
           >
@@ -302,7 +302,7 @@
         <!-- Cart -->
         <NuxtLink
           to="/cart"
-          class="flex items-center gap-2 text-red-800 font-[Poppins]"
+          class="flex items-center gap-2 text-red-900"
           @click="closeMobileMenu"
         >
           <span

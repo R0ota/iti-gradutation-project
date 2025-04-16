@@ -91,7 +91,7 @@
           />
         </svg>
         <span
-          class="text-[#A31D1D] text-right font-poppins text-[18px] font-medium leading-[27px] tracking-[-0.342px]"
+          class="text-[#A31D1D] text-right text-[18px] font-medium leading-[27px] tracking-[-0.342px]"
         >
           Prev
         </span>
@@ -102,22 +102,22 @@
         class="px-8 py-2 bg-[#A31D1D] rounded-full flex items-center gap-2.5"
       >
         <span
-          class="text-white text-lg font-medium font-poppins leading-relaxed"
+          class="text-white text-lg font-medium leading-relaxed"
         >
           Page
         </span>
         <span
-          class="text-white text-lg font-semibold font-poppins leading-relaxed"
+          class="text-white text-lg font-semibold leading-relaxed"
         >
           1
         </span>
         <span
-          class="text-white text-lg font-medium font-poppins leading-relaxed"
+          class="text-white text-lg font-medium leading-relaxed"
         >
           of
         </span>
         <span
-          class="text-white text-lg font-semibold font-poppins leading-relaxed"
+          class="text-white text-lg font-semibold leading-relaxed"
         >
           10
         </span>
@@ -126,7 +126,7 @@
       <!-- Next Button -->
       <div class="flex items-center gap-2 cursor-pointer">
         <span
-          class="text-[#A31D1D] text-right font-poppins text-[18px] font-medium leading-[27px] tracking-[-0.342px]"
+          class="text-[#A31D1D] text-right text-[18px] font-medium leading-[27px] tracking-[-0.342px]"
         >
           Next
         </span>
