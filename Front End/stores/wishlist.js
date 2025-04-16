@@ -1,5 +1,7 @@
 // stores/wishlist.js
 import { defineStore } from "pinia";
+import { useAuthStore } from "./auth"; // Import auth store
+import { getBaseURL } from "~/composables/helpers";
 
 export const useWishlistStore = defineStore("wishlist", {
   state: () => ({
@@ -15,16 +17,28 @@ export const useWishlistStore = defineStore("wishlist", {
         console.error("Failed to load wishlist:", error);
       }
     },
+    // Helper method to get auth headers
+    getAuthHeaders() {
+      const authStore = useAuthStore();
+      return {
+        headers: {
+          Authorization: `Bearer ${authStore.token}`,
+        },
+      };
+    },
     async toggleWishlistItem(product) {
       try {
         const res = await $fetch(`/wishlist/${product._id}`, {
-          method: "POST",
+          method: "patch",
+          ...this.getAuthHeaders(),
         });
         await this.loadwishlistFromServer(); // Refresh list
       } catch (error) {
         console.error("Toggle wishlist failed:", error);
       }
     },
+   
+
     addToWishlist(product) {
       if (!this.items.find((item) => item.id === product.id)) {
         this.items.push(product);

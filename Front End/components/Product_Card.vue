@@ -34,6 +34,7 @@ import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCartStore } from '~/stores/cart';
 import { useWishlistStore } from '~/stores/wishlist';
+
 import { useAuthStore } from "~/stores/auth";
 
 const router = useRouter();
@@ -99,9 +100,7 @@ const removeFromCart = (e) => {
 </script>
 
 <template>
-  <div
-    class="flex flex-col items-center justify-center lg:gap-2 gap-1.5 group"
-  >
+  <div class="flex flex-col items-center justify-center lg:gap-2 gap-1.5 group">
     <div
       class="relative lg:w-64 w-44 lg:h-64 h-40 lg:rounded-[42.35px] bg-[#D9D9D9] flex-shrink-0 aspect-square 
          rounded-3xl"
@@ -111,7 +110,7 @@ const removeFromCart = (e) => {
         <!-- ❤️ Filled -->
         <div
           v-if="isFavorite"
-          @click="toggleFavorite($event)"
+          @click="toggleWishlistItem($event)"
           class="lg:w-8 w-6 lg:h-8 h-6 bg-orange-100 group-hover:bg-red-800 group-hover:rounded-[50px] rounded-[9.53px] flex items-center justify-center z-10 absolute pointer-events-auto lg:top-3 lg:right-3 top-2 right-2 cursor-pointer outline-1 outline-offset-[-1px] outline-red-800 transition-all duration-300"
         >
           <i
@@ -132,7 +131,7 @@ const removeFromCart = (e) => {
       </div>
 
       <img
-       @click="navigateToProduct(id)"
+        @click="navigateToProduct(id)"
         :src="image"
         class="lg:w-64 w-44 lg:h-64 h-40 lg:rounded-[40px] rounded-[25.197px] cursor-pointer"
       />
@@ -142,7 +141,7 @@ const removeFromCart = (e) => {
         v-if="showAddedMessage&&isAuthenticated"
         class="message-notification absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-2 py-1 rounded-full text-xs lg:text-sm animate-fade-in-out"
       >
-       Added to cart!
+        Added to cart!
       </div>
     </div>
 
@@ -151,7 +150,7 @@ const removeFromCart = (e) => {
     >
       <div class="flex flex-col  gap-0.5 justify-start items-start">
         <p
-         @click="navigateToProduct(id)"
+          @click="navigateToProduct(id)"
           class="lg:text-xl lg:tracking-[-0.342px] font-bold leading-7 text-xs font-['Poppins'] cursor-pointer text-red-800 "
         >
           {{ title }}
