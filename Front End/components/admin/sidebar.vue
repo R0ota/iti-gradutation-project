@@ -9,14 +9,15 @@
 <template>
   <!-- sidebar -->
   <div
-    :class="['h-screen bg-red-900 p-4 pt-6 flex flex-col items-start justify-between transition-all duration-300 relative',
+    :class="['h-screen bg-red-900 p-4 pt-6 flex flex-col items-start justify-between transition-all duration-300 sticky top-0',
       isCollapsed ? 'w-[7%]' : 'w-[15%]'
     ]"
   >
-  <!-- close icon -->
+  <div class="relative"> 
+
     <div
     @click="toggleState"
-      class="border-3 border-red-900 rounded-[35px] w-8 h-8 absolute right-[-10px] flex justify-center items-center bg-orange-100 cursor-pointer"
+      class="border-3 border-red-900 rounded-[35px] w-8 h-8 absolute right-[-35px] flex justify-center items-center bg-orange-100 cursor-pointer"
     >
       <i :class="['fa-solid  text-red-900',
         isCollapsed ? 'fa-angle-right' : 'fa-angle-left'
@@ -25,9 +26,9 @@
 
     <div class="flex flex-col gap-10">
       <!-- logo -->
-      <div class="flex justify-center items-center w-13 h-13">
+      <NuxtLink to="/" class="flex justify-center items-center w-13 h-13">
         <img src="~/assets/Light_Logo.svg" class="w-12 h-11" />
-      </div>
+      </NuxtLink>
       <!-- <img src="/Dashboard-light.svg" class="w-10 h-10" /> -->
       <!-- main -->
       <div class="flex flex-col gap-1">
@@ -91,4 +92,8 @@
     <AdminPageRoutes path="/sign-up" baseIcon="/admin/Log out.svg" title="Log out"  :collapsed="isCollapsed">
     </AdminPageRoutes>
   </div>
+  </div>
+  <!-- close icon -->
+   
+   
 </template>

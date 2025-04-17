@@ -176,9 +176,9 @@ const formatDate = (isoString) => {
           <td :class="bodyClasses"> #{{ design._id.slice(0, 4) }}...{{ design._id.slice(-4) }}</td>
           <td :class="bodyClasses"><img :src=" design.image "/></td>
           <td :class="bodyClasses">{{ design.title }}</td>
-          <td :class="bodyClasses">{{ design.category.slice(0, 4) }}...{{ design.category.slice(-4) }}</td>
+          <td :class="bodyClasses">{{ design.category}}</td>
           <td :class="bodyClasses">{{ design.admin }}</td>
-          <td :class="bodyClasses">{{ formatDate(design.date) }}</td>
+          <td :class="bodyClasses">{{ formatDate(design.createdAt) }}</td>
           <td class="flex-1/2 text-center px-2 py-1">
             <!-- dropdown -->
             <select

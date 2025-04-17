@@ -2,24 +2,30 @@
 definePageMeta({
   layout: "admin",
 });
+
+
 </script>
 
 <template>
-  <div class="flex flex-col gap-8 m-[30px] ml-[250px] w-[80%]">
+  <div class="flex flex-col gap-6 m-[30px]  w-[80%]">
     <!-- Section title -->
     <SectionTitle title="Dashboard" />
-
-    <!--  Stat Cards Row -->
-    <div class="flex gap-6 flex-wrap mt-6">
+<div class="flex flex-col gap-6 ">
+   <!--  Stat Cards Row -->
+   <div class="flex gap-8 flex-wrap ">
       <AdminStatCard title="Visitors" :value="1250" />
+      <!-- designs -->
       <AdminStatCard title="Designs" :value="320" />
       <AdminStatCard title="Total Selling" :value="300000" />
     </div>
 
     <!--  Revenue Chart + Top Products Row -->
-    <div class="flex flex-wrap gap-8 mt-8">
-      <AdminRevenueCard />
+    <div class="flex flex-wrap gap-12 ">
+      <!-- <AdminRevenueCard /> -->
+       <img src="/admin/dashboard.jpg" />
       <AdminTopSellingProducts />
     </div>
+</div>
+   
   </div>
 </template>

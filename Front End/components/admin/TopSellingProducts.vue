@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-96 p-6 bg-yellow-50 rounded-3xl  outline-2 outline-offset-[-2px] outline-red-800 flex flex-col gap-8"
+    class="w-112 p-6 bg-yellow-50 rounded-3xl  outline-2 outline-offset-[-2px] outline-red-800 flex flex-col gap-8"
   >
     <SectionTitle title="Top selling Products" />
 
