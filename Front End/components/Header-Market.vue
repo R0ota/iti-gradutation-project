@@ -114,7 +114,8 @@
         </NuxtLink>
 
         <!--Favorite -->
-        <NuxtLink
+        <NuxtLink 
+        v-if='isAuthenticated'
           to="/favorite"
           :class="[
             'relative flex items-center justify-between cursor-pointer group px-4 py-2.5 transition-all duration-300 hover:rounded-full hover:bg-orange-100 hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]',
@@ -150,6 +151,7 @@
 
         <!-- cart -->
         <NuxtLink
+        v-if='isAuthenticated'
           to="/cart"
           :class="[
             baseClasses,
@@ -215,7 +217,7 @@
           class="px-[8px] py-[5px]  flex flex-col items-center justify-center]"
         >
           <p class="text-black text-xs font-medium">Hello</p>
-          <p class="text-red-900 text-xs font-extrabold">Nour</p>
+          <p class="text-red-800 text-xs font-extrabold">{{ authStore.user.name }}</p>
         </NuxtLink>
         <!-- Logout Button -->
         <button
@@ -264,6 +266,7 @@
 
         <!-- Favorite -->
         <NuxtLink
+        v-if='isAuthenticated'
           to="/favorite"
           @click="closeMobileMenu"
           :class="[
@@ -301,6 +304,7 @@
 
         <!-- Cart -->
         <NuxtLink
+        v-if='isAuthenticated'
           to="/cart"
           class="flex items-center gap-2 text-red-900"
           @click="closeMobileMenu"
@@ -340,7 +344,7 @@
             @click="closeMobileMenu"
             class="text-[#A31D1D] font-medium hover:underline"
           >
-            Hello, Nour
+          Hello, {{ authStore.user.name }}
           </NuxtLink>
           <button
             @click="handleLogout"
@@ -399,5 +403,8 @@ const closeMobileMenu = () => {
 };
 
 const baseClasses = `px-3.5 py-2 flex justify-center items-center gap-1 transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]`;
-const hoverClasses =`border-b-[2px] border-red-800 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)] `;
+const hoverClasses =`border-b-[2px] border-red-800 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)] hover:outline-red-800 hover:outline-[1.50px] hover:outline-offset-[-1.50px]`;
+
+console.log("auth store", authStore.user);
+
 </script>

@@ -69,7 +69,7 @@
           Total Price
         </p>
         <p class="text-black text-lg lg:font-bold font-semibold">
-          {{ totalPrice + selectedShipping.price }} EGP
+          {{ totalPrice }} EGP
         </p>
       </div>
     </div>
@@ -84,7 +84,7 @@
 </template>
 
 <script setup>
-defineProps({
+const props=defineProps({
   totalItems: {
     type: Number,
     required: true
@@ -111,4 +111,8 @@ const selectedShipping = computed(() => {
 });
 
 defineEmits(['checkout']);
+
+const totalPrice = computed(() => {
+  return (props.totalPrice + selectedShipping.value.price).toFixed(2);
+});
 </script>

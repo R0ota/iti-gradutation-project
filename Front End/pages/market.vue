@@ -8,6 +8,7 @@ definePageMeta({
 import { computed, onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useProductsStore } from "~/stores/products";
+import {usedesignedProductsStore} from "~/stores/designedProduct";
 import { useSearchStore } from '~/stores/search';
 
 const searchStore = useSearchStore();
@@ -15,33 +16,21 @@ const searchStore = useSearchStore();
 const router = useRouter();
 const productsStore = useProductsStore();
 
+const designedProductsStore = usedesignedProductsStore();
+
+
 // Fetch products on component mount
 onMounted(async () => {
+  await productsStore.fetchCategories();
   await productsStore.fetchProducts();
-});
-const filteredProducts = computed(() => {
-  const query = searchStore.text?.toLowerCase().trim();
-
-  if (!query) return productsStore.getAllProducts;
-
-  const words = query.split(/\s+/);
-
-  return productsStore.getAllProducts.filter(product => {
-    const name = product.name?.toLowerCase() || '';
-
-    return words.some(word => name.includes(word));
-  });
+  await designedProductsStore.fetchdesignedProducts();
 });
 
-// no result for seaarch
-watch(filteredProducts, (newResults) => {
-  if (searchStore.text && newResults.length === 0) {
-    router.push('/status/search-fail');
-  }  
-});
+// Get all products from the store
+const allDesignedProducts = computed(() => designedProductsStore.getAlldesignedProducts);
 
-// Get all products
-const products = computed(() => productsStore.getAllProducts);
+console.log("All Products:", allDesignedProducts.value);
+
 
 // Get categories
 const categories = computed(() => productsStore.getAllCategories);
@@ -106,14 +95,14 @@ const navigateToCategory = (categoryName) => {
       class="flex flex-row lg:flex-wrap lg:justify-start overflow-x-auto gap-4"
     >
       <div
-        v-for="product in filteredProducts"
+        v-for="product in allDesignedProducts.slice(0, 4)"
         :key="product._id"
         v-bind="product"
         class="flex"
       >
         <ProductCard
           :id="product._id"
-          :name="product.name"
+          :title="product.title"
           :type="product.category"
           :description="product.description"
           :price="product.price"

@@ -1,5 +1,7 @@
 import { useAuthStore } from "~/stores/auth";
 import { getBaseURL } from "./helpers";
+import { useCartStore } from "~/stores/cart";
+import { useWishlistStore } from "~/stores/wishlist";
 
 export function useAuth() {
   const authStore = useAuthStore();
@@ -11,7 +13,7 @@ export function useAuth() {
     authStore.setError(null);
 
     try {
-      const res = await $fetch(`${getBaseURL()}/login`, {
+      const res = await $fetch(`${getBaseURL()}/auth/login`, {
         method: "POST",
         body: credentials,
       });
@@ -38,7 +40,7 @@ export function useAuth() {
     try {
       const baseURL = getBaseURL();
 
-      const res = await $fetch(`${baseURL}/signup`, {
+      const res = await $fetch(`${baseURL}/auth/signup`, {
         method: "POST",
         body: credentials,
       });
@@ -59,6 +61,15 @@ export function useAuth() {
 
   // Logout function
   function logout() {
+    // localStorage.removeItem("cart_items");
+    // localStorage.removeItem("wishlist");
+
+    const cartStore = useCartStore();
+    cartStore.clearCart();
+  
+    const wishlistStore = useWishlistStore();
+    wishlistStore.clearWishlist();
+
     authStore.clearAuth();
     router.push("/");
   }
