@@ -41,10 +41,10 @@ const handleSubmit = async () => {
         >
           <div classs=" flex justify-start items-center ">
             <div
-              class="px-6 border-l-[6px] border-red-800 flex justify-start items-center"
+              class="px-6 border-l-[6px] border-red-900 flex justify-start items-center"
             >
               <p
-                class="text-red-800 lg:text-3xl text-2xl font-bold leading-loose lg:leading-[48px]"
+                class="text-red-900 lg:text-3xl text-2xl font-bold leading-loose lg:leading-[48px]"
               >
                 Forgot Password
               </p>
@@ -68,7 +68,7 @@ const handleSubmit = async () => {
           >
             <label
               for="email"
-              class="px-2 jaustify-center items-start text-red-800 text-lg font-medium leading-relaxed"
+              class="px-2 jaustify-center items-start text-red-900 text-lg font-medium leading-relaxed"
               >Email</label
             >
             <input
@@ -76,14 +76,14 @@ const handleSubmit = async () => {
               type="email"
               placeholder="'example@gmail.com'"
               id="email"
-              class="w-full placeholder:text-red-800 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-800 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-800 inline-flex justify-start items-center"
+              class="w-full placeholder:text-red-900 placeholder:opacity-50 placeholder:text-m font-medium p-3 text-red-900 bg-yellow-50 rounded-2xl outline outline-offset-[-1px] outline-red-900 inline-flex justify-start items-center"
             />
           </div>
           <div
             class="w-full flex flex-col justify-center items-center gap-2 lg:p-0"
           >
             <button
-              :class="isFormValid ? 'bg-red-800' : 'bg-[#C7C7C7] cursor-not-allowed'"
+              :class="isFormValid ? 'bg-red-900' : 'bg-[#C7C7C7] cursor-not-allowed'"
               class="w-80 h-13 py-3  rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center text-yellow-50 text-lg font-bold cursor-pointer"
               :disabled="!isFormValid"
             >

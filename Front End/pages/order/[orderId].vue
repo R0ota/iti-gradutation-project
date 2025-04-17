@@ -85,7 +85,7 @@ const shippingCost = 250;
 </script>
 
 <template>
-  <div class="relative lg:ml-[120px] ml-[25px] lg:mr-[120px] mr-[25px] pt-10 pb-20 flex flex-col justify-start items-start gap-10">
+  <div class="relative lg:px-32 px-4 pt-10 pb-20 flex flex-col justify-start items-start gap-10">
     <SectionTitle title="Ongoing Order" />
 
     <div v-if="loading">Loading order details...</div>
@@ -153,7 +153,7 @@ const shippingCost = 250;
         <!-- Invoice -->
         <div class="lg:w-[35%] px-4 py-10 bg-gradient-to-br from-red-800 to-red-950 rounded-[32px] flex flex-col justify-start items-start gap-6">
           <div class="px-6 border-l-[6px] border-orange-100 inline-flex justify-center items-center gap-2.5">
-            <div class="text-orange-100 text-2xl font-bold font-['Poppins']">Order Invoice</div>
+            <div class="text-orange-100 text-2xl font-bold">Order Invoice</div>
           </div>
 
           <div class="flex flex-col items-center gap-4 w-full">
@@ -176,8 +176,8 @@ const shippingCost = 250;
             <div class="outline-[2px] outline-offset-[-1.50px] outline-white w-full"></div>
 
             <div class="p-4 bg-orange-100 inline-flex justify-between items-center w-full">
-              <p class="text-red-800 text-lg font-bold font-['Poppins']">Total Payment</p>
-              <p class="text-red-800 text-lg font-bold font-['Poppins']">{{ (orderData.totalPrice + 250).toFixed(2) }} EGP</p>
+              <p class="text-red-900 text-lg font-bold ">Total Payment</p>
+              <p class="text-red-900 text-lg font-bold ">{{ (orderData.totalPrice + 250).toFixed(2) }} EGP</p>
             </div>
           </div>
         </div>

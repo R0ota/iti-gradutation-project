@@ -42,18 +42,18 @@ if (id.value) {
   navigateTo('/admin/design/designs')
 }
 
-const inputClasses ='px-4 py-3 flex items-start text-stone-900 text-lg font-medium font-[Poppins] placeholder:text-stone-900/75 placeholder:text-lg placeholder:font-medium placholder:font-[Poppins] bg-yellow-50 rounded-2xl outline-1 outline-offset-[-1px] outline-red-800 self-stretch w-full'
-const labelCasses ='px-2 text-red-900 text-xl font-[Poppins] font-medium'
+const inputClasses ='px-4 py-3 flex items-start text-stone-900 text-lg font-medium placeholder:text-stone-900/75 placeholder:text-lg placeholder:font-medium bg-yellow-50 rounded-2xl outline-1 outline-offset-[-1px] outline-red-900 self-stretch w-full'
+const labelCasses ='px-2 text-red-900 text-xl font-medium'
 </script>
 <template>
   <div
-    class="flex justify-between items-center m-[30px] ml-[250px] fixed w-[77%]"
+    class="flex justify-between items-center m-[30px] w-[77%]"
   >
     <div class="flex items-center justify-center flex-1">
         <!-- upload design -->
       <div class="flex flex-col items-center justify-center gap-4 h-screen">
         <img src="/admin/upload.png"/>
-        <p href="#" class="text-black text-base font-semibold font-['Poppins']" >
+        <p href="#" class="text-black text-base font-semibold " >
           Image Link
         </p>
       </div>
@@ -102,12 +102,12 @@ const labelCasses ='px-2 text-red-900 text-xl font-[Poppins] font-medium'
       <!-- action btns -->
        <div class="flex justify-end gap-4 w-full">
         <button
-         class="text-red-900 text-lg font-semibold font-['Poppins'] cursor-pointer px-4 py-1.5  bg-white rounded-xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] outline-[1.50px] outline-offset-[-1.50px] outline-red-900">
+         class="text-red-900 text-lg font-semibold cursor-pointer px-4 py-1.5  bg-white rounded-xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] outline-[1.50px] outline-offset-[-1.50px] outline-red-900">
             Cancel
         </button>
         <button
          @click.prevent="saveDesign" 
-         class="text-yellow-50 text-lg font-semibold font-['Poppins'] cursor-pointer px-4 py-1.5  bg-red-900 rounded-xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] ">
+         class="text-yellow-50 text-lg font-semibold cursor-pointer px-4 py-1.5  bg-red-900 rounded-xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] ">
            Save
         </button>
        </div>

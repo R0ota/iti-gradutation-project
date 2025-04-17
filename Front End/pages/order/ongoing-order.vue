@@ -36,7 +36,7 @@ onMounted(async () => {
 
 <template>
   <div
-    class="lg:ml-[120px] ml-[25px] lg:mr-[120px] mr-[25px] pt-10 pb-20 flex flex-col justify-start lg:items-start sm:items-start md:items-start items-center lg:gap-10 gap-4"
+    class="lg:px-32 px-4 pt-10 pb-20 flex flex-col justify-start lg:items-start sm:items-start md:items-start items-center lg:gap-10 gap-4"
   >
     <OrderNvegation />
 

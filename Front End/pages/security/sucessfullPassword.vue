@@ -9,7 +9,7 @@
       >
         <div classs=" flex justify-start items-center ">
           <p
-            class="text-red-800 lg:text-3xl text-2xl font-bold leading-loose lg:leading-[48px]"
+            class="text-red-900 lg:text-3xl text-2xl font-bold leading-loose lg:leading-[48px]"
           >
             Password Changed Successfully
           </p>
@@ -26,7 +26,7 @@
       >
         <NuxtLink to="/login">
           <button
-            class="w-80 h-13 py-3 bg-red-800 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center text-yellow-50 text-lg font-bold cursor-pointer"
+            class="w-80 h-13 py-3 bg-red-900 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center text-yellow-50 text-lg font-bold cursor-pointer"
           >
             Back to Log in
           </button>

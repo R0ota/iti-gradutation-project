@@ -77,9 +77,9 @@ const statusClass = (status) => {
 };
 
 // style thead & tbody
-const headClasses = `flex-1/2 py-1 px-1.5 text-red-900 font-semibold font-['Poppins'] text-lg w-full`;
+const headClasses = `flex-1/2 py-1 px-1.5 text-red-900 font-semibold text-lg w-full`;
 
-const bodyClasses = `flex-1/2 text-center py-1 px-1.5 text-black font-['Poppins'] font-medium text-sm w-full`;
+const bodyClasses = `flex-1/2 text-center py-1 px-1.5 text-black font-medium text-sm w-full`;
 
 import { ref, computed } from "vue";
 
@@ -139,7 +139,7 @@ const updateStatus = (orderId, newStatus) => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-8 m-[30px] ml-[250px] fixed w-[77%]">
+  <div class="flex flex-col gap-8 m-[30px] w-[77%]">
     <!-- header -->
     <div class="flex items-center justify-between w-full">
       <AdminTitle route="Orders" />
@@ -152,7 +152,7 @@ const updateStatus = (orderId, newStatus) => {
     <table class="flex flex-col gap-4 w-full">
       <thead>
         <tr
-          class="flex items-center justify-between gap-2 py-2 border-b-2 border-red-800"
+          class="flex items-center justify-between gap-2 py-2 border-b-2 border-red-900"
         >
           <!-- select icon -->
           <th>
@@ -180,7 +180,7 @@ const updateStatus = (orderId, newStatus) => {
             <i
               v-if="isSelect"
               @click="deleteAll"
-              class="fa-solid fa-trash text-red-800 cursor-pointer"
+              class="fa-solid fa-trash text-red-900 cursor-pointer"
             ></i>
           </th>
         </tr>
@@ -214,7 +214,7 @@ const updateStatus = (orderId, newStatus) => {
             <!-- span state -->
             <span
               v-if="order.status === 'Reviewing' || order.status === 'Rejected'"
-              class="flex-1/2 text-center flex gap-1 items-center rounded-[20px] justify-center font-['Poppins'] font-medium text-sm px-2 py-1"
+              class="flex-1/2 text-center flex gap-1 items-center rounded-[20px] justify-center font-medium text-sm px-2 py-1"
               :class="statusClass(order.status)"
             >
               {{ order.status }}
@@ -258,7 +258,7 @@ const updateStatus = (orderId, newStatus) => {
                 updateStatus(order.id, 'Rejected');
                 order.rejected = true;
               "
-              class="bg-[#FFBFBC] text-[#D60000] font-['Poppins'] font-medium text-sm px-2 py-1 text-center rounded-[20px] cursor-pointer"
+              class="bg-[#FFBFBC] text-red-900 font-medium text-sm px-2 py-1 text-center rounded-[20px] cursor-pointer"
             >
               Reject
             </button>
@@ -267,7 +267,7 @@ const updateStatus = (orderId, newStatus) => {
           <td class="flex-1">
             <i
               @click="deleteOrder(order.id)"
-              class="fa-solid fa-trash text-red-800 cursor-pointer"
+              class="fa-solid fa-trash text-red-900 cursor-pointer"
             ></i>
           </td>
         </tr>
