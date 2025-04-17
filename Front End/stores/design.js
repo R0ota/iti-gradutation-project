@@ -1,6 +1,4 @@
 
-
-
 import { defineStore } from "pinia";
 import { getBaseURL } from '~/composables/helpers';
 

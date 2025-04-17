@@ -4,7 +4,7 @@
   >
     <!-- Price display -->
     <p
-      class=" justify-start text-red-800 lg:text-3xl text-2xl font-semibold lg:leading-10 leading-9"
+      class=" justify-start text-red-800 lg:text-3xl text-2xl font-semibold lg:leading-10 leading-9"
     >
       ${{ price.toFixed(2) }}
     </p>
@@ -12,7 +12,7 @@
     <!-- Add to cart button -->
     <button
       @click="isAuthenticated && $emit('addToCart'); toggleState()"
-      class="lg:text-lg text-sm font-bold leading-relaxed cursor-pointer inline-flex w-full items-center justify-center gap-4 h-14 py-3.5 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]"
+      class="lg:text-lg text-sm font-bold font-['Poppins'] leading-relaxed cursor-pointer inline-flex w-full items-center justify-center gap-4 h-14 py-3.5 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]"
       :disabled="!inStock"
       :class="[ 
     { 'opacity-50 cursor-not-allowed': !inStock },
