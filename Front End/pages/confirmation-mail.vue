@@ -32,10 +32,10 @@ const handleResend = async () => {
       >
         <div classs=" flex justify-start items-center ">
           <div
-            class="px-6 border-l-[6px] border-red-800 flex justify-start items-center"
+            class="px-6 border-l-[6px] border-red-900 flex justify-start items-center"
           >
             <p
-              class="text-red-800 lg:text-3xl text-2xl font-bold leading-loose lg:leading-[48px]"
+              class="text-red-900 lg:text-3xl text-2xl font-bold leading-loose lg:leading-[48px]"
             >
               Check your email
             </p>

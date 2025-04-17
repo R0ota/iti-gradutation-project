@@ -29,21 +29,21 @@ const imgSrc = computed(() => {
     <div class="flex lg:py-[1.5px] py-[1px] lg:gap-2 gap-1 items-center">
       <i
         v-if="isDone"
-        class="fa-solid fa-circle-check text-red-800 "
+        class="fa-solid fa-circle-check text-red-900 "
       ></i>
 
       <i
         v-else-if="!isActive"
         
-       class="fa-regular fa-circle text-red-800 ">
+       class="fa-regular fa-circle text-red-900 ">
       </i>
 
       <i
         v-else
-        class="fa-regular fa-circle-dot text-red-800 cursor-pointer"
+        class="fa-regular fa-circle-dot text-red-900 cursor-pointer"
       ></i>
 
-      <p class="text-red-800 lg:text-base text-xs font-bold font-['Poppins'] w-full">
+      <p class="text-red-900 lg:text-base text-xs font-bold w-full">
         {{ isDone ? finalStatus : currentStatus }}
       </p>
     </div>

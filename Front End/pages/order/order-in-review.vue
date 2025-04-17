@@ -38,7 +38,7 @@ const handleScroll = () => {
 
 <template>
   <div
-    class="relative lg:ml-[120px] ml-[25px] lg:mr-[120px] mr-[25px] pt-10 pb-20 flex flex-col justify-start items-start gap-10"
+    class="relative lg:px-32 px-4 pt-10 pb-20 flex flex-col justify-start items-start gap-10"
   >
     <SectionTitle title="Ongoing Order" />
     <div class="w-full flex items-center justify-center lg:gap-4 gap-1.5">
@@ -93,13 +93,13 @@ const handleScroll = () => {
       </div>
 
       <div
-        class="lg:w-[35%] px-4 py-10 bg-gradient-to-br from-red-800 to-red-950 rounded-[32px] flex flex-col justify-start items-start gap-6"
+        class="lg:w-[35%] px-4 py-10 bg-gradient-to-br from-red-900 to-red-950 rounded-[32px] flex flex-col justify-start items-start gap-6"
       >
         <div
           class="px-6 border-l-[6px] border-orange-100 inline-flex justify-center items-center gap-2.5"
         >
           <div
-            class="justify-start text-orange-100 text-2xl font-bold font-['Poppins']"
+            class="justify-start text-orange-100 text-2xl font-bold "
           >
             Order Invoice
           </div>
@@ -138,10 +138,10 @@ const handleScroll = () => {
           <div
             class="p-4 bg-orange-100 inline-flex justify-between items-center w-full"
           >
-            <p class="text-red-800 text-lg font-bold font-['Poppins']">
+            <p class="text-red-900 text-lg font-bold ">
               Total Payment
             </p>
-            <p class="text-red-800 text-lg font-bold font-['Poppins']">
+            <p class="text-red-900 text-lg font-bold">
               900 EGP
             </p>
           </div>

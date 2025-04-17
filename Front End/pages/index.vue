@@ -9,23 +9,17 @@ definePageMeta({
     <!-- hero section -->
     <div class="flex items-center justify-center lg:px-32 px-12 lg:py-24 py-10">
       <div class="flex flex-col gap-8 items-center justify-center w-[100%]">
-        <!-- <div
-          class="flex w-full lg:gap-4 gap-1.5 flex-col justify-center items-center text-center"
+        <div
+          class="flex w-full flex-col justify-center items-center text-center gap-2 px-4"
         >
-          <span class="text-black lg:text-5xl text-2xl font-bold w-full">
-            <span class="text-red-800">Tabie</span>, Your Favorite Products,
-          </span>
-          <span class="text-black lg:text-5xl text-2xl font-bold w-full">
+          <p class="text-black lg:text-5xl text-2xl font-bold">
+            <span class="text-red-800">Tabie</span>, Your
+            Favorite&nbsp;Products,
+          </p>
+          <p class="text-black lg:text-5xl text-2xl font-bold">
             Now with Unique Designs.
-          </span>
-        </div> -->
-        <div class="flex w-full flex-col justify-center items-center text-center gap-2 px-4">
-  <p class="text-black lg:text-5xl text-2xl font-bold">
-    <span class="text-red-800">Tabie</span>, Your Favorite&nbsp;Products,
-  </p>
-  <p class="text-black lg:text-5xl text-2xl font-bold ">Now with Unique Designs.
-  </p>
-</div>
+          </p>
+        </div>
 
         <!-- shopping btn -->
         <NuxtLink

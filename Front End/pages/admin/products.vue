@@ -52,9 +52,9 @@ const products = ref([
 ]);
 
 // style thead & tbody
-const headClasses = `flex-1/2 py-1 px-1.5 text-red-900 font-semibold font-['Poppins'] text-lg w-full`;
+const headClasses = `flex-1/2 py-1 px-1.5 text-red-900 font-semibold text-lg w-full`;
 
-const bodyClasses = `flex-1/2 text-center py-1 px-1.5 text-black font-['Poppins'] font-medium text-sm w-full`;
+const bodyClasses = `flex-1/2 text-center py-1 px-1.5 text-black font-medium text-sm w-full`;
 
 import { ref, computed } from "vue";
 
@@ -107,7 +107,7 @@ const deleteAll = () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-8 m-[30px] ml-[250px] fixed w-[77%]">
+  <div class="flex flex-col gap-8 m-[30px]  w-[77%]">
     <!-- header -->
     <div class="flex items-center justify-between w-full">
       <AdminTitle route="Products" />
@@ -121,7 +121,7 @@ const deleteAll = () => {
     <table class="flex flex-col gap-4 w-full">
       <thead>
         <tr
-          class="flex items-center justify-between gap-2 py-2 border-b-2 border-red-800"
+          class="flex items-center justify-between gap-2 py-2 border-b-2 border-red-900"
         >
           <!-- select icon -->
           <th>
@@ -147,7 +147,7 @@ const deleteAll = () => {
             <i
               v-if="isSelect"
               @click="deleteAll"
-              class="fa-solid fa-trash text-red-800 cursor-pointer"
+              class="fa-solid fa-trash text-red-900 cursor-pointer"
             ></i>
           </th>
         </tr>
@@ -182,7 +182,7 @@ const deleteAll = () => {
           <td class="flex-1">
             <i
               @click="deleteUser(product.id)"
-              class="fa-solid fa-trash text-red-800 cursor-pointer"
+              class="fa-solid fa-trash text-red-900 cursor-pointer"
             ></i>
           </td>
         </tr>

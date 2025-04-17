@@ -14,7 +14,7 @@ definePageMeta({
                 <P class="text-black text-xl font-medium leading-loose">
                     You have no orders yet.
                 </P>
-                <NuxtLink to="/market" class="cursor-pointer px-6 py-2 text-red-800 text-lg font-bold leading-relaxed">
+                <NuxtLink to="/market" class="cursor-pointer px-6 py-2 text-red-900 text-lg font-bold leading-relaxed">
                     Go Shopping
                 </NuxtLink>
             </div>

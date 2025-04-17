@@ -72,13 +72,13 @@ const formattedCategory = computed(() => {
   <div
     class="lg:px-32 lg:mt-[40px] mt-[20px] lg:gap-[32px] flex flex-col gap-[24px] px-4"
   >
-    <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center">
+    <div class="px-6 border-l-[6px] border-red-900 inline-flex items-center">
       <p
-        class="justify-start text-red-800 lg:text-3xl text-xl font-bold leading-loose lg:leading-[48px]"
+        class="justify-start text-red-900 lg:text-3xl text-xl font-bold leading-loose lg:leading-[48px]"
       >
         Market
         <span
-          class="px-2 bg-red-800 inline-flex justify-center items-center text-white lg:text-2xl text-xl font-bold leading-9"
+          class="px-2 bg-red-900 inline-flex justify-center items-center text-white lg:text-2xl text-xl font-bold leading-9"
         >
           {{ formattedCategory }}
         </span>
