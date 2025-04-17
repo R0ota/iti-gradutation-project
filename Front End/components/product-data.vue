@@ -21,12 +21,6 @@ console.log("Item:", props.item);
           {{ item.title }}
         </p>
         <p
-          v-if="item.type"
-          class="text-black lg:text-sm font-xs font-medium lg:leading-tight"
-        >
-          Type: {{ item.type }}
-        </p>
-        <p
           v-if="item.size"
           class="text-black lg:text-sm font-xs font-medium lg:leading-tight"
         >

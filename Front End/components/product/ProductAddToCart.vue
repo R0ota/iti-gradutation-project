@@ -67,12 +67,6 @@
     >
       Added to cart successfully!
     </div>
-    <div
-      v-if="!isAuthenticated && showErrorMessage"
-      class="mt-4 p-2 bg-green-100 text-red-800 rounded-md text-center"
-    >
-      you need to login first!
-    </div>
   </div>
 </template>
 
@@ -123,7 +117,9 @@ defineEmits(['addToCart']);
 
 import { useCartStore } from '@/stores/cart';
 import { useAuthStore } from "~/stores/auth";
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const cart = useCartStore();
 const authStore = useAuthStore();
 
@@ -131,6 +127,7 @@ const isAuthenticated = computed(() => authStore.isAuthenticated);
 
 function handleAddToCart(product) {
   if (!isAuthenticated.value) {
+    router.push('/login');
     return;
   } else{
     cart.addItem(product, 1);

@@ -4,14 +4,33 @@ definePageMeta({
 });
 
 import { ref, computed } from "vue";
+import { useRoute,useRouter } from "vue-router";
+import { useAuth } from "~/composables/useAuth";
 
+const route = useRoute();
+const router = useRouter();
 const password = ref("");
 const confirmPassword = ref("");
 const showPassword = ref(false);
+const auth = useAuth();
+const successMessage = ref("");
 
 const isFormValid = computed(() =>
     password.value.length >= 8 && confirmPassword.value === password.value
 );
+const handleReset = async () => {
+  const token = route.query.token;
+  if (!token) {
+    auth.setError("Missing token in URL");
+    return;
+  }
+
+  const message = await auth.resetPassword(token, password.value);
+  if (message) {
+    successMessage.value = message;
+    setTimeout(() => router.push("/login"), 2000);
+  }
+};
 </script>
 <template>
   <div class="h-full flex items-center w-full">
@@ -49,6 +68,7 @@ const isFormValid = computed(() =>
 
         <form
           class="lg:w-full inline-flex flex-col justify-start items-start gap-10"
+          @submit.prevent="handleReset"
         >
           <div class="flex flex-col gap-4 w-full">
             <!-- new password -->

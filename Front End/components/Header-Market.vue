@@ -128,8 +128,7 @@
 
         <!--Favorite -->
         <NuxtLink 
-        v-if='isAuthenticated'
-          to="/favorite"
+          :to="isAuthenticated? '/favorite':'/login'"
           :class="[
             'relative flex items-center justify-between cursor-pointer group px-4 py-2.5 transition-all duration-300 hover:rounded-full hover:bg-orange-100 hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]',
             route.path === '/favorite' ? 'border-b-[2px] border-red-800' : '',
@@ -162,8 +161,7 @@
 
         <!-- cart -->
         <NuxtLink
-        v-if='isAuthenticated'
-          to="/cart"
+        :to="isAuthenticated? '/cart':'/login'"
           :class="[
             baseClasses,
             route.path === '/cart' ? hoverClasses : '',
@@ -268,8 +266,7 @@
 
         <!-- Favorite -->
         <NuxtLink
-        v-if='isAuthenticated'
-          to="/favorite"
+        :to="isAuthenticated? '/favorite':'/login'"
           @click="closeMobileMenu"
           :class="[
             'relative flex items-center justify-between cursor-pointer group px-4 py-2.5 transition-all duration-300 hover:rounded-full hover:bg-orange-100 hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]',
@@ -303,8 +300,7 @@
 
         <!-- Cart -->
         <NuxtLink
-        v-if='isAuthenticated'
-          to="/cart"
+        :to="isAuthenticated? '/cart':'/login'"
           class="flex items-center gap-2 text-red-800 font-[Poppins]"
           @click="closeMobileMenu"
         >
@@ -400,7 +396,5 @@ const closeMobileMenu = () => {
 
 const baseClasses = `px-3.5 py-2 flex justify-center items-center gap-1 transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]`;
 const hoverClasses =`border-b-[2px] border-red-800 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)] hover:outline-red-800 hover:outline-[1.50px] hover:outline-offset-[-1.50px]`;
-
-console.log("auth store", authStore.user);
 
 </script>

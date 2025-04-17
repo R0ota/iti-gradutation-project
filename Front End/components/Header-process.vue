@@ -25,7 +25,7 @@
     baseClasses,
     (route.path === '/security/changePassword' ||
      route.path === '/security/newPassword' ||
-     route.path === '/security/setting-create')
+     route.path === '/security/successfullPassword')
       ? activeClasses
       : ''
   ]"

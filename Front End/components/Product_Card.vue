@@ -53,8 +53,7 @@ const toggleFavorite = (e) => {
   e.stopPropagation();
 
   if (!isAuthenticated.value) {
-    showAddedMessage.value = true;
-    setTimeout(() => (showAddedMessage.value = false), 2000);
+    router.push('/login');
     return;
   }
 
@@ -71,8 +70,7 @@ const toggleFavorite = (e) => {
 
 const addToCart = (e) => {
   if (!isAuthenticated.value) {
-    showAddedMessage.value = true;
-    setTimeout(() => (showAddedMessage.value = false), 2000);
+    router.push('/login');
     return;
   }
   e.stopPropagation();
@@ -175,7 +173,7 @@ const removeFromCart = (e) => {
         <div class="relative">
           <div
             v-if="isInCart"
-            @click="removeFromCart($event)"
+            @click="addToCart($event)"
             class="lg:w-8 w-6 lg:h-8 h-6 lg:rounded-xl rounded-lg bg-red-800 p-[3.29px] flex items-center justify-center transition-all duration-300 cursor-pointer"
           >
             <img
@@ -196,12 +194,12 @@ const removeFromCart = (e) => {
         </div>
       </div>
     </div>
-    <div
+    <!-- <div
       v-if="!isAuthenticated && showAddedMessage"
       class="mt-4 p-2 bg-green-100 text-red-800 rounded-md text-center"
     >
       you need to login first!
-    </div>
+    </div> -->
   </div>
 </template>
 

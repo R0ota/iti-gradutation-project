@@ -66,7 +66,7 @@ export function useAuth() {
 
     const cartStore = useCartStore();
     cartStore.clearCart();
-  
+
     const wishlistStore = useWishlistStore();
     wishlistStore.clearWishlist();
 
@@ -115,6 +115,103 @@ export function useAuth() {
       authStore.setLoading(false);
     }
   }
+  // Forget Password function
+  async function forgetPassword(email) {
+    authStore.setLoading(true);
+    authStore.setError(null);
+
+    try {
+      const res = await $fetch(`${getBaseURL()}/auth/forgetpassword`, {
+        method: "POST",
+        body: { email },
+      });
+
+      return res; // { message: "Password reset link sent" }
+    } catch (error) {
+      authStore.setError(error.message || "Failed to send reset link");
+      throw error;
+    } finally {
+      authStore.setLoading(false);
+    }
+  }
+  async function resetPassword(token, newPassword) {
+    authStore.setLoading(true);
+    authStore.setError(null);
+    try {
+      const response = await fetch(
+        `${getBaseURL()}/auth/resetpassword?token=${token}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ newPassword }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Reset failed");
+      }
+
+      return data.message;
+    } catch (err) {
+      authStore.setError(err.message);
+      return null;
+    } finally {
+      authStore.setLoading(false);
+    }
+  }
+
+  async function checkOldPassword(oldPassword) {
+    authStore.setLoading(true);
+    authStore.setError(null);
+
+    try {
+      const baseURL = getBaseURL();
+      const token = authStore.token;
+
+      const res = await $fetch(`${baseURL}/auth/check-old-password`, {
+        method: "POST",
+        body: { oldPassword },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return res.message; // { message: "Old password is correct" }
+    } catch (error) {
+      authStore.setError(error.message || "Invalid password");
+      throw error;
+    } finally {
+      authStore.setLoading(false);
+    }
+  }
+  async function updatePassword(newPassword) {
+    authStore.setLoading(true);
+    authStore.setError(null);
+
+    try {
+      const token = authStore.token;
+      const res = await $fetch(`${getBaseURL()}/auth/change-password`, {
+        method: "patch",
+        body: {
+          newPassword,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return res.message;
+    } catch (err) {
+      authStore.setError(err.message || "Password update failed");
+      throw err;
+    } finally {
+      authStore.setLoading(false);
+    }
+  }
 
   return {
     login,
@@ -123,6 +220,10 @@ export function useAuth() {
     checkAuth,
     getUser,
     updateProfile,
+    forgetPassword,
+    resetPassword,
+    checkOldPassword,
+    updatePassword,
     loading: authStore.loading,
     error: authStore.error,
     isAuthenticated: authStore.isAuthenticated,

@@ -96,7 +96,8 @@
             class="w-full flex flex-col justify-center items-center gap-2 lg:p-0"
           >
             <button
-              :class="isFormValid ? 'bg-red-800' : 'bg-gray-400 cursor-not-allowed'"
+              @click.prevent="handleSubmit"
+              :class="isFormValid ? 'bg-red-800' : 'bg-[#C7C7C7] cursor-not-allowed'"
               class="w-80 h-13 py-3  rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center text-yellow-50 text-lg font-bold cursor-pointer"
               :disabled="!isFormValid"
             >
@@ -114,6 +115,8 @@ definePageMeta({
 });
 
 import { ref, computed } from "vue";
+const { updatePassword, error } = useAuth();
+const router = useRouter();
 
 const password = ref("");
 const confirmPassword = ref("");
@@ -122,4 +125,13 @@ const showPassword = ref(false);
 const isFormValid = computed(() => {
   return password.value.length >= 8 && confirmPassword.value === password.value;
 });
+const handleSubmit = async () => {
+  try {
+    await updatePassword(password.value);
+    alert("Password updated successfully!");
+    router.push("/security/sucessfullPassword");
+  } catch (err) {
+    alert( "Failed to update password");
+  }
+};
 </script>

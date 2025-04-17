@@ -30,7 +30,7 @@
     <!-- button remove -->
     <div class="flex justify-center items-start">
       <button
-        @click="$emit('remove', item.id)"
+        @click="$emit('remove', item.cartItemId)"
         class="w-8 h-8 flex justify-center items-center"
       >
         <img

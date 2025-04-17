@@ -4,12 +4,26 @@ definePageMeta({
 });
 
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const email = ref("");
 
 const isFormValid = computed(() => {
   return email.value.trim() !== "";
 });
+const { forgetPassword, loading, error } = useAuth();
+
+const handleSubmit = async () => {
+  try {
+    const res = await forgetPassword(email.value);
+    alert(res.message || "Check your inbox!");
+    router.push({ path: "/confirmation-mail", query: { email: email.value } });
+
+  } catch (err) {
+    alert(error.value || "Something went wrong.");
+  }
+};
 </script>
 <template>
   <div class="h-full flex items-center w-full">
@@ -46,6 +60,7 @@ const isFormValid = computed(() => {
         </div>
 
         <form
+          @submit.prevent="handleSubmit"
           class="lg:w-full inline-flex flex-col justify-start items-start gap-10"
         >
           <div

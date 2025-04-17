@@ -63,9 +63,10 @@
             class="w-full flex flex-col justify-center items-center gap-2 lg:p-0"
           >
             <button
-              :class="isFormValid ? 'bg-red-800' : 'bg-gray-400 cursor-not-allowed'"
+              :class="isFormValid ? 'bg-red-800' : 'bg-[#C7C7C7] cursor-not-allowed'"
               class="w-80 h-13 py-3  rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center text-yellow-50 text-lg font-bold cursor-pointer"
               :disabled="!isFormValid"
+              @click.prevent="handleSubmit"
             >
               Confirm Password
             </button>
@@ -81,6 +82,8 @@ definePageMeta({
 });
 
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const showPassword = ref(false);
 
 
@@ -89,4 +92,27 @@ const password = ref("");
 const isFormValid = computed(() => {
   return  password.value.length >= 8;
 });
+import { useAuth } from "~/composables/useAuth";
+
+const { checkOldPassword, error } = useAuth();
+
+// const handleSubmit = async () => {
+
+//   try {
+//     const msg = await checkOldPassword(password.value);
+//     alert(msg); // Handle success message or redirect
+//   } catch (err) {
+//     alert(error.value || "Password check failed");
+//   }
+// };
+
+
+const handleSubmit = async () => {
+  try {
+    const msg = await checkOldPassword(password.value);
+    router.push("/security/newPassword");
+  } catch (err) {
+    alert("Invalid password, please try again.");
+  }
+};
 </script>

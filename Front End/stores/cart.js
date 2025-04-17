@@ -50,9 +50,11 @@ export const useCartStore = defineStore("cart", {
       await this.syncRemoveItem(productId); // Sync with backend
       // this.saveCartToLocalStorage();
     },
-    async clearCart() {
+    async clearCart(type='db') {
       this.items = [];
-      await this.syncClearCart(); // Sync with backend
+      if(type == 'db'){
+        await this.syncClearCart(); // Sync with backend
+      } 
       // this.saveCartToLocalStorage();
     },
     isInCart(productId) {
@@ -153,6 +155,22 @@ export const useCartStore = defineStore("cart", {
         this.clearCart(); // use existing action
       } catch (error) {
         console.error("Clear cart failed:", error);
+      }
+    },
+
+    async createOrder(deliveryDate) {
+      try {
+        const res = await $fetch(`${getBaseURL()}/orders`, {
+          method: "POST",
+          body: {
+            paymentMethod: deliveryDate.paymentMethod,
+            deliveryAddress: deliveryDate.deliveryAddress,
+          },
+          ...this.getAuthHeaders(),
+        });
+        return res
+      } catch (error) {
+        console.error("Create order failed:", error);
       }
     },
   },
