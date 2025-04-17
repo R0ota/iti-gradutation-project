@@ -18,7 +18,6 @@ onMounted(async () => {
 });
 
 const designs = computed(() => designStore.getAlldesigns);
-// const loading = computed(() => designStore.loading);
 
 const statusClass = (status) => {
   switch (status) {

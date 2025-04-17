@@ -1,6 +1,6 @@
 <template>
   <div
-    class="px-6 py-4 bg-red-900/95 rounded-3xl flex flex-col items-start gap-4 w-[600px]"
+    class="px-6 py-2 bg-red-900/95 rounded-3xl flex flex-col items-start gap-4 w-[610px]"
   >
     <!-- Title and Value -->
     <div class="flex flex-col gap-2">
@@ -45,7 +45,7 @@
     </div>
 
     <!-- Chart mock background shapes -->
-    <div class="relative mt-4">
+    <!-- <div class="relative mt-4">
       <div
         class="absolute top-0 w-full h-44 opacity-20 bg-gradient-to-b from-blue-400 to-blue-400/0"
       ></div>
@@ -57,9 +57,9 @@
       ></div>
       <div
         class="absolute top-0 w-full h-56 outline-1 outline-green-600"
-      ></div>
+      ></div> -->
       <!-- Points -->
-      <div
+      <!-- <div
         class="absolute left-[80%] top-[20%] w-3 h-3 bg-orange-100 border border-green-600 rounded-full"
       ></div>
       <div
@@ -68,7 +68,7 @@
       <div
         class="absolute left-[30%] top-[60%] w-[5px] h-[5px] bg-sky-500 rounded-full"
       ></div>
-    </div>
+    </div> -->
   </div>
 </template>
 
