@@ -3,75 +3,29 @@ definePageMeta({
   layout: "admin",
 });
 
+import { onMounted } from "vue";
+import { useUserStore } from "~/stores/users";
 
-const users = ref([
-  {
-    id: "M2",
-    username: "Mohamed10",
-    fullname: "Mohamed Eldesouky",
-    email: "mohamed@gmail.com",
-    role: "User",
-    data: "20/8/2024",
-    status: "Active",
-    
-  },
-  {
-    id: "N1",
-    username: "Nour22",
-    fullname: "Nourhan Ali",
-    email: "nour@gmail.com",
-    role: "User",
-    data: "22/2/2022",
-    status: "Suspended",
-    
-  },
-  {
-    id: "R3",
-    username: "Reham30",
-    fullname: "Reham Mohamed",
-    email: "reham@gmail.com",
-    role: "User",
-    data: "25/2/2025",
-    status: "Active",
-    
-  },
-  {
-    id: "S5",
-    username: "Sayed50",
-    fullname: "Sayed Khalil",
-    email: "sayed@gmail.com",
-    role: "User",
-    data: "12/2/2025",
-    status: "Suspended",
-    
-  },
-  {
-    id: "A7",
-    username: "Ahmed70",
-    fullname: "Ahmed Adel",
-    email: "ahmed@gmail.com",
-    role: "User",
-    data: "02/04/2025",
-    status: "Suspended",
-    
-  },
-]);
+const userStore = useUserStore();
+const users = computed(() => userStore.users);
+
+onMounted(async () => {
+  await userStore.fetchAllUsers();
+});
 
 const statusClass = (status) => {
   switch (status) {
     case "Active":
-        return "bg-[#CCFFCC] text-[#01D001]";
+      return "bg-[#CCFFCC] text-[#01D001]";
     case "Suspended":
-        return "bg-[#FFBFBC] text-[#D60000] py-1";
+      return "bg-[#FFBFBC] text-[#D60000] py-1";
   }
 };
 
-
-
 // style thead & tbody
-const headClasses = `flex-1/2 py-1 px-1.5 text-red-900 font-semibold font-['Poppins'] text-lg w-full`;
+const headClasses = `flex-1/2 py-1 px-1.5 text-red-900 font-semibold  text-lg w-full`;
 
-const bodyClasses = `flex-1/2 text-center py-1 px-1.5 text-black font-['Poppins'] font-medium text-sm w-full`;
+const bodyClasses = `flex-1/2 text-center py-1 px-1.5 text-black font-medium text-sm w-full`;
 
 import { ref, computed } from "vue";
 
@@ -94,43 +48,35 @@ const toggleSelectAll = () => {
   if (selectAll.value) {
     selectedRows.value = [];
   } else {
-    selectedRows.value = users.value.map((user) => user.id);
+    selectedRows.value = users.value.map((user) => user._id);
   }
   selectAll.value = !selectAll.value;
 };
 
 // delete one
-const deleteUser = (id) => {
-  const index = users.value.findIndex((user) => user.id === id);
-  if (index !== -1) {
-    users.value.splice(index, 1);
-  }
+const deleteUser = async (id) => {
+  await userStore.deleteUser(id);
   selectedRows.value = selectedRows.value.filter((i) => i !== id);
 };
 
 // delete all
-const deleteAll = () => {
-  selectedRows.value.forEach((id) => {
-    const index = users.value.findIndex((user) => user.id === id);
-    if (index !== -1) {
-      users.value.splice(index, 1);
-    }
-  });
-
+const deleteAll = async () => {
+  for (const id of selectedRows.value) {
+    await userStore.deleteUser(id);
+  }
   selectedRows.value = [];
   selectAll.value = false;
 };
-
 </script>
 
 <template>
   <div class="flex flex-col gap-8 m-[30px] ml-[250px] fixed w-[77%]">
     <!-- header -->
     <div class="flex items-center justify-between w-full">
-      <AdminTitle route="Users"/>
+      <AdminTitle route="Users" />
       <div class="w-[40%]">
-        <Search search="Find the user you looking for"/>
-       </div>
+        <Search search="Find the user you looking for" />
+      </div>
     </div>
 
     <!-- table data -->
@@ -173,27 +119,31 @@ const deleteAll = () => {
       <tbody class="w-full">
         <tr
           v-for="user in users"
-          :key="user.id"
+          :key="user._id"
           class="py-1 flex items-center gap-2 justify-between w-full"
         >
           <!-- check icon -->
           <td>
             <i
-              @click="toggleSelect(user.id)"
+              @click="toggleSelect(user._id)"
               class="text-black w-4 h-4 cursor-pointer"
               :class="
-                selectedRows.includes(user.id)
+                selectedRows.includes(user._id)
                   ? 'fa-solid fa-square-check'
                   : 'fa-regular fa-square-full'
               "
             ></i>
           </td>
-          <td :class="bodyClasses">#{{ user.id }}</td>
+          <td :class="bodyClasses">
+            #{{ user._id.slice(0, 4) }}...{{ user._id.slice(-4) }}
+          </td>
           <td :class="bodyClasses">{{ user.username }}</td>
-          <td :class="bodyClasses">{{ user.fullname }}</td>
-          <td :class="bodyClasses">{{ user.email }}</td>
+          <td :class="bodyClasses">{{ user.name }}</td>
+          <td :class="bodyClasses" :title="user.email">
+            {{ user.email.split("@")[0] }}@...
+          </td>
           <td :class="bodyClasses">{{ user.role }}</td>
-          <td :class="bodyClasses">{{ user.data }}</td>
+          <td :class="bodyClasses">17/4/2025</td>
           <td class="flex-1/2 text-center px-2 py-1">
             <!-- dropdown -->
             <select
@@ -207,11 +157,11 @@ const deleteAll = () => {
               <option value="Suspended">Suspended</option>
             </select>
           </td>
-          
+
           <!-- delete row -->
           <td class="flex-1">
             <i
-              @click="deleteUser(user.id)"
+              @click="deleteUser(user._id)"
               class="fa-solid fa-trash text-red-800 cursor-pointer"
             ></i>
           </td>
