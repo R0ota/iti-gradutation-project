@@ -9,16 +9,6 @@ definePageMeta({
     <!-- hero section -->
     <div class="flex items-center justify-center lg:px-32 px-12 lg:py-24 py-10">
       <div class="flex flex-col gap-8 items-center justify-center w-[100%]">
-        <!-- <div
-          class="flex w-full lg:gap-4 gap-1.5 flex-col justify-center items-center text-center"
-        >
-          <span class="text-black lg:text-5xl text-2xl font-bold w-full">
-            <span class="text-red-800">Tabie</span>, Your Favorite Products,
-          </span>
-          <span class="text-black lg:text-5xl text-2xl font-bold w-full">
-            Now with Unique Designs.
-          </span>
-        </div> -->
         <div class="flex w-full flex-col justify-center items-center text-center gap-2 px-4">
   <p class="text-black lg:text-5xl text-2xl font-bold">
     <span class="text-red-800">Tabie</span>, Your Favorite&nbsp;Products,
@@ -45,7 +35,7 @@ definePageMeta({
     >
       <SectionTitle title="Featured Products" />
       <div
-        class="flex lg:gap-6 items-start lg:justify-between overflow-x-auto lg:overflow-hidden gap-4"
+        class="flex lg:gap-6 items-start lg:justify-between overflow-x-auto lg:overflow-hidden gap-4 w-full"
       >
         <HomeProduct
           name="Mystic Mug"
@@ -72,7 +62,7 @@ definePageMeta({
 
     <!-- how it works -->
     <div
-      class="lg:px-32 md:px-20 sm:px-8 px-4 lg:py-16 py-10 flex flex-col lg:gap-8 gap-6 items-start"
+      class="lg:px-32 md:px-20 sm:px-8 px-4 lg:py-16 py-10 flex flex-col lg:gap-8 gap-6 items-start w-full"
     >
       <SectionTitle title="How it works" />
       <div

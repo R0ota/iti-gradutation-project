@@ -22,10 +22,10 @@ onMounted(async () => {
 
 <template>
   <div
-    class="lg:w-full md:w-full w-full px-6 py-8 bg-red-900 flex lg:flex-row md:flex-row  sm:flex-col flex-col justify-start items-center lg:gap-6 md:gap-0 mt-16 "
+    class="lg:w-full md:w-full w-full px-6 py-8 bg-red-900 flex lg:gap-8 lg:flex-row md:flex-row  sm:flex-col flex-col justify-start items-center md:gap-0 mt-16 "
   >
     <!-- logo -->
-    <div class="w-80 px-4 py-1.5 flex justify-center items-center gap-2.5 lg:w-full">
+    <div class=" py-1.5 flex justify-center items-center gap-2.5 lg:w-100 w-80">
       <NuxtLink
         to="/"
         class="flex justify-center items-start"

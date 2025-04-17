@@ -38,6 +38,7 @@ const editDesign = (design) => {
       title: design.title,
       description: design.description,
       category: design.category,
+      image: design.image,
       tags: design.tags,
     },
   });
@@ -88,6 +89,21 @@ const deleteAll = () => {
   selectedRows.value = [];
   selectAll.value = false;
 };
+
+// formatdate
+const formatDate = (isoString) => {
+  const date = new Date(isoString);
+  return date
+    .toLocaleString("en-GB", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    })
+    .replace(",", "");
+};
 </script>
 
 <template>
@@ -105,7 +121,7 @@ const deleteAll = () => {
     <table class="flex flex-col gap-4 w-[100%]">
       <thead class="w-full">
         <tr
-          class="flex items-center justify-between gap-2 py-2 border-b-2 border-red-800"
+          class="flex items-center justify-between gap-2 py-2 border-b-2 border-red-900"
         >
           <!-- select icon -->
           <th>
@@ -133,7 +149,7 @@ const deleteAll = () => {
             <i
               v-if="isSelect"
               @click="deleteAll"
-              class="fa-solid fa-trash text-red-800 cursor-pointer"
+              class="fa-solid fa-trash text-red-900 cursor-pointer"
             ></i>
           </th>
         </tr>
@@ -158,11 +174,11 @@ const deleteAll = () => {
             ></i>
           </td>
           <td :class="bodyClasses"> #{{ design._id.slice(0, 4) }}...{{ design._id.slice(-4) }}</td>
-          <td :class="bodyClasses"><a :href=" design.image ">{View}</a></td>
+          <td :class="bodyClasses"><img :src=" design.image "/></td>
           <td :class="bodyClasses">{{ design.title }}</td>
           <td :class="bodyClasses">{{ design.category.slice(0, 4) }}...{{ design.category.slice(-4) }}</td>
           <td :class="bodyClasses">{{ design.admin }}</td>
-          <td :class="bodyClasses">{{ design.date }}</td>
+          <td :class="bodyClasses">{{ formatDate(design.date) }}</td>
           <td class="flex-1/2 text-center px-2 py-1">
             <!-- dropdown -->
             <select
@@ -187,7 +203,7 @@ const deleteAll = () => {
             <!-- delete row -->
             <i
               @click="deleteDesign(design._id)"
-              class="fa-solid fa-trash text-red-800 cursor-pointer"
+              class="fa-solid fa-trash text-red-900 cursor-pointer"
             ></i>
           </td>
         </tr>
