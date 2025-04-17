@@ -15,14 +15,8 @@
           :class="item.isChecked ? `lg:ml-3 ml-2` : `ml-0`"
         >
           <div class="lg:w-8 w-5 lg:h-8 flex justify-center items-center">
-            <img
-              v-if="item.isChecked"
-              src="~/assets/checked.svg"
-            />
-            <img
-              v-else
-              src="~/assets/check.svg"
-            />
+            <img v-if="item.isChecked" src="~/assets/checked.svg" />
+            <img v-else src="~/assets/check.svg" />
           </div>
           <p
             :class="item.isChecked ? `text-red-800` : `text-stone-400`"
@@ -39,7 +33,9 @@
         </p>
       </button>
 
-      <div class="lg:outline-[1.5px] outline-[1px] outline-red-800 w-full"></div>
+      <div
+        class="lg:outline-[1.5px] outline-[1px] outline-red-800 w-full"
+      ></div>
 
       <!-- cart summary -->
       <div class="flex justify-between items-center w-full">
@@ -61,13 +57,13 @@
         </p>
       </div>
 
-      <div class="lg:outline-[1.5px] outline-[1px] outline-red-800 w-full"></div>
+      <div
+        class="lg:outline-[1.5px] outline-[1px] outline-red-800 w-full"
+      ></div>
 
       <!-- total price -->
       <div class="flex w-full justify-between">
-        <p class="text-black text-lg lg:font-bold font-semibold">
-          Total Price
-        </p>
+        <p class="text-black text-lg lg:font-bold font-semibold">Total Price</p>
         <p class="text-black text-lg lg:font-bold font-semibold">
           {{ totalPrice }} EGP
         </p>
@@ -76,7 +72,7 @@
 
     <button
       class="cursor-pointer w-full font-['Poppins'] h-14 py-3.5 bg-red-800 rounded-2xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] text-yellow-50 lg:text-lg text-sm font-bold"
-      @click="$emit('checkout')"
+      @click="$emit('checkout', selectedShipping)"
     >
       Check
     </button>

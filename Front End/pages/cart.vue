@@ -91,16 +91,24 @@ const totalItems = computed(() => cartStore.totalItems);
 const showShippingForm = ref(false);
 const shippingData = ref(null);
 
-const checkout = () => {
-  showShippingForm.value = true;
+const checkout = (shipping) => {
+  shippingData.value = {
+    ...shippingData.value,
+    shippingPrice: shipping.price,
+    shippingLabel: shipping.label,
+  };
+  showShippingForm.value=true;
 };
 
 const handleShippingSubmit = async (data) => {
   showShippingForm.value = false;
-  shippingData.value = data;
+  shippingData.value = {
+    ...shippingData.value,
+    ...data,
+};
 
-  // 🚚 Now send data to backend or pass into your store
-  const response = await cartStore.createOrder(data); // Modify this to accept address
+  //  Now send data to backend or pass into your store
+  const response = await cartStore.createOrder(shippingData.value); // Modify this to accept address
   console.log("Order Response:", response);
   if (response?.data?.paymentMethod === "card" && response?.payment_link) {
     // Open Stripe Checkout in a new popup window

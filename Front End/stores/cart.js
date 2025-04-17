@@ -50,11 +50,11 @@ export const useCartStore = defineStore("cart", {
       await this.syncRemoveItem(productId); // Sync with backend
       // this.saveCartToLocalStorage();
     },
-    async clearCart(type='db') {
+    async clearCart(type = "db") {
       this.items = [];
-      if(type == 'db'){
+      if (type == "db") {
         await this.syncClearCart(); // Sync with backend
-      } 
+      }
       // this.saveCartToLocalStorage();
     },
     isInCart(productId) {
@@ -165,10 +165,12 @@ export const useCartStore = defineStore("cart", {
           body: {
             paymentMethod: deliveryDate.paymentMethod,
             deliveryAddress: deliveryDate.deliveryAddress,
+            shippingPrice: deliveryDate.shippingPrice,
+            shippingLabel: deliveryDate.shippingLabel,
           },
           ...this.getAuthHeaders(),
         });
-        return res
+        return res;
       } catch (error) {
         console.error("Create order failed:", error);
       }
