@@ -87,6 +87,8 @@ const deleteAll = () => {
   selectedRows.value = [];
   selectAll.value = false;
 };
+
+
 </script>
 
 <template>

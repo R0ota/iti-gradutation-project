@@ -28,19 +28,39 @@ const saveDesign = () => {
     tags: tags.value,
   });
 
+// if (id.value) {
+//     // const oldDesign = designStore.designs.find(d => d.id === id.value);
+//     const oldDesign = designStore.designs.find(d => d._id === id.value);
+//     if (oldDesign) {
+//       const merged = { ...oldDesign, ...designInfo };
+//       // designStore.updateDesign(merged);
+//       designStore.updateDesign(id.value, merged);
+
+//     }
+//   } else {
+//     designStore.saveDesign({
+//       ...designInfo,
+//     });
+//   }
+
+  
 if (id.value) {
-    const oldDesign = designStore.designs.find(d => d.id === id.value);
-    if (oldDesign) {
-      const merged = { ...oldDesign, ...designInfo };
-      designStore.updateDesign(merged);
-    }
-  } else {
-    designStore.saveDesign({
-      ...designInfo,
-    });
+  const oldDesign = designStore.designs.find(d => d._id === id.value);
+  if (oldDesign) {
+    const merged = { ...oldDesign, ...designInfo };
+    designStore.updateDesign(id.value, merged);
   }
+} else {
+  designStore.createDesign({
+    ...designInfo,
+  });
+}
+
+
+
   navigateTo('/admin/design/designs')
 }
+
 
 const inputClasses ='px-4 py-3 flex items-start text-stone-900 text-lg font-medium placeholder:text-stone-900/75 placeholder:text-lg placeholder:font-medium bg-yellow-50 rounded-2xl outline-1 outline-offset-[-1px] outline-red-900 self-stretch w-full'
 const labelCasses ='px-2 text-red-900 text-xl font-medium'
