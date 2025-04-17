@@ -27,7 +27,6 @@ const imgSrc = computed(() => {
     <img :src="imgSrc" class="lg:w-14 lg:h-14 w-10 h-10" />
 
     <div class="flex lg:py-[1.5px] py-[1px] lg:gap-2 gap-1 items-center">
-      <!-- حالة الأيقونة -->
       <i
         v-if="isDone"
         class="fa-solid fa-circle-check text-red-800 "
@@ -44,7 +43,6 @@ const imgSrc = computed(() => {
         class="fa-regular fa-circle-dot text-red-800 cursor-pointer"
       ></i>
 
-      <!-- النص حسب الحالة -->
       <p class="text-red-800 lg:text-base text-xs font-bold font-['Poppins'] w-full">
         {{ isDone ? finalStatus : currentStatus }}
       </p>

@@ -100,7 +100,7 @@ export const useProductsStore = defineStore("products", {
           }
         );
 
-        this.products = response || [];
+        this.products = response.data || [];
       } catch (error) {
         console.error(
           `Error fetching products for category ${categorySlug}:`,

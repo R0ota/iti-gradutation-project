@@ -1,6 +1,6 @@
 <template>
   <div
-    class="inline-flex flex-col lg:justify-start justify-center lg:items-start items-center md:ml-[70px] sm:ml-[70px] lg:ml-[120px] lg:mr-[120px] md:mr-[70px] sm:mr-[70px] ml-[25px] mr-[25px] md:ml-50 md:mr-50"
+    class="flex flex-col lg:justify-start justify-center  lg:items-start items-center lg:px-32 sm:px-8 px-4 md:px-12 "
   >
     <!-- Designed Product details -->
     <ProductDetails

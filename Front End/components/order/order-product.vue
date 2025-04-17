@@ -1,5 +1,7 @@
 <template>
-  <div class="flex lg:gap-6 gap-1 w-full items-start">
+  <div class="flex lg:gap-6 gap-1 lg:w-full items-start w-[100%]">
+    <!-- <ProductData item.image=""/> -->
+
     <div class="flex lg:gap-6 gap-2 w-full">
       <!-- Product Image -->
       <img

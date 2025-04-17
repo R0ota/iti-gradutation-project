@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex lg:flex-row flex-col lg:justify-between justify-start lg:gap-10 gap-6 items-start pt-10 pb-10"
+    class="lg:w-full w-90 flex lg:flex-row flex-col lg:justify-between  justify-start lg:gap-10 gap-6  pt-10 pb-10"
   >
     <!-- Product Gallery -->
     <ProductGallery
@@ -11,7 +11,7 @@
 
     <!-- Product info container -->
     <div
-      class="lg:w-200 w-80 inline-flex flex-col justify-start items-start gap-4"
+      class="lg:w-200 w-88 inline-flex flex-col justify-start items-start gap-4"
     >
       <div
         class="w-full lg:border-b-2 border-b-1 border-red-800 lg:gap-4 gap-3 lg:pb-6 pb-5 inline-flex flex-col justify-start items-start"
@@ -25,7 +25,7 @@
         <!-- model selection -->
         <select
           placeholder="Choose the model you want"
-          class="w-full cursor-pointer text-red-800 lg:px-6 px-5 lg:py-3.5 py-3 bg-yellow-50 lg:rounded-2xl rounded-xl outline outline-[1.50px] outline-offset-[-1.50px] outline-red-800 inline-flex justify-between items-center"
+          class="w-full cursor-pointer text-red-800 lg:px-6 px-5 lg:py-3.5 py-3 bg-yellow-50 lg:rounded-2xl rounded-xl outline-[1.50px] outline-offset-[-1.50px] outline-red-800 inline-flex justify-between items-center"
         >
           <option value="" disabled selected hidden>
             Choose the model you want

@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="flex h-[43px] justify-center items-end gap-6 self-stretch bg-[#A31D1D] border-b-2 border-[#A31D1D]"
+    class="flex lg:h-[43px] h-9 justify-center items-end lg:gap-6 gap-2 self-stretch bg-[#A31D1D] border-b-2 border-[#A31D1D]"
   >
     <NuxtLink
       to="/profile"
@@ -38,13 +38,13 @@
 <script setup>
 const route = useRoute();
 const baseClasses = `
-  text-[#FFEFD1] text-center font-poppins text-[18px] font-bold leading-[27px] tracking-[-0.342px]
-  px-6 py-2 rounded-none
+  text-[#FFEFD1] text-center lg:text-[18px] text-sm font-bold leading-[27px] tracking-[-0.342px]
+  lg:px-6 px-3.5 lg:py-2 py-1.5 rounded-none
   flex justify-center items-center
   transition-none transform-none
 `;
 
 const activeClasses = `
-  bg-[#FFEFD1] text-red-800 rounded-t-[24px] px-6 py-2 gap-[10px]
+  bg-[#FFEFD1] text-red-900 lg:rounded-t-[24px] rounded-t-2xl lg:px-6 px-3.5 lg:py-2 py-1.5 gap-[10px]
 `;
 </script>

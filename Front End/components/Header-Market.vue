@@ -1,15 +1,11 @@
 <template>
   <header class="flex items-center gap-10 justify-between py-[16px] px-[24px]">
     <!-- logo -->
-    <div class="text-black text-center font-poppins text-[20px] font-bold leading-[30px] tracking-[-0.38px]">
-      <NuxtLink
-        to="/"
-        class="cursor-pointer"
-      >
-        <img
-          src="../Logo.svg"
-          alt="Logo"
-        />
+    <div
+      class="text-black text-center text-[20px] font-bold leading-[30px] tracking-[-0.38px]"
+    >
+      <NuxtLink to="/" class="cursor-pointer">
+        <img src="../Logo.svg" alt="Logo" />
       </NuxtLink>
     </div>
 
@@ -34,7 +30,6 @@
           </g>
         </svg>
 
-        <!-- Search Input -->
         <input
           type="text"
           v-model="searchText"
@@ -59,11 +54,7 @@
           </g>
           <defs>
             <clipPath id="clip0_424_4598">
-              <rect
-                width="24"
-                height="24"
-                fill="white"
-              />
+              <rect width="24" height="24" fill="white" />
             </clipPath>
           </defs>
         </svg>
@@ -85,15 +76,13 @@
             src="../assets/home-fill.svg"
             class="w-8 h-8"
           />
-          <img
-            v-else
-            src="../assets/home-stroke.svg"
-            class="w-8 h-8"
-          />
-          <p :class="[
-            'text-red-800 text-lg font-[Poppins]',
+          <img v-else src="../assets/home-stroke.svg" class="w-8 h-8" />
+          <p
+            :class="[
+            'text-red-900 text-lg ',
             route.path === '/' ? 'font-bold' : 'font-medium',
-          ]">
+          ]"
+          >
             Home
           </p>
         </NuxtLink>
@@ -113,15 +102,13 @@
             src="../assets/store-stroke.svg"
             class="w-8 h-8"
           />
-          <img
-            v-else
-            src="../assets/store-fill.svg"
-            class="w-8 h-8"
-          />
-          <p :class="[
-            'text-red-800 text-lg font-[Poppins] ',
+          <img v-else src="../assets/store-fill.svg" class="w-8 h-8" />
+          <p
+            :class="[
+            'text-red-900 text-lg',
             route.path === '/market' ? 'font-bold' : 'font-medium',
-          ]">
+          ]"
+          >
             Marketplace
           </p>
         </NuxtLink>
@@ -131,30 +118,32 @@
           :to="isAuthenticated? '/favorite':'/login'"
           :class="[
             'relative flex items-center justify-between cursor-pointer group px-4 py-2.5 transition-all duration-300 hover:rounded-full hover:bg-orange-100 hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]',
-            route.path === '/favorite' ? 'border-b-[2px] border-red-800' : '',
+            route.path === '/favorite' ? 'border-b-[2px] border-red-900' : '',
           ]"
         >
           <div class="relative w-8 h-7 flex items-center justify-center">
-            <i :class="[
-              'relative text-2xl text-red-800 mr-3',
+            <i
+              :class="[
+              'relative text-2xl text-red-900 mr-3',
               route.path === '/favorite'
                 ? 'fa-solid fa-heart fill '
                 : 'fa-regular fa-heart fill ',
-            ]">
+            ]"
+            >
               <span
                 v-if="wishlistCount > 0"
                 class="absolute -top-3 -right-3 bg-[#A31D1D] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
               >
                 {{ wishlistCount }}
               </span>
-
             </i>
-
           </div>
-          <p :class="[
-            'text-red-800 text-lg font-[Poppins] ',
+          <p
+            :class="[
+            'text-red-900 text-lg  ',
             route.path === '/favorite' ? 'font-bold' : 'font-medium',
-          ]">
+          ]"
+          >
             Favorite
           </p>
         </NuxtLink>
@@ -167,7 +156,7 @@
             route.path === '/cart' ? hoverClasses : '',
           ]"
         >
-          <div class="relative w-full w-8 h-8 flex items-center">
+          <div class="relative lg:w-full w-8 h-8 flex items-center">
             <img
               v-if="route.path !== '/cart'"
               src="../assets/cart-shopping.svg"
@@ -186,10 +175,12 @@
             </span>
           </div>
 
-          <p :class="[
-            'text-red-800 text-lg font-[Poppins] ',
+          <p
+            :class="[
+            'text-red-800 text-lg',
             route.path === '/cart' ? 'font-bold' : 'font-medium',
-          ]">
+          ]"
+          >
             Cart
           </p>
         </NuxtLink>
@@ -202,7 +193,7 @@
         <!-- Log in Button -->
         <NuxtLink to="login">
           <button
-            class="p-[12px] px-[14px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
+            class="p-[12px] px-[14px] text-[#A31D1D] text-center text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
           >
             Log in
           </button>
@@ -211,7 +202,7 @@
         <!-- Sign up Button -->
         <NuxtLink to="sign-up">
           <button
-            class="p-[10px] px-[24px] rounded-[16px] bg-[#A31D1D] shadow-[0px_0px_4px_rgba(0,0,0,0.50)] text-[#ECDCBF] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition duration-300 ease-in-out py-3 hover:bg-[#6D1313] hover:shadow-lg hover:rounded-[50px]"
+            class="p-[10px] px-[24px] rounded-[16px] bg-[#A31D1D] shadow-[0px_0px_4px_rgba(0,0,0,0.50)] text-[#ECDCBF] text-center text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition duration-300 ease-in-out py-3 hover:bg-[#6D1313] hover:shadow-lg hover:rounded-[50px]"
           >
             Sign up
           </button>
@@ -219,16 +210,19 @@
       </div>
 
       <div v-else class="flex items-center space-x-4">
-        <NuxtLink to="/profile" class="px-[8px] py-[5px]  flex flex-col items-center justify-center transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]">
+        <NuxtLink
+          to="/profile"
+          class="px-[8px] py-[5px]  flex flex-col items-center justify-center]"
+        >
           <p class="text-black text-xs font-medium">Hello</p>
           <p class="text-red-800 text-xs font-extrabold">{{ authStore.user.name }}</p>
         </NuxtLink>
         <!-- Logout Button -->
         <button
           @click="handleLogout"
-          class="p-[8px] px-[12px] text-[#A31D1D] text-center font-[Poppins] text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
+          class="p-[8px] px-[12px] text-[#A31D1D] text-center text-[20px] font-medium leading-[150%] tracking-[-0.304px] cursor-pointer transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]"
         >
-        <i class="fa-solid fa-right-from-bracket rotate-180 "></i>
+          <i class="fa-solid fa-right-from-bracket rotate-180 "></i>
         </button>
       </div>
     </div>
@@ -249,19 +243,23 @@
         <!-- Home -->
         <NuxtLink
           to="/"
-          class="flex items-center gap-2 text-red-800 font-[Poppins]"
+          class="flex items-center gap-2 text-red-900"
           @click="closeMobileMenu"
         >
-          <span :class="route.path === '/' ? 'font-bold' : 'font-medium'">Home</span>
+          <span :class="route.path === '/' ? 'font-bold' : 'font-medium'"
+            >Home</span
+          >
         </NuxtLink>
 
         <!-- Marketplace -->
         <NuxtLink
           to="/market"
-          class="flex items-center gap-2 text-red-800 font-[Poppins]"
+          class="flex items-center gap-2 text-red-900"
           @click="closeMobileMenu"
         >
-          <span :class="route.path === '/market' ? 'font-bold' : 'font-medium'">Marketplace</span>
+          <span :class="route.path === '/market' ? 'font-bold' : 'font-medium'"
+            >Marketplace</span
+          >
         </NuxtLink>
 
         <!-- Favorite -->
@@ -270,30 +268,33 @@
           @click="closeMobileMenu"
           :class="[
             'relative flex items-center justify-between cursor-pointer group px-4 py-2.5 transition-all duration-300 hover:rounded-full hover:bg-orange-100 hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]',
-            route.path === '/favorite' ? 'border-b-[2px] border-red-800' : '',
+            route.path === '/favorite' ? 'border-b-[2px] border-red-900' : '',
           ]"
         >
-          <div class="relative w-8 h-7 flex items-center justify-center">
-            <i :class="[
+          <!-- <div class="relative w-8 h-7 flex items-center justify-center"> -->
+            <!-- <i
+              :class="[
               'relative text-2xl text-red-800 mr-3',
               route.path === '/favorite'
                 ? 'fa-solid fa-heart fill'
                 : 'fa-regular fa-heart fill',
-            ]">
+            ]"
+            > -->
               <span
                 v-if="wishlistCount > 0"
                 class="absolute -top-3 -right-3 bg-[#A31D1D] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
               >
                 {{ wishlistCount }}
               </span>
+            <!-- </i> -->
+          <!-- </div> -->
 
-            </i>
-          </div>
-
-          <p :class="[
-            'text-red-800 text-lg font-[Poppins]',
+          <p
+            :class="[
+            'text-red-900 text-lg ',
             route.path === '/favorite' ? 'font-bold' : 'font-medium',
-          ]">
+          ]"
+          >
             Favorite
           </p>
         </NuxtLink>
@@ -311,14 +312,13 @@
             {{ cartItemCount }}
           </span>
 
-          <span :class="route.path === '/cart' ? 'font-bold' : 'font-medium'">Cart</span>
+          <span :class="route.path === '/cart' ? 'font-bold' : 'font-medium'"
+            >Cart</span
+          >
         </NuxtLink>
 
         <!-- Auth Buttons -->
-        <div
-          v-if="!isAuthenticated"
-          class="flex flex-col gap-2"
-        >
+        <div v-if="!isAuthenticated" class="flex flex-col gap-2">
           <NuxtLink
             to="/login"
             @click="closeMobileMenu"
@@ -334,10 +334,7 @@
             Sign up
           </NuxtLink>
         </div>
-        <div
-          v-else
-          class="flex flex-col gap-2"
-        >
+        <div v-else class="flex flex-col gap-2">
           <NuxtLink
             to="/profile"
             @click="closeMobileMenu"
@@ -365,7 +362,14 @@ import { useWishlistStore } from '~/stores/wishlist';
 const wishlistStore = useWishlistStore();
 
 const wishlistCount = computed(() => wishlistStore.items.length);
-const searchText = ref("");
+import { useSearchStore } from '~/stores/search';
+
+const searchStore = useSearchStore();
+
+const searchText = computed({
+  get: () => searchStore.text,
+  set: val => searchStore.text = val
+});
 
 const clearInput = () => {
   searchText.value = "";
@@ -395,6 +399,5 @@ const closeMobileMenu = () => {
 };
 
 const baseClasses = `px-3.5 py-2 flex justify-center items-center gap-1 transition-all duration-300 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)]`;
-const hoverClasses =`border-b-[2px] border-red-800 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)] hover:outline-red-800 hover:outline-[1.50px] hover:outline-offset-[-1.50px]`;
-
+const hoverClasses =`border-b-[2px] border-red-800 hover:bg-orange-100 hover:rounded-full hover:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.50)] `;
 </script>

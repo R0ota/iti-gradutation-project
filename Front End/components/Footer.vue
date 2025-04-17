@@ -22,10 +22,10 @@ onMounted(async () => {
 
 <template>
   <div
-    class="lg:w-full md:w-full w-full px-6 py-8 bg-red-800 flex lg:flex-row flex-col justify-start items-center gap-6 mt-16 "
+    class="lg:w-full md:w-full w-full px-6 py-8 bg-red-900 flex lg:flex-row md:flex-row  sm:flex-col flex-col justify-start items-center lg:gap-6 md:gap-0 mt-16 "
   >
     <!-- logo -->
-    <div class="w-80 px-4 py-1.5 flex justify-center items-center gap-2.5 w-full">
+    <div class="w-80 px-4 py-1.5 flex justify-center items-center gap-2.5 lg:w-full">
       <NuxtLink
         to="/"
         class="flex justify-center items-start"
@@ -39,9 +39,9 @@ onMounted(async () => {
     </div>
 
 
-    <div class="inline-flex items-start lg:flex-row flex-col justify-start gap-6">
+    <div class="inline-flex items-start lg:flex-row flex-col justify-start lg:gap-6 gap-4 w-full">
       <!-- marketPlace -->
-      <div class="w-80 inline-flex flex-col justify-start items-start lg:gap-4 gap-2">
+      <div class="lg:w-80 md:w-60 inline-flex flex-col justify-start items-start lg:gap-4 gap-2">
       <div class="lg:px-6 px-4 py-2 inline-flex flex-col justify-center items-center gap-2.5">
         <p class="justify-start text-red-100 text-xl font-semibold leading-loose font-['Poppins']">
           Marketplace
@@ -59,9 +59,9 @@ onMounted(async () => {
       </div>
     </div>
     <!-- social Media -->
-    <div class="w-80 flex flex-col justify-start items-start lg:gap-4 gap-2">
+    <div class="lg:w-80 md:w-60 flex flex-col justify-start items-start lg:gap-4 gap-2">
       <div class="lg:px-6 px-4 py-2 inline-flex flex-col justify-center items-center gap-2.5">
-        <p class="justify-start text-red-100 text-xl font-semibold leading-loose font-['Poppins']">
+        <p class="justify-start text-red-100 text-xl font-semibold leading-loose ">
           Social Media
         </p>
       </div>
@@ -71,10 +71,10 @@ onMounted(async () => {
         >
           <div class="relative w-6 flex items-center justify-center">
             <i
-              class="fa-brands fa-facebook text-red-100 group-hover:text-red-800 transition-all duration-300 text-xl"></i>
+              class="fa-brands fa-facebook text-red-100 group-hover:text-red-900 transition-all duration-300 text-xl"></i>
           </div>
 
-          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-800 font-['Poppins']">
+          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-900 ">
             FacebooK
           </p>
         </div>
@@ -84,10 +84,10 @@ onMounted(async () => {
         >
           <div class="relative w-6 flex items-center justify-center">
             <i
-              class="fa-brands fa-instagram text-red-100 group-hover:text-red-800 transition-all duration-300 text-xl"></i>
+              class="fa-brands fa-instagram text-red-100 group-hover:text-red-900 transition-all duration-300 text-xl"></i>
           </div>
 
-          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-800 font-['Poppins']">
+          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-900 ">
             Instsgram
           </p>
         </div>
@@ -97,10 +97,10 @@ onMounted(async () => {
         >
           <div class="relative w-6 flex items-center justify-center">
             <i
-              class="fa-brands fa-pinterest text-red-100 group-hover:text-red-800 transition-all duration-300 text-xl"></i>
+              class="fa-brands fa-pinterest text-red-100 group-hover:text-red-900 transition-all duration-300 text-xl"></i>
           </div>
 
-          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-800 font-['Poppins']">
+          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-900 ">
             Pinterest
           </p>
         </div>
@@ -110,9 +110,9 @@ onMounted(async () => {
         >
           <div class="relative w-6 flex items-center justify-center">
             <i
-              class="fa-brands fa-linkedin text-red-100 group-hover:text-red-800 transition-all duration-300 text-xl"></i>
+              class="fa-brands fa-linkedin text-red-100 group-hover:text-red-900 transition-all duration-300 text-xl"></i>
           </div>
-          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-800 font-['Poppins']">
+          <p class="text-center justify-start text-red-100 lg:text-base text-sm font-medium group-hover:text-red-900 ">
             Linked in
           </p>
         </div>
@@ -137,7 +137,7 @@ onMounted(async () => {
           class="self-stretch py-2.5 cursor-pointer bg-orange-200 rounded-2xl hover:bg-orange-300 group hover:rounded-full transition-all duration-300 shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] inline-flex justify-center items-center gap-2.5"
         >
           <button
-            class="text-right justify-start text-red-800 cursor-pointer text-lg font-bold leading-relaxed group-hover:text-red-100 group-transition-all group-duration-300"
+            class="text-right justify-start text-red-900 cursor-pointer text-lg font-bold leading-relaxed group-hover:text-red-100 group-transition-all group-duration-300"
           >
             Send
           </button>

@@ -1,7 +1,7 @@
 <template>
-  <div class="h-full flex items-center w-full">
-    <div class="h-screen flex items-center m-auto">
-      <div class="lg:w-[555px] w-full flex flex-col items-start gap-6">
+  <!-- <div class="h-full flex items-center w-full"> -->
+    <div class=" pt-11 pb-20  flex items-center justify-center">
+      <div class="lg:w-[565px] w-full flex flex-col items-start gap-11 px-4">
         <SectionTitle title="Profile Info" />
 
         <div v-for="field in fields" :key="field.key" class="w-full">
@@ -13,7 +13,7 @@
             <!-- Input with validation icon inside -->
             <div
               :class="[
-                'relative flex items-center bg-yellow-50 p-3 rounded-2xl outline outline-1',
+                'relative flex items-center bg-yellow-50 p-3 rounded-2xl outline-1',
                 validationStatus[field.key] && !errors[field.key]
                   ? 'border-[#00BA00] outline-[#00BA00]'
                   : errors[field.key]
@@ -82,7 +82,7 @@
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script setup>

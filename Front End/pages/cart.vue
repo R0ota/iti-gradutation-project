@@ -8,9 +8,9 @@
       <img src="../assets/empty-cart.png" class="lg:w-48 w-32 lg:h-48 h-32" />
 
       <div class="flex flex-col items-center justify-center lg:gap-1 gap-2">
-        <P class="text-black lg:text-xl text-sm font-medium leading-loose">
+        <p class="text-black lg:text-xl text-sm font-medium leading-loose">
           The shopping cart is empty now.
-        </P>
+        </p>
         <NuxtLink
           to="/market"
           class="cursor-pointer lg:px-6 px-3.5 lg:py-2 py-[5px] text-red-800 lg:text-lg text-xs font-bold leading-relaxed"
@@ -34,7 +34,7 @@
       >
         <!-- Cart Items -->
         <CartItems
-          :items="cartItems"
+          :items="filteredCartItems"
           @remove="removeItem"
           @increase="increaseQuantity"
           @decrease="decreaseQuantity"
@@ -69,6 +69,22 @@ import ShippingForm from "~/components/order/ShippingForm.vue";
 
 const cartStore = useCartStore();
 const cartItems = computed(() => cartStore.items);
+
+import { useSearchStore } from '~/stores/search';
+const searchStore = useSearchStore();
+
+const filteredCartItems = computed(() => {
+  const query = searchStore.text?.toLowerCase().trim();
+  if (!query) return cartStore.items;
+
+  const words = query.split(/\s+/);
+  return cartStore.items.filter(item => {
+    const name = item.name?.toLowerCase() || "";
+    return words.every(word => name.includes(word));
+  });
+});
+
+
 const totalPrice = computed(() => cartStore.totalPrice);
 const totalItems = computed(() => cartStore.totalItems);
 

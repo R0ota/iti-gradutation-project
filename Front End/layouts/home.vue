@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col">
+  <!-- <div class="min-h-screen flex flex-col">
     <TheHeader v-if="!isAuthPage" />
     <div v-else class="p-6 fixed">
       <NuxtLink to="/" class="flex items-center">
@@ -12,10 +12,13 @@
       <NuxtPage />
     </main>
     <TheFooter v-if="!isAuthPage" />
-  </div>
+  </div> -->
+  <Header/>
+  <slot/>
+  <Footer/>
 </template>
 
-<script setup>
+<!-- <script setup>
 import { useRoute } from '#imports';
 
 const route = useRoute();
@@ -24,4 +27,4 @@ const route = useRoute();
 const isAuthPage = computed(() => {
   return ['/login', '/signup'].includes(route.path);
 });
-</script>
+</script> -->
