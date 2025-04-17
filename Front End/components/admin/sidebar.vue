@@ -1,4 +1,6 @@
 <script setup>
+import { NuxtLink } from '#components';
+
     const isCollapsed = ref(false)
     
     const toggleState = () => {
@@ -25,9 +27,9 @@
 
     <div class="flex flex-col gap-10">
       <!-- logo -->
-      <div class="flex justify-center items-center w-13 h-13">
+      <NuxtLink to="/" class="flex justify-center items-center w-13 h-13">
         <img src="~/assets/Light_Logo.svg" class="w-12 h-11" />
-      </div>
+      </NuxtLink>
       <!-- <img src="/Dashboard-light.svg" class="w-10 h-10" /> -->
       <!-- main -->
       <div class="flex flex-col gap-1">
