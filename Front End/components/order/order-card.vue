@@ -61,7 +61,7 @@ defineProps({
               Total Price
             </p>
             <p class="text-red-800 lg:text-lg text-xs lg:font-semibold font-bold font-['Poppins']">
-              {{ price.toFixed(2) }} EGP
+              {{ price }} EGP
             </p>
           </div>
         </div>
