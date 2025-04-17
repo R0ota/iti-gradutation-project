@@ -1,14 +1,10 @@
 <template>
-  <!-- Loading state -->
-
-  <!-- Error state -->
-
   <div
     class="flex flex-col lg:justify-start justify-center  lg:items-start items-center lg:px-32 sm:px-8 px-4 md:px-12 "
   >
-    <!-- Product details -->
+    <!-- Designed Product details -->
     <ProductDetails
-      :product="fetchedProduct"
+      :product="fetchedDesignedProduct"
       :is-in-wishlist="isWishlisted"
       @toggle-wishlist="toggleWishlist"
     />
@@ -19,14 +15,7 @@
       :products="availableInThisDesign"
       @toggle-wishlist="toggleWishlist"
     />
-<div class="border-b-[2.50px] border-red-800"></div>
-
-      <!-- Other Designs -->
-    <!-- <ProductAvailableInThisDesign
-      :loading="loadingAvailable"
-      :products="availableInThisDesign"
-      @toggle-wishlist="toggleWishlist"
-    /> -->
+    <div class="border-b-[2.50px] border-red-800"></div>
   </div>
 </template>
 
@@ -37,58 +26,57 @@ definePageMeta({
 
 import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { useProductsStore } from '~/stores/products';
+import {usedesignedProductsStore} from "~/stores/designedProduct";
 import { useWishlistStore } from '~/stores/wishlist';
 
 const route = useRoute();
-const productId = computed(() => route.params.id);
-const productsStore = useProductsStore();
+const designedProductId = computed(() => route.params.id);
+const designedProductsStore = usedesignedProductsStore();
 const wishlistStore = useWishlistStore();
 
 // States
 const loading = ref(false);
 const error = ref(null);
-const fetchedProduct = ref(null);
+const fetchedDesignedProduct = ref(null);
 const availableInThisDesign = ref([]);
 const loadingAvailable = ref(false);
 
-const isWishlisted = computed(() => wishlistStore.isInWishlist(fetchedProduct.value?.id));
+const isWishlisted = computed(() =>
+  wishlistStore.isInWishlist(fetchedDesignedProduct.value?.id)
+);
 
 // Toggle product in wishlist
 const toggleWishlist = () => {
-  if (!fetchedProduct.value) return;
+  if (!fetchedDesignedProduct.value) return;
 
   if (isWishlisted.value) {
-    wishlistStore.removeFromWishlist(fetchedProduct.value.id);
+    wishlistStore.removeFromWishlist(fetchedDesignedProduct.value.id);
   } else {
-    wishlistStore.addToWishlist(fetchedProduct.value);
+    wishlistStore.addToWishlist(fetchedDesignedProduct.value);
   }
 };
 
-// Get random products from the same category
-const fetchSimilarProducts = async () => {
-  if (!fetchedProduct.value?.category) return;
+// Get similar designed products from the same category
+const fetchSimilarDesignedProducts = async () => {
+  if (!fetchedDesignedProduct.value?.category) return;
 
   loadingAvailable.value = true;
   try {
-    // Check if we already have products in the store
-    if (productsStore.products.length === 0) {
-      await productsStore.fetchProducts();
+    // Check if already loaded
+    if (designedProductsStore.designedproducts.length === 0) {
+      await designedProductsStore.fetchdesignedProducts();
     }
 
-    // Filter products from the same category, excluding current product
-    const sameCategory = productsStore.products.filter(
-      product => product.category === fetchedProduct.value.category && product._id !== fetchedProduct.value._id
+    // Filter similar ones
+    const sameCategory = designedProductsStore.designedproducts.filter(
+      designedProduct =>
+        designedProduct.category === fetchedDesignedProduct.value.category &&
+        designedProduct._id !== fetchedDesignedProduct.value._id
     );
 
-    if (sameCategory.length === 0) {
-      availableInThisDesign.value = [];
-      return;
-    }
-
-    availableInThisDesign.value = sameCategory.slice(0, 4); // Default to first 4 products
+    availableInThisDesign.value = sameCategory.slice(0, 4);
   } catch (err) {
-    console.error('Error fetching similar products:', err);
+    console.error('Error fetching similar designed products:', err);
     availableInThisDesign.value = [];
   } finally {
     loadingAvailable.value = false;
@@ -100,15 +88,17 @@ onMounted(async () => {
   error.value = null;
 
   try {
-    fetchedProduct.value = await productsStore.fetchProduct(productId.value); // Fetch the product by ID
-    if (!fetchedProduct.value) {
-      error.value = 'Product not found.';
+    fetchedDesignedProduct.value = await designedProductsStore.fetchdesignedProduct(
+      designedProductId.value
+    );
+
+    if (!fetchedDesignedProduct.value) {
+      error.value = 'Designed product not found.';
     } else {
-      // Fetch similar products after main product is loaded
-      await fetchSimilarProducts();
+      await fetchSimilarDesignedProducts();
     }
   } catch (err) {
-    error.value = 'Failed to load product details.';
+    error.value = 'Failed to load designed product details.';
     console.error(err);
   } finally {
     loading.value = false;

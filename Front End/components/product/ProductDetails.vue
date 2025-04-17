@@ -20,7 +20,7 @@
         <p
           class="self-stretch justify-start text-red-800 lg:text-3xl text-2xl font-bold lg:leading-[48px] leading-10"
         >
-          Eclipse Vision
+          {{currentProduct.title}}
         </p>
         <!-- model selection -->
         <select
@@ -153,7 +153,8 @@ const currentProduct = computed(() => {
     SKU: '',
     category: '',
     description: '',
-    colors: []
+    colors: [],
+    title: '',
   };
 });
 
@@ -161,14 +162,9 @@ const currentProduct = computed(() => {
 const currentItemInStock = computed(() => {
   if (!currentProduct.value) return false;
 
-  // Check if there's a selected color and it has stock
-  if (selectedColor.value) {
-    return selectedColor.value.stock > 0;
-  }
-
-  // If no color is selected, check if any color has stock
-  return currentProduct.value.colors.some(color => color.stock > 0);
+  return true;
 });
+
 
 // Get available images based on selected color
 const availableImages = computed(() => {
@@ -207,12 +203,12 @@ const addToCart = () => {
     id: currentProduct.value._id, // MongoDB uses _id
     name: currentProduct.value.name,
     price: currentProduct.value.price,
-    image: selectedImage.value ||
-      (availableImages.value.length > 0 ? availableImages.value[0].url : ''),
+    image: currentProduct.value.image,
     quantity: quantity.value,
     options: selectedOptions,
     SKU: currentProduct.value.SKU
   };
+  console.log('cartItem', cartItem);
 
   cartStore.addItem(cartItem, quantity.value);
 

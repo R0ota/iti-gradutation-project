@@ -7,7 +7,7 @@ const defaultCategories = [{ "name": "Home Décor" }, { "name": "Artboard" }, { 
 
 // Get categories from the store
 const categories = computed(() => {
-  const storeCategories = productsStore.getCategories;
+  const storeCategories = productsStore.getAllCategories;
   if (!storeCategories || storeCategories.length === 0) return defaultCategories;
   return storeCategories;
 });
@@ -15,7 +15,7 @@ const categories = computed(() => {
 // Ensure categories are loaded
 onMounted(async () => {
   if (categories.value.length === 0) {
-    await productsStore.fetchProducts();
+    await productsStore.fetchCategories();
   }
 });
 </script>

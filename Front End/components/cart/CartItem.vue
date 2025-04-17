@@ -7,7 +7,6 @@
       <!-- icrement & decrement -->
       <div class="flex lg:flex-row flex-col md:flex-col sm:flex-col justify-start items-center gap-1">
         <button
-          :disabled="item.quantity <= 1"
           class="w-10 h-10 flex items-center justify-center"
         >
           <img
@@ -53,6 +52,7 @@ defineProps({
 
 const decreaseQuantity = (item) => {
   if (item.quantity <= 1) {
+    emit('remove', item.id);
     return;
   }
 

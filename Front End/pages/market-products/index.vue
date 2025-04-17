@@ -5,11 +5,11 @@ definePageMeta({
 
 import { computed, onMounted, ref, watchEffect } from "vue";
 import { useRoute } from 'vue-router';
-import { useProductsStore } from "~/stores/products";
+import { usedesignedProductsStore } from "~/stores/designedProduct";
 import PaginationComponent from "../components/paginiation.vue";
 
 const route = useRoute();
-const productsStore = useProductsStore();
+const designedProductsStore = usedesignedProductsStore();
 const categoryParam = computed(() => route.query.category || '');
 
 const currentPage = ref(1);
@@ -17,44 +17,44 @@ const itemsPerPage = 6;
 
 // Fetch products from the store
 onMounted(async () => {
-  await productsStore.fetchProducts();
+  await designedProductsStore.fetchdesignedProducts();
 });
 
 // Get all products from the store
-const allProducts = computed(() => productsStore.getAllProducts);
+const allDesignedProducts = computed(() => designedProductsStore.getAlldesignedProducts);
 
 // Filter products by category if provided in URL
-const filteredProducts = computed(() => {
-  if (!allProducts.value || allProducts.value.length === 0) return [];
+const filtereddesignedProducts = computed(() => {
+  if (!allDesignedProducts.value || allDesignedProducts.value.length === 0) return [];
+
 
   if (!categoryParam.value) {
-    return allProducts.value; // Return all products if no category filter
+    return allDesignedProducts.value; // Return all products if no category filter
   }
+
 
   // Filter products by category
   return allProducts.value.filter(product => {
-    const productCategory = product.category?.toLowerCase() || '';
+    const productCategory = product.design.category?.toLowerCase() || '';
     return productCategory === categoryParam.value.toLowerCase();
   });
 });
 
 watchEffect(() => {
   console.log("Category Filter:", categoryParam.value);
-  console.log("Filtered Products:", filteredProducts.value);
+  console.log("Filtered Products:", filtereddesignedProducts.value);
 });
 
-// Calculate total pages based on filtered products
 const totalPages = computed(() => {
-  if (!filteredProducts.value || filteredProducts.value.length === 0) return 1;
-  return Math.ceil(filteredProducts.value.length / itemsPerPage);
+  if (!filtereddesignedProducts.value || filtereddesignedProducts.value.length === 0) return 1;
+  return Math.ceil(filtereddesignedProducts.value.length / itemsPerPage);
 });
 
-// Get the current page's products from filtered products
-const paginatedProducts = computed(() => {
-  if (!filteredProducts.value || filteredProducts.value.length === 0) return [];
+const paginatedDesignedProducts = computed(() => {
+  if (!filtereddesignedProducts.value || filtereddesignedProducts.value.length === 0) return [];
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  return filteredProducts.value.slice(start, end);
+  return filtereddesignedProducts.value.slice(start, end);
 });
 
 // Format the category name for display
@@ -84,17 +84,26 @@ const formattedCategory = computed(() => {
     <!-- Display Paginated Products -->
     <div class="flex flex-row lg:flex-wrap lg:justify-start justify-center flex-wrap gap-3">
       <div
-        v-for="product in paginatedProducts"
-        :key="product._id"
+        v-for="designproduct in paginatedDesignedProducts"
+        :key="designproduct.design._id"
         class="flex"
       >
+        <!-- <ProductCard
+          :id="designproduct?.product._id"
+          :name="designproduct?.product.name"
+          :type="designproduct?.product.category"
+          :price="designproduct?.product.price"
+          :description="designproduct?.product.description"
+          :image="designproductproduct.image || product.thumbnail"
+          currency="EGP"
+        /> -->
+
         <ProductCard
-          :id="product._id"
-          :name="product.name"
-          :type="product.category"
-          :price="product.price"
-          :description="product.description"
-          :image="product.image || product.thumbnail" 
+          :id="designproduct?.design._id"
+          :name="designproduct?.design.title"
+          :price="designproduct?.design.price"
+          :description="designproduct?.design.quantity"
+          :image="designproduct?.design.image"
           currency="EGP"
         />
       </div>
