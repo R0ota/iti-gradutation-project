@@ -70,8 +70,9 @@ export const useDesignStore = defineStore("design", {
     // update design
     async updateDesign(id, updatedDesign) {
       try {
-        const authStore = useAuthStore();   
-        const token = authStore.authToken;
+        // const authStore = useAuthStore();   
+        // const token = authStore.authToken;
+        const token = localStorage.getItem('auth_token')
         const response = await $fetch(`${getBaseURL()}/design/${id}`, {
           method: 'PATCH',
           headers: {
@@ -93,8 +94,9 @@ export const useDesignStore = defineStore("design", {
     // delete design
     async deleteDesign(id) {
       try {
-        const authStore = useAuthStore();   
-        const token = authStore.authToken;
+        // const authStore = useAuthStore();   
+        // const token = authStore.authToken;
+        const token = localStorage.getItem('auth_token')
         await $fetch(`${getBaseURL()}/design/${id}`, {
           method: 'DELETE',
           headers: {
@@ -109,37 +111,5 @@ export const useDesignStore = defineStore("design", {
       }
     },
 
-    // upload image
-    // async uploadImage(file) {
-    //   if (!file) {
-    //     this.error = 'No file selected';
-    //     return;
-    //   }
-
-    //   const formData = new FormData();
-    //   formData.append("image", file);
-    //   console.log("form datta",formData);
-    //   formData.forEach((value, key) => {
-    //     console.log(key, value);
-    //   });
-    //   const authStore = useAuthStore();  
-    //   const token = authStore.authToken;
-
-    //   try {
-    //     const response = await $fetch(`${getBaseURL()}/upload`, {
-    //       method: 'POST',
-    //       headers: {
-    //         'Authorization': `Bearer ${token}`,  
-    //       },
-    //       body: formData,
-    //     });
-    //     console.log("Response:", response);
-    //     this.imageUrl = response.url || response.data?.url;    
-    //     console.log("Image uploaded successfully:", this.imageUrl);
-    //   } catch (error) {
-    //     console.error("Error uploading image:", error);
-    //     this.error = error.message || 'Failed to upload image';
-    //   }
-    // }
   }
 });
