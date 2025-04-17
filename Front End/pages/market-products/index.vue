@@ -10,9 +10,11 @@ import PaginationComponent from "../components/paginiation.vue";
 
 const route = useRoute();
 const designedProductsStore = usedesignedProductsStore();
-const categoryParam = computed(() => route.query.category || '');
+const categoryParam = computed(() => route.query.categoryname || '');
+const categoryIdParam = computed(() => route.query.categoryid || '');
 
 const currentPage = ref(1);
+
 const itemsPerPage = 6;
 
 // Fetch products from the store
@@ -32,14 +34,14 @@ const filtereddesignedProducts = computed(() => {
     return allDesignedProducts.value; // Return all products if no category filter
   }
 
+  // ⚠️ UNCOMMENT THIS TO TEST ALL PRODUCTS
+  // return allDesignedProducts.value;
 
-  // Filter products by category
+  // Filter products by category id
   return allDesignedProducts.value.filter(product => {
-    const productCategory = "all"
-    return productCategory === categoryParam.value.toLowerCase();
+    return product.category === categoryIdParam.value;
   });
 });
-
 watchEffect(() => {
   console.log("Category Filter:", categoryParam.value);
   console.log("Filtered Products:", filtereddesignedProducts.value);
@@ -70,7 +72,7 @@ const formattedCategory = computed(() => {
 
 <template>
   <div
-    class="lg:px-32 lg:mt-[40px] mt-[20px] lg:gap-[32px] flex flex-col gap-[24px] px-4"
+    class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px]"
   >
     <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center">
       <p
@@ -86,12 +88,10 @@ const formattedCategory = computed(() => {
     </div>
 
     <!-- Display Paginated Products -->
-    <div
-      class="flex flex-row lg:flex-wrap lg:justify-start justify-center flex-wrap gap-3"
-    >
+    <div class="flex flex-row lg:flex-wrap lg:justify-start flex-wrap gap-4">
       <div
         v-for="designproduct in paginatedDesignedProducts"
-        :key="designproduct.design._id"
+        :key="designproduct._id"
         class="flex"
       >
         <!-- <ProductCard
@@ -103,13 +103,13 @@ const formattedCategory = computed(() => {
           :image="designproductproduct.image || product.thumbnail"
           currency="EGP"
         /> -->
-
+        
         <ProductCard
-          :id="designproduct?.design._id"
-          :name="designproduct?.design.title"
-          :price="designproduct?.design.price"
-          :description="designproduct?.design.quantity"
-          :image="designproduct?.design.image"
+          :id="designproduct?._id"
+          :title="designproduct?.title"
+          :price="designproduct?.price"
+          :description="designproduct?.description"
+          :image="designproduct?.image"
           currency="EGP"
         />
       </div>

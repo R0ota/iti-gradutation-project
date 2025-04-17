@@ -56,8 +56,8 @@ console.log("All Products:", allDesignedProducts.value);
 const categories = computed(() => productsStore.getAllCategories);
 
 // Handle category selection
-const navigateToCategory = (categoryName) => {
-  router.push(`/market-products?category=${encodeURIComponent(categoryName)}`);
+const navigateToCategory = (category) => {
+  router.push(`/market-products?categoryname=${encodeURIComponent(category.name)}&categoryid=${encodeURIComponent(category._id)}`);
 };
 </script>
 
@@ -75,7 +75,7 @@ const navigateToCategory = (categoryName) => {
         <CardType
           :catigory="category.name"
           :img="category.image"
-          @category-selected="navigateToCategory"
+          @click.native="navigateToCategory(category)"
         />
       </div>
     </div>

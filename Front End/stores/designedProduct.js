@@ -1,22 +1,22 @@
-import { defineStore } from 'pinia';
-import { getBaseURL } from '~/composables/helpers';
+import { defineStore } from "pinia";
+import { getBaseURL } from "~/composables/helpers";
 
-export const usedesignedProductsStore = defineStore('designedproducts', {
+export const usedesignedProductsStore = defineStore("designedproducts", {
   state: () => ({
     designedproducts: [],
     categories: [],
     loading: false,
-    error: null
+    error: null,
   }),
 
   getters: {
     // Get all products
-    getAlldesignedProducts: state => state.designedproducts,
+    getAlldesignedProducts: (state) => state.designedproducts,
 
     // Get product by ID
-    getdesignedProductById: state => id => {
-      return state.designedproducts.find(product => product._id === id);
-    }
+    getdesignedProductById: (state) => (id) => {
+      return state.designedproducts.find((product) => product._id === id);
+    },
   },
 
   actions: {
@@ -26,19 +26,20 @@ export const usedesignedProductsStore = defineStore('designedproducts', {
         return; // Return early if products are already loaded or loading
       }
 
-      console.log('Fetching designedproducts...');
+      console.log("Fetching designedproducts...");
       this.loading = true;
       this.error = null;
 
       try {
-        const response = await $fetch(`${getBaseURL()}/designed-product?limit=1000`, {
-          method: 'GET'
+        const response = await $fetch(`${getBaseURL()}/design?limit=1000`, {
+          method: "GET",
         });
+        console.log(response.data);
 
-        this.designedproducts = response.data?.data || [];
+        this.designedproducts = response.data || [];
       } catch (error) {
-        console.error('Error fetching designedproducts:', error);
-        this.error = error.message || 'Failed to load products';
+        console.error("Error fetching designedproducts:", error);
+        this.error = error.message || "Failed to load products";
       } finally {
         this.loading = false;
       }
@@ -50,18 +51,21 @@ export const usedesignedProductsStore = defineStore('designedproducts', {
       this.error = null;
 
       try {
-        const response = await $fetch(`${getBaseURL()}/designed-product/${id}`, {
-          method: 'GET'
-        });
+        const response = await $fetch(
+          `${getBaseURL()}/designed-product/${id}`,
+          {
+            method: "GET",
+          }
+        );
 
         return response.data;
       } catch (error) {
         console.error(`Error fetching designedproduct with ID ${id}:`, error);
-        this.error = error.message || 'Failed to load product';
+        this.error = error.message || "Failed to load product";
         throw error; // Re-throw the error for further handling
       } finally {
         this.loading = false;
       }
-    }
-  }
+    },
+  },
 });
