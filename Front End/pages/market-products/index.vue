@@ -34,8 +34,8 @@ const filtereddesignedProducts = computed(() => {
 
 
   // Filter products by category
-  return allProducts.value.filter(product => {
-    const productCategory = product.design.category?.toLowerCase() || '';
+  return allDesignedProducts.value.filter(product => {
+    const productCategory = "all"
     return productCategory === categoryParam.value.toLowerCase();
   });
 });
@@ -69,9 +69,13 @@ const formattedCategory = computed(() => {
 </script>
 
 <template>
-  <div class="lg:px-32 lg:mt-[40px] mt-[20px] lg:gap-[32px] flex flex-col gap-[24px] px-4">
+  <div
+    class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px]"
+  >
     <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center">
-      <p class="justify-start text-red-800 lg:text-3xl text-xl font-bold leading-loose lg:leading-[48px]">
+      <p
+        class="justify-start text-red-800 lg:text-3xl text-xl font-bold leading-loose lg:leading-[48px]"
+      >
         Market
         <span
           class="px-2 bg-red-800 inline-flex justify-center items-center text-white lg:text-2xl text-xl font-bold leading-9"
@@ -82,7 +86,7 @@ const formattedCategory = computed(() => {
     </div>
 
     <!-- Display Paginated Products -->
-    <div class="flex flex-row lg:flex-wrap lg:justify-start justify-center flex-wrap gap-3">
+    <div class="flex flex-row lg:flex-wrap lg:justify-start flex-wrap gap-4">
       <div
         v-for="designproduct in paginatedDesignedProducts"
         :key="designproduct.design._id"
