@@ -10,16 +10,19 @@ import PaginationComponent from "../components/paginiation.vue";
 
 const route = useRoute();
 const designedProductsStore = usedesignedProductsStore();
-const categoryParam = computed(() => route.query.categoryname || '');
-const categoryIdParam = computed(() => route.query.categoryid || '');
+const categoryParam = computed(() => route.query.category || '');
+const categoryIdParam = computed(() => route.query.categoryId || '');
 
 const currentPage = ref(1);
-
+const paginatedDesignedProducts = ref([]);
 const itemsPerPage = 6;
 
 // Fetch products from the store
 onMounted(async () => {
-  await designedProductsStore.fetchdesignedProducts();
+  const res = await designedProductsStore.fetchdesignedProducts({ categoryId: categoryIdParam.value });
+  console.log("Fetched Products 23:", res);
+  paginatedDesignedProducts.value = res;
+  console.log("Paginated Products:", paginatedDesignedProducts);
 });
 
 // Get all products from the store
@@ -34,30 +37,30 @@ const filtereddesignedProducts = computed(() => {
     return allDesignedProducts.value; // Return all products if no category filter
   }
 
-  // ⚠️ UNCOMMENT THIS TO TEST ALL PRODUCTS
-  // return allDesignedProducts.value;
 
-  // Filter products by category id
+  // Filter products by category
   return allDesignedProducts.value.filter(product => {
-    return product.category === categoryIdParam.value;
+    const productCategory = "all"
+    return productCategory === categoryParam.value.toLowerCase();
   });
 });
-watchEffect(() => {
-  console.log("Category Filter:", categoryParam.value);
-  console.log("Filtered Products:", filtereddesignedProducts.value);
-});
+
+// watchEffect(() => {
+//   console.log("Category Filter:", categoryParam.value);
+//   console.log("Filtered Products:", filtereddesignedProducts.value);
+// });
 
 const totalPages = computed(() => {
   if (!filtereddesignedProducts.value || filtereddesignedProducts.value.length === 0) return 1;
   return Math.ceil(filtereddesignedProducts.value.length / itemsPerPage);
 });
 
-const paginatedDesignedProducts = computed(() => {
-  if (!filtereddesignedProducts.value || filtereddesignedProducts.value.length === 0) return [];
-  const start = (currentPage.value - 1) * itemsPerPage;
-  const end = start + itemsPerPage;
-  return filtereddesignedProducts.value.slice(start, end);
-});
+// const paginatedDesignedProducts = computed(() => {
+//   if (!filtereddesignedProducts.value || filtereddesignedProducts.value.length === 0) return [];
+//   const start = (currentPage.value - 1) * itemsPerPage;
+//   const end = start + itemsPerPage;
+//   return filtereddesignedProducts.value.slice(start, end);
+// });
 
 // Format the category name for display
 const formattedCategory = computed(() => {
@@ -72,7 +75,7 @@ const formattedCategory = computed(() => {
 
 <template>
   <div
-    class="lg:ml-[130px] lg:mr-[130px] lg:mt-[40px] lg:gap-[32px] flex flex-col gap-[24px] ml-[61px] mr-[61px]"
+    class="lg:px-32 lg:mt-[40px] mt-[20px] lg:gap-[32px] flex flex-col gap-[24px] px-4"
   >
     <div class="px-6 border-l-[6px] border-red-800 inline-flex items-center">
       <p
@@ -88,7 +91,9 @@ const formattedCategory = computed(() => {
     </div>
 
     <!-- Display Paginated Products -->
-    <div class="flex flex-row lg:flex-wrap lg:justify-start flex-wrap gap-4">
+    <div
+      class="flex flex-row lg:flex-wrap lg:justify-start justify-center flex-wrap gap-3"
+    >
       <div
         v-for="designproduct in paginatedDesignedProducts"
         :key="designproduct._id"
@@ -103,7 +108,7 @@ const formattedCategory = computed(() => {
           :image="designproductproduct.image || product.thumbnail"
           currency="EGP"
         /> -->
-        
+
         <ProductCard
           :id="designproduct?._id"
           :title="designproduct?.title"

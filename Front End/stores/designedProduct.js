@@ -21,9 +21,14 @@ export const usedesignedProductsStore = defineStore("designedproducts", {
 
   actions: {
     // Fetch all products from the backend API
-    async fetchdesignedProducts() {
-      if (this.designedproducts.length > 0 || this.loading) {
-        return; // Return early if products are already loaded or loading
+    async fetchdesignedProducts(filter = {}) {
+      if (this.loading) {
+        return;
+      }
+
+      let filterString = "";
+      if (filter.categoryId) {
+        filterString += `&category=${filter.categoryId}`;
       }
 
       console.log("Fetching designedproducts...");
@@ -31,12 +36,15 @@ export const usedesignedProductsStore = defineStore("designedproducts", {
       this.error = null;
 
       try {
-        const response = await $fetch(`${getBaseURL()}/design?limit=1000`, {
-          method: "GET",
-        });
-        console.log(response.data);
+        const response = await $fetch(
+          `${getBaseURL()}/designed-product?limit=1000${filterString}`,
+          {
+            method: "GET",
+          }
+        );
 
-        this.designedproducts = response.data || [];
+        this.designedproducts = response.data?.data || [];
+        return this.designedproducts;
       } catch (error) {
         console.error("Error fetching designedproducts:", error);
         this.error = error.message || "Failed to load products";

@@ -43,7 +43,7 @@ const filteredProducts = computed(() => {
 watch(filteredProducts, (newResults) => {
   if (searchStore.text && newResults.length === 0) {
     router.push('/status/search-fail');
-  }  
+  }
 });
 
 // Get all products from the store
@@ -56,8 +56,14 @@ console.log("All Products:", allDesignedProducts.value);
 const categories = computed(() => productsStore.getAllCategories);
 
 // Handle category selection
-const navigateToCategory = (category) => {
-  router.push(`/market-products?categoryname=${encodeURIComponent(category.name)}&categoryid=${encodeURIComponent(category._id)}`);
+const navigateToCategory = ({ name, id }) => {
+  router.push({
+    path: '/market-products',
+    query: {
+      category: name,
+      categoryId: id
+    }
+  });
 };
 </script>
 
@@ -75,7 +81,8 @@ const navigateToCategory = (category) => {
         <CardType
           :catigory="category.name"
           :img="category.image"
-          @click.native="navigateToCategory(category)"
+          :id="category._id"
+          @category-selected="navigateToCategory"
         />
       </div>
     </div>
