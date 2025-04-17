@@ -121,8 +121,8 @@ export const useDesignStore = defineStore("design", {
       const token = authStore.authToken;
 
       try {
-        const response = await $fetch(`${getBaseURL()}/upload`, {
-          method: 'POST',
+        const response = await $fetch(`${getBaseURL()}/design`, {
+          method: 'PACH',
           headers: {
             'Authorization': `Bearer ${token}`,  
           },

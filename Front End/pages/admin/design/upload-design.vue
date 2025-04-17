@@ -55,11 +55,10 @@ const labelCasses = "px-2 text-red-900 text-xl font-[Poppins] font-medium";
       <div class="flex flex-col items-center justify-center gap-4 h-screen">
         <img src="/admin/upload.png" />
         <input
-          type="file"
-          accept="image/*"
-          @change="handleImageUpload"
+          type="text"
+           v-model="imageUrl"
           placeholder="Image Link"
-          class="text-black cursor-pointer text-base mt-4 font-semibold placeholder:text-black placeholder:font-semibold"
+          :class="inputClasses"
         />
         <p v-if="imageUrl" class="mt-2 text-green-500">
           Image uploaded successfully
